@@ -1,0 +1,197 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum ServiceType {
+  STRATEGIC_COMMUNICATIONS
+  CRISIS_REPUTATION
+  PERCEPTION_INTELLIGENCE
+  NARRATIVE_ARCHITECTURE
+  PUBLIC_AFFAIRS
+  EXECUTIVE_PROFILING
+}
+
+enum IndustryType {
+  DEFENSE_AEROSPACE
+  FINTECH_BFSI
+  ENERGY_INFRASTRUCTURE
+  HEALTHCARE_PHARMA
+  ENTERPRISE_TECH
+  FAMILY_OFFICES_UHNW
+}
+
+enum LeadStatus {
+  NEW
+  IN_REVIEW
+  QUALIFIED
+  CONTACTED
+  CONVERTED
+  ARCHIVED
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  COMMUNICATIONS_DIRECTOR
+  EDITOR
+  ANALYST
+}
+
+enum InsightCategory {
+  THOUGHT_LEADERSHIP
+  MARKET_ANALYSIS
+  CRISIS_CASEBOOK
+  POLICY_BRIEF
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Lead {
+  id                   String       @id @default(cuid())
+  fullName             String
+  corporateEmail       String
+  companyName          String
+  jobTitle             String?
+  phoneNumber          String?
+  serviceInterest      ServiceType
+  industry             IndustryType
+  estimatedBudgetRange String?
+  message              String       @db.Text
+  status               LeadStatus   @default(NEW)
+  sourceIp             String?
+  userAgent            String?
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+
+  @@index([status])
+  @@index([serviceInterest])
+  @@index([corporateEmail])
+  @@index([createdAt])
+}
+
+model Service {
+  id           String      @id @default(cuid())
+  slug         String      @unique
+  title        String
+  tagline      String
+  serviceType  ServiceType @unique
+  description  String      @db.Text
+  capabilities Json        // string[]
+  deliverables Json        // string[]
+  isFeatured   Boolean     @default(false)
+  orderIndex   Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([orderIndex])
+  @@index([isFeatured])
+}
+
+model Industry {
+  id                   String       @id @default(cuid())
+  slug                 String       @unique
+  title                String
+  industryType         IndustryType @unique
+  summary              String       @db.Text
+  strategicChallenges  Json         // string[]
+  advisorySolutions    Json         // string[]
+  orderIndex           Int          @default(0)
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+
+  @@index([orderIndex])
+}
+
+model CaseStudy {
+  id                    String       @id @default(cuid())
+  slug                  String       @unique
+  title                 String
+  clientSector          IndustryType
+  anonymizedClientName  String
+  challenge             String       @db.Text
+  strategicIntervention String       @db.Text
+  impactMetrics         Json         // { label: string, value: string }[]
+  isFeatured            Boolean      @default(false)
+  publishedAt           DateTime     @default(now())
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+
+  @@index([clientSector])
+  @@index([isFeatured])
+  @@index([publishedAt])
+}
+
+model Insight {
+  id              String            @id @default(cuid())
+  slug            String            @unique
+  title           String
+  subtitle        String?
+  category        InsightCategory
+  authorName      String
+  authorRole      String
+  readTimeMinutes Int               @default(5)
+  contentMarkdown String            @db.Text
+  status          PublicationStatus @default(DRAFT)
+  publishedAt     DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+model PressRelease {
+  id                String   @id @default(cuid())
+  slug              String   @unique
+  title             String
+  summary           String   @db.Text
+  body              String   @db.Text
+  mediaContactName  String
+  mediaContactEmail String
+  pdfAttachmentUrl  String?
+  publishedAt       DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([publishedAt])
+}
+
+model AdminUser {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String
+  passwordHash String
+  role         UserRole   @default(ANALYST)
+  isActive     Boolean    @default(true)
+  lastLoginAt  DateTime?
+  auditLogs    AuditLog[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([role])
+}
+
+model AuditLog {
+  id         String     @id @default(cuid())
+  userId     String
+  user       AdminUser  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  ipAddress  String?
+  timestamp  DateTime   @default(now())
+
+  @@index([userId])
+  @@index([entityType, entityId])
+  @@index([timestamp])
+}

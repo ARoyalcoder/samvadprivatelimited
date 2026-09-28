@@ -1,0 +1,16 @@
+{
+  "name": "@samvad/types",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo '@samvad/types: no lint needed'"
+  },
+  "devDependencies": {
+    "@samvad/config": "workspace:*",
+    "typescript": "^5.8.2"
+  }
+}

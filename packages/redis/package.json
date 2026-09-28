@@ -1,0 +1,20 @@
+{
+  "name": "@samvad/redis",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo '@samvad/redis: no lint needed'"
+  },
+  "dependencies": {
+    "ioredis": "^5.6.0"
+  },
+  "devDependencies": {
+    "@samvad/config": "workspace:*",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

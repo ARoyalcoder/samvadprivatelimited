@@ -1,0 +1,14 @@
+{
+  "name": "@samvad/config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "tailwind-preset.js",
+  "exports": {
+    "./tailwind": "./tailwind-preset.js",
+    "./tsconfig.base": "./tsconfig.base.json",
+    "./tsconfig.react": "./tsconfig.react.json"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
