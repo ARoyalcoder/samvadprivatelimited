@@ -188,14 +188,23 @@ export function CaseStudiesSection() {
 
               {/* Action Links */}
               <div className="pt-4 flex flex-wrap items-center gap-4">
-                <Link href="#contact">
+                <Link href="/work">
                   <Button
                     variant="gold"
                     size="sm"
                     className="font-mono text-xs uppercase tracking-wider px-5 py-2.5"
                   >
-                    <span>Request Full Declassified Brief</span>
+                    <span>Inspect Master Dossier Archive</span>
                     <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+                <Link href="#contact">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-obsidian-750 font-mono text-xs uppercase tracking-wider px-5 py-2.5 text-sand-300 hover:text-gold-300 hover:border-gold-500/50"
+                  >
+                    <span>Request Briefing</span>
                   </Button>
                 </Link>
                 <div className="flex items-center gap-1.5 font-mono text-[11px] text-obsidian-400">
