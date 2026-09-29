@@ -5,10 +5,15 @@
   "description": "Enterprise PR, Strategic Communications, and Reputation Management Platform",
   "scripts": {
     "dev": "pnpm --filter @samvad/web dev",
-    "build": "pnpm --filter @samvad/database db:generate && pnpm -r --filter \"./packages/*\" run build && pnpm --filter @samvad/web build",
+    "dev:web": "pnpm --filter @samvad/web dev",
+    "dev:admin": "pnpm --filter @samvad/admin dev",
+    "dev:api": "pnpm --filter @samvad/api dev",
+    "dev:worker": "pnpm --filter @samvad/worker dev",
+    "build": "pnpm --filter @samvad/database db:generate && pnpm -r --filter \"./packages/*\" run build && pnpm -r --filter \"./apps/*\" run build",
     "lint": "pnpm -r run lint",
     "typecheck": "pnpm --filter @samvad/database db:generate && pnpm -r run typecheck",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "db:generate": "pnpm --filter @samvad/database db:generate",
@@ -16,7 +21,9 @@
     "db:seed": "pnpm --filter @samvad/database db:seed"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.1",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^5.8.2",
     "vitest": "^3.0.7"
   },

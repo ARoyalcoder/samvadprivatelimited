@@ -1,0 +1,20 @@
+{
+  "name": "@samvad/telemetry",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo '@samvad/telemetry: no lint needed'"
+  },
+  "dependencies": {
+    "@samvad/logger": "workspace:*"
+  },
+  "devDependencies": {
+    "@samvad/config": "workspace:*",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

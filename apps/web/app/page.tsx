@@ -24,32 +24,32 @@ import { LeadForm } from "@/components/sections/lead-form";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex w-full flex-col overflow-hidden">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 bg-grain">
+      <section className="bg-grain relative flex min-h-[92vh] items-center justify-center pb-20 pt-28">
         {/* Ambient atmospheric glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gold-500/5 blur-[140px] pointer-events-none rounded-full" />
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[250px] bg-blue-500/5 blur-[120px] pointer-events-none rounded-full" />
+        <div className="pointer-events-none absolute left-1/2 top-1/4 h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-gold-500/5 blur-[140px]" />
+        <div className="pointer-events-none absolute left-1/4 top-1/3 h-[250px] w-[400px] rounded-full bg-blue-500/5 blur-[120px]" />
 
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="container relative z-10 mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             {/* Left Column: Executive Framing */}
-            <div className="lg:col-span-7 space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/10 backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gold-300">
+            <div className="space-y-8 lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3 py-1 backdrop-blur-md">
+                <Sparkles className="h-3.5 w-3.5 text-gold-400" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-300">
                   Institutional Perception & Narrative Advisory
                 </span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-100 leading-[1.08]">
+              <h1 className="font-serif text-4xl font-bold leading-[1.08] tracking-tight text-zinc-100 sm:text-5xl md:text-6xl lg:text-7xl">
                 Perception is <br />
                 <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 bg-clip-text text-transparent">
                   Sovereign Capital.
                 </span>
               </h1>
 
-              <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-normal leading-relaxed">
+              <p className="max-w-2xl text-base font-normal leading-relaxed text-zinc-400 md:text-lg">
                 SAMVAD orchestrates strategic communications, crisis architecture, and predictive
                 perception intelligence for sovereign leadership, defense innovators, and
                 multinational enterprises navigating high-consequence friction.
@@ -65,26 +65,26 @@ export default function HomePage() {
               </div>
 
               {/* Strategic Credential Grid */}
-              <div className="pt-8 border-t border-zinc-800/80 grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-6 border-t border-zinc-800/80 pt-8">
                 <div>
-                  <div className="text-xl md:text-2xl font-serif font-bold text-zinc-100">
+                  <div className="font-serif text-xl font-bold text-zinc-100 md:text-2xl">
                     $40B+
                   </div>
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
                     Transaction Narrative Guided
                   </div>
                 </div>
                 <div>
-                  <div className="text-xl md:text-2xl font-serif font-bold text-gold-400">
+                  <div className="font-serif text-xl font-bold text-gold-400 md:text-2xl">
                     &lt; 15 Min
                   </div>
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
                     Rapid Crisis Mobilization
                   </div>
                 </div>
                 <div>
-                  <div className="text-xl md:text-2xl font-serif font-bold text-zinc-100">100%</div>
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                  <div className="font-serif text-xl font-bold text-zinc-100 md:text-2xl">100%</div>
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
                     Zero Information Leakage
                   </div>
                 </div>
@@ -92,11 +92,11 @@ export default function HomePage() {
             </div>
 
             {/* Right Column: 3D Perception Network Sphere */}
-            <div className="lg:col-span-5 relative flex items-center justify-center">
-              <div className="w-full relative">
+            <div className="relative flex items-center justify-center lg:col-span-5">
+              <div className="relative w-full">
                 <PerceptionGlobe />
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-                  <span className="text-[9px] uppercase font-mono tracking-[0.25em] text-gold-400/80 bg-zinc-950/80 px-3 py-1 rounded-full border border-gold-500/20">
+                <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-center">
+                  <span className="rounded-full border border-gold-500/20 bg-zinc-950/80 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.25em] text-gold-400/80">
                     Active Discourse Matrix • Global Node Sync
                   </span>
                 </div>
@@ -107,29 +107,29 @@ export default function HomePage() {
       </section>
 
       {/* 2. ADVISORY PRACTICES */}
-      <section id="services" className="py-28 border-t border-zinc-900 bg-zinc-950">
-        <div className="container mx-auto px-6 md:px-12 space-y-16">
+      <section id="services" className="border-t border-zinc-900 bg-zinc-950 py-28">
+        <div className="container mx-auto space-y-16 px-6 md:px-12">
           <div className="max-w-2xl space-y-4">
-            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-400">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
               Core Capabilities
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-zinc-100 tracking-tight">
+            <h2 className="font-serif text-3xl font-bold tracking-tight text-zinc-100 md:text-5xl">
               Disciplines of Narrative Dominance
             </h2>
-            <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+            <p className="text-sm leading-relaxed text-zinc-400 md:text-base">
               We operate at the intersection of quantitative sentiment intelligence, institutional
               statecraft, and executive positioning to insulate enterprise valuation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Practice 1 */}
-            <Card className="group hover:border-gold-500/40 transition-all duration-300">
+            <Card className="group transition-all duration-300 hover:border-gold-500/40">
               <CardHeader>
-                <div className="w-10 h-10 rounded-sm bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-3">
-                  <Cpu className="w-5 h-5" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-sm border border-gold-500/30 bg-gold-500/10 text-gold-400">
+                  <Cpu className="h-5 w-5" />
                 </div>
-                <Badge variant="gold" className="w-fit mb-2">
+                <Badge variant="gold" className="mb-2 w-fit">
                   Predictive Defense
                 </Badge>
                 <CardTitle>Perception Intelligence & Sentiment Topology</CardTitle>
@@ -142,17 +142,17 @@ export default function HomePage() {
                 <div className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
                   Core Deliverables
                 </div>
-                <ul className="text-xs text-zinc-400 space-y-2">
+                <ul className="space-y-2 text-xs text-zinc-400">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
                     Continuous Discourse Threat Mapping
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
                     Key Opinion Leader (KOL) Network Arbitration
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
                     Algorithmic Feed Vulnerability Audit
                   </li>
                 </ul>
@@ -160,12 +160,12 @@ export default function HomePage() {
             </Card>
 
             {/* Practice 2 */}
-            <Card className="group hover:border-gold-500/40 transition-all duration-300">
+            <Card className="group transition-all duration-300 hover:border-gold-500/40">
               <CardHeader>
-                <div className="w-10 h-10 rounded-sm bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-3">
-                  <ShieldAlert className="w-5 h-5" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-sm border border-red-500/30 bg-red-500/10 text-red-400">
+                  <ShieldAlert className="h-5 w-5" />
                 </div>
-                <Badge variant="outline" className="w-fit mb-2">
+                <Badge variant="outline" className="mb-2 w-fit">
                   Rapid Response
                 </Badge>
                 <CardTitle>Crisis Architecture & Litigation Defense</CardTitle>
@@ -178,17 +178,17 @@ export default function HomePage() {
                 <div className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
                   Core Deliverables
                 </div>
-                <ul className="text-xs text-zinc-400 space-y-2">
+                <ul className="space-y-2 text-xs text-zinc-400">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
                     Immediate 24/7 Command Center Activation
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
                     Judicial & Regulatory Perception Management
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
                     Adversarial Counter-Briefing Protocols
                   </li>
                 </ul>
@@ -196,12 +196,12 @@ export default function HomePage() {
             </Card>
 
             {/* Practice 3 */}
-            <Card className="group hover:border-gold-500/40 transition-all duration-300">
+            <Card className="group transition-all duration-300 hover:border-gold-500/40">
               <CardHeader>
-                <div className="w-10 h-10 rounded-sm bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-3">
-                  <Compass className="w-5 h-5" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-sm border border-blue-500/30 bg-blue-500/10 text-blue-400">
+                  <Compass className="h-5 w-5" />
                 </div>
-                <Badge variant="outline" className="w-fit mb-2">
+                <Badge variant="outline" className="mb-2 w-fit">
                   Value Creation
                 </Badge>
                 <CardTitle>Strategic Communications & M&A Genesis</CardTitle>
@@ -214,17 +214,17 @@ export default function HomePage() {
                 <div className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
                   Core Deliverables
                 </div>
-                <ul className="text-xs text-zinc-400 space-y-2">
+                <ul className="space-y-2 text-xs text-zinc-400">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                     Transaction Valuation Framing
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                     Multinational Regulatory Narrative Alignment
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                     Investor & Shareholder Trust Preservation
                   </li>
                 </ul>
@@ -232,12 +232,12 @@ export default function HomePage() {
             </Card>
 
             {/* Practice 4 */}
-            <Card className="group hover:border-gold-500/40 transition-all duration-300">
+            <Card className="group transition-all duration-300 hover:border-gold-500/40">
               <CardHeader>
-                <div className="w-10 h-10 rounded-sm bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 mb-3">
-                  <Landmark className="w-5 h-5" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-sm border border-zinc-700 bg-zinc-800 text-zinc-200">
+                  <Landmark className="h-5 w-5" />
                 </div>
-                <Badge variant="outline" className="w-fit mb-2">
+                <Badge variant="outline" className="mb-2 w-fit">
                   Institutional Accord
                 </Badge>
                 <CardTitle>Public Affairs & Geopolitical Policy Narrative</CardTitle>
@@ -250,17 +250,17 @@ export default function HomePage() {
                 <div className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
                   Core Deliverables
                 </div>
-                <ul className="text-xs text-zinc-400 space-y-2">
+                <ul className="space-y-2 text-xs text-zinc-400">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
                     Sovereign Priority Alignment Dossiers
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
                     Parliamentary & Legislative Briefings
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
                     Cross-Jurisdictional Sanctions & Trade Advisory
                   </li>
                 </ul>
@@ -271,24 +271,24 @@ export default function HomePage() {
       </section>
 
       {/* 3. SECTOR EXCELLENCE */}
-      <section id="industries" className="py-24 border-t border-zinc-900 bg-zinc-950/70">
-        <div className="container mx-auto px-6 md:px-12 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <section id="industries" className="border-t border-zinc-900 bg-zinc-950/70 py-24">
+        <div className="container mx-auto space-y-12 px-6 md:px-12">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="space-y-3">
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-400">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
                 Operating Sectors
               </span>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-zinc-100">
+              <h2 className="font-serif text-3xl font-bold text-zinc-100 md:text-5xl">
                 High-Stakes Arenas
               </h2>
             </div>
-            <p className="text-zinc-400 text-xs md:text-sm max-w-md">
+            <p className="max-w-md text-xs text-zinc-400 md:text-sm">
               Specialized industry experience ensuring deep context, jurisdictional awareness, and
               immediate tactical effectiveness.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 title: "Defense & Strategic Aerospace",
@@ -317,11 +317,11 @@ export default function HomePage() {
             ].map((sector, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-lg border border-zinc-800/80 bg-zinc-950/50 hover:bg-zinc-900/50 hover:border-zinc-700 transition-all duration-300 space-y-3"
+                className="space-y-3 rounded-lg border border-zinc-800/80 bg-zinc-950/50 p-6 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/50"
               >
-                <div className="text-gold-400 text-xs font-mono">0{idx + 1}</div>
+                <div className="font-mono text-xs text-gold-400">0{idx + 1}</div>
                 <h3 className="font-serif text-lg font-semibold text-zinc-100">{sector.title}</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{sector.desc}</p>
+                <p className="text-xs leading-relaxed text-zinc-400">{sector.desc}</p>
               </div>
             ))}
           </div>
@@ -329,34 +329,34 @@ export default function HomePage() {
       </section>
 
       {/* 4. CASE RECORD HIGHLIGHT */}
-      <section id="case-studies" className="py-24 border-t border-zinc-900 bg-zinc-950">
+      <section id="case-studies" className="border-t border-zinc-900 bg-zinc-950 py-24">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="p-8 md:p-14 rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-900/90 via-zinc-950 to-zinc-950 relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-900/90 via-zinc-950 to-zinc-950 p-8 md:p-14">
             <div className="max-w-3xl space-y-6">
               <Badge variant="gold">Case Record #8104</Badge>
-              <h2 className="font-serif text-2xl md:text-4xl font-bold text-zinc-100 leading-tight">
+              <h2 className="font-serif text-2xl font-bold leading-tight text-zinc-100 md:text-4xl">
                 Cross-Border FinTech Consortium: Sovereign De-escalation & $1.8B Deal Preservation
               </h2>
-              <p className="text-zinc-300 text-xs md:text-sm leading-relaxed">
+              <p className="text-xs leading-relaxed text-zinc-300 md:text-sm">
                 Facing sudden regulatory blockades and an aggressive adversarial disinformation
                 campaign in Southeast Asia, SAMVAD executed an 18-week perception restructuring
                 protocol. Forensic source identification coupled with legislative briefing pacified
                 parliamentary hostility, securing full regulatory green-light.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-zinc-800">
+              <div className="grid grid-cols-1 gap-6 border-t border-zinc-800 pt-4 sm:grid-cols-3">
                 <div>
-                  <div className="text-2xl font-serif font-bold text-gold-400">100%</div>
+                  <div className="font-serif text-2xl font-bold text-gold-400">100%</div>
                   <div className="text-[11px] text-zinc-400">Regulatory Approval Attained</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-serif font-bold text-zinc-100">+74%</div>
+                  <div className="font-serif text-2xl font-bold text-zinc-100">+74%</div>
                   <div className="text-[11px] text-zinc-400">
                     Institutional Sentiment Turnaround
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-serif font-bold text-zinc-100">$1.8 Billion</div>
+                  <div className="font-serif text-2xl font-bold text-zinc-100">$1.8 Billion</div>
                   <div className="text-[11px] text-zinc-400">Transaction Valuation Preserved</div>
                 </div>
               </div>
@@ -366,26 +366,26 @@ export default function HomePage() {
       </section>
 
       {/* 5. THOUGHT LEADERSHIP & INTELLIGENCE */}
-      <section id="intelligence" className="py-24 border-t border-zinc-900 bg-zinc-950/70">
-        <div className="container mx-auto px-6 md:px-12 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <section id="intelligence" className="border-t border-zinc-900 bg-zinc-950/70 py-24">
+        <div className="container mx-auto space-y-12 px-6 md:px-12">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="space-y-3">
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-400">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
                 Perception Intelligence
               </span>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-zinc-100">
+              <h2 className="font-serif text-3xl font-bold text-zinc-100 md:text-5xl">
                 Executive Thought Leadership
               </h2>
             </div>
             <Link
               href="#contact"
-              className="text-xs font-semibold uppercase tracking-widest text-gold-400 hover:text-gold-300 flex items-center gap-1"
+              className="flex items-center gap-1 text-xs font-semibold uppercase tracking-widest text-gold-400 hover:text-gold-300"
             >
-              Request Briefing Dossier <ArrowUpRight className="w-4 h-4" />
+              Request Briefing Dossier <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
                 title:
@@ -410,18 +410,18 @@ export default function HomePage() {
             ].map((article, i) => (
               <div
                 key={i}
-                className="p-6 rounded-lg border border-zinc-800 bg-zinc-950 flex flex-col justify-between space-y-4 hover:border-gold-500/40 transition-colors"
+                className="flex flex-col justify-between space-y-4 rounded-lg border border-zinc-800 bg-zinc-950 p-6 transition-colors hover:border-gold-500/40"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400">
                     <span className="text-gold-400">{article.category}</span>
                     <span>{article.readTime}</span>
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-zinc-100 leading-snug">
+                  <h3 className="font-serif text-lg font-semibold leading-snug text-zinc-100">
                     {article.title}
                   </h3>
                 </div>
-                <div className="text-[11px] text-zinc-400 border-t border-zinc-900 pt-3">
+                <div className="border-t border-zinc-900 pt-3 text-[11px] text-zinc-400">
                   {article.author}
                 </div>
               </div>
@@ -431,31 +431,31 @@ export default function HomePage() {
       </section>
 
       {/* 6. CONFIDENTIAL ENGAGEMENT SECTION */}
-      <section id="contact" className="py-28 border-t border-zinc-900 bg-zinc-950 relative">
+      <section id="contact" className="relative border-t border-zinc-900 bg-zinc-950 py-28">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold-400">
+          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+            <div className="space-y-6 lg:col-span-5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
                 Confidential Dialogue
               </span>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-zinc-100 leading-tight">
+              <h2 className="font-serif text-3xl font-bold leading-tight text-zinc-100 md:text-5xl">
                 Engage Our Advisory Group
               </h2>
-              <p className="text-zinc-300 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-zinc-300">
                 Strategic counsel begins with a confidential assessment. Every communication is
                 bound by our non-disclosure framework and routed exclusively to senior partners.
               </p>
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-sm bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 text-gold-400">
-                    <Lock className="w-4 h-4" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-zinc-800 bg-zinc-900 text-gold-400">
+                    <Lock className="h-4 w-4" />
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">
                       Uncompromising Discretion
                     </h4>
-                    <p className="text-xs text-zinc-400 leading-relaxed">
+                    <p className="text-xs leading-relaxed text-zinc-400">
                       Zero attribution without explicit written consent. Our clients include
                       entities whose names never appear on public rosters.
                     </p>
@@ -463,14 +463,14 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-sm bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 text-gold-400">
-                    <TrendingUp className="w-4 h-4" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-zinc-800 bg-zinc-900 text-gold-400">
+                    <TrendingUp className="h-4 w-4" />
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">
                       Rapid Response War-Room
                     </h4>
-                    <p className="text-xs text-zinc-400 leading-relaxed">
+                    <p className="text-xs leading-relaxed text-zinc-400">
                       Active crisis deployment mobilized within minutes of initial briefing.
                     </p>
                   </div>

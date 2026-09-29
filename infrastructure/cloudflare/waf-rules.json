@@ -1,0 +1,30 @@
+{
+  "description": "SAMVAD Enterprise Cloudflare WAF & Security Configuration",
+  "rules": [
+    {
+      "name": "Block Malicious Bots & Scrapers on Ingestion Endpoints",
+      "action": "block",
+      "expression": "(http.request.uri.path contains \"/api/v1/leads\" or http.request.uri.path contains \"/api/leads\") and (cf.client.bot or cf.threat_score gt 15)"
+    },
+    {
+      "name": "Restrict Admin Portal Access by IP & Country",
+      "action": "challenge",
+      "expression": "http.request.uri.path starts_with \"/admin\" and not (ip.src in { 203.0.113.0/24 198.51.100.0/24 })"
+    },
+    {
+      "name": "Mitigate Distributed Layer 7 Flood",
+      "action": "rate_limit",
+      "expression": "http.request.uri.path starts_with \"/api/\"",
+      "rate_limit": {
+        "requests_per_period": 100,
+        "period": 60,
+        "mitigation_timeout": 600
+      }
+    },
+    {
+      "name": "Enforce TLS 1.3 Minimum for Sovereign Advisory",
+      "action": "block",
+      "expression": "ssl.protocol_version in {\"TLSv1\" \"TLSv1.1\" \"TLSv1.2\"}"
+    }
+  ]
+}

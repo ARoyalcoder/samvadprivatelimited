@@ -82,14 +82,14 @@ export function PerceptionGlobe() {
 
   if (!mounted) {
     return (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="w-48 h-48 rounded-full border border-gold-500/20 animate-pulse-subtle" />
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="h-48 w-48 animate-pulse-subtle rounded-full border border-gold-500/20" />
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-[420px] lg:h-[540px]">
+    <div className="relative h-[420px] w-full lg:h-[540px]">
       <Canvas camera={{ position: [0, 0, 4.8], fov: 45 }} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 6, 5]} intensity={1.4} color="#fdfbf7" />

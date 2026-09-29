@@ -20,3 +20,5 @@ Each ADR follows the standard format:
 - [ADR-0004: Redis for Cache-Aside & Sliding-Window Rate Limiting](./0004-redis-caching-and-rate-limiting.md)
 - [ADR-0005: shadcn/ui and Tailwind CSS for Enterprise Design System](./0005-shadcn-tailwind-design-system.md)
 - [ADR-0006: Hybrid Animation Pipeline (Lenis, GSAP, Framer Motion, Three.js)](./0006-hybrid-animation-pipeline.md)
+- [ADR-0007: Decoupled Applications in Monorepo Structure](./0007-decoupled-apps-monorepo-structure.md)
+- [ADR-0008: OpenTelemetry Observability and Structured Logging](./0008-opentelemetry-and-structured-logging.md)

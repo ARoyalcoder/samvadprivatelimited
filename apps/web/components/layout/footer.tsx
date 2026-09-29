@@ -4,64 +4,64 @@ import { Shield, Lock } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-800/80 bg-zinc-950 text-zinc-400 py-16 text-xs">
+    <footer className="border-t border-zinc-800/80 bg-zinc-950 py-16 text-xs text-zinc-400">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Col 1: Brand & Charter */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="space-y-4 md:col-span-2">
             <div className="flex items-center space-x-3">
-              <div className="w-7 h-7 rounded-sm bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center text-zinc-950 font-bold">
+              <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-gradient-to-br from-gold-400 to-gold-700 font-bold text-zinc-950">
                 <span className="font-serif text-sm">S</span>
               </div>
-              <span className="font-serif text-base tracking-[0.2em] text-zinc-100 font-bold">
+              <span className="font-serif text-base font-bold tracking-[0.2em] text-zinc-100">
                 SAMVAD
               </span>
             </div>
-            <p className="text-zinc-400 max-w-md leading-relaxed text-xs">
+            <p className="max-w-md text-xs leading-relaxed text-zinc-400">
               SAMVAD PERCEPTION ADVISORY is an institutional-grade strategic communications,
               reputation management, and perception intelligence advisory. We serve sovereign
               entities, defense conglomerates, multinational corporations, and high-consequence
               leadership.
             </p>
-            <div className="flex items-center gap-3 text-[11px] text-zinc-400 font-mono">
+            <div className="flex items-center gap-3 font-mono text-[11px] text-zinc-400">
               <span className="flex items-center gap-1 text-gold-400">
-                <Shield className="w-3.5 h-3.5" /> ISO 27001 Aligned
+                <Shield className="h-3.5 w-3.5" /> ISO 27001 Aligned
               </span>
               <span>•</span>
               <span className="flex items-center gap-1 text-zinc-300">
-                <Lock className="w-3.5 h-3.5" /> Strict NDA Protocol
+                <Lock className="h-3.5 w-3.5" /> Strict NDA Protocol
               </span>
             </div>
           </div>
 
           {/* Col 2: Core Practices */}
           <div className="space-y-3">
-            <h4 className="text-zinc-200 font-semibold uppercase tracking-widest text-[11px]">
+            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-zinc-200">
               Advisory Practices
             </h4>
             <ul className="space-y-2 text-zinc-400">
               <li>
-                <Link href="#services" className="hover:text-gold-400 transition-colors">
+                <Link href="#services" className="transition-colors hover:text-gold-400">
                   Perception Intelligence
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-gold-400 transition-colors">
+                <Link href="#services" className="transition-colors hover:text-gold-400">
                   Crisis Architecture
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-gold-400 transition-colors">
+                <Link href="#services" className="transition-colors hover:text-gold-400">
                   Strategic Communications
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-gold-400 transition-colors">
+                <Link href="#services" className="transition-colors hover:text-gold-400">
                   Public Affairs & Policy
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-gold-400 transition-colors">
+                <Link href="#services" className="transition-colors hover:text-gold-400">
                   Executive Shield Protocol
                 </Link>
               </li>
@@ -70,32 +70,32 @@ export function Footer() {
 
           {/* Col 3: Sectors */}
           <div className="space-y-3">
-            <h4 className="text-zinc-200 font-semibold uppercase tracking-widest text-[11px]">
+            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-zinc-200">
               Sectors & Arenas
             </h4>
             <ul className="space-y-2 text-zinc-400">
               <li>
-                <Link href="#industries" className="hover:text-gold-400 transition-colors">
+                <Link href="#industries" className="transition-colors hover:text-gold-400">
                   Defense & Aerospace
                 </Link>
               </li>
               <li>
-                <Link href="#industries" className="hover:text-gold-400 transition-colors">
+                <Link href="#industries" className="transition-colors hover:text-gold-400">
                   Banking & FinTech
                 </Link>
               </li>
               <li>
-                <Link href="#industries" className="hover:text-gold-400 transition-colors">
+                <Link href="#industries" className="transition-colors hover:text-gold-400">
                   Critical Infrastructure & Energy
                 </Link>
               </li>
               <li>
-                <Link href="#industries" className="hover:text-gold-400 transition-colors">
+                <Link href="#industries" className="transition-colors hover:text-gold-400">
                   Healthcare & Life Sciences
                 </Link>
               </li>
               <li>
-                <Link href="#industries" className="hover:text-gold-400 transition-colors">
+                <Link href="#industries" className="transition-colors hover:text-gold-400">
                   Family Offices & UHNW
                 </Link>
               </li>
@@ -104,12 +104,12 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between text-zinc-400 text-[11px] gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-900 pt-8 text-[11px] text-zinc-400 md:flex-row">
           <p>© {new Date().getFullYear()} SAMVAD PERCEPTION ADVISORY. All Rights Reserved.</p>
           <div className="flex space-x-6">
-            <span className="hover:text-zinc-400 cursor-pointer">Confidentiality Protocol</span>
-            <span className="hover:text-zinc-400 cursor-pointer">Institutional Disclosures</span>
-            <span className="hover:text-zinc-400 cursor-pointer">Security Safeguards</span>
+            <span className="cursor-pointer hover:text-zinc-400">Confidentiality Protocol</span>
+            <span className="cursor-pointer hover:text-zinc-400">Institutional Disclosures</span>
+            <span className="cursor-pointer hover:text-zinc-400">Security Safeguards</span>
           </div>
         </div>
       </div>

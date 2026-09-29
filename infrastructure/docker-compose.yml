@@ -38,7 +38,29 @@ services:
     networks:
       - samvad_network
 
-  # ----------------- Enterprise Web Application -----------------
+  # ----------------- Object Storage: MinIO (S3-Compatible) -----------------
+  minio:
+    image: minio/minio:RELEASE.2024-02-26T09-33-48Z
+    container_name: samvad_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: samvad_minio_admin
+      MINIO_ROOT_PASSWORD: samvad_minio_secret_password
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - samvad_network
+
+  # ----------------- Enterprise Web Portal -----------------
   web:
     build:
       context: ..
@@ -64,10 +86,62 @@ services:
     networks:
       - samvad_network
 
+  # ----------------- Admin Command Portal -----------------
+  admin:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile
+      args:
+        APP_NAME: admin
+    container_name: samvad_admin
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: "postgresql://samvad_user:samvad_secret_password@postgres:5432/samvad_perception?schema=public"
+      REDIS_URL: "redis://redis:6379"
+      ADMIN_API_KEY: "super_secure_enterprise_advisory_secret_key_samvad_2026"
+    ports:
+      - "3001:3001"
+    networks:
+      - samvad_network
+
+  # ----------------- API Gateway -----------------
+  api:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile
+      args:
+        APP_NAME: api
+    container_name: samvad_api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3002
+      DATABASE_URL: "postgresql://samvad_user:samvad_secret_password@postgres:5432/samvad_perception?schema=public"
+      REDIS_URL: "redis://redis:6379"
+      ADMIN_API_KEY: "super_secure_enterprise_advisory_secret_key_samvad_2026"
+    ports:
+      - "3002:3002"
+    networks:
+      - samvad_network
+
 volumes:
   postgres_data:
     driver: local
   redis_data:
+    driver: local
+  minio_data:
     driver: local
 
 networks:

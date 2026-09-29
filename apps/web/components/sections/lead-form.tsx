@@ -49,12 +49,12 @@ export function LeadForm() {
 
   if (success) {
     return (
-      <div className="p-8 rounded-lg border border-gold-500/40 bg-zinc-900/60 backdrop-blur-md text-center space-y-4">
-        <CheckCircle2 className="w-12 h-12 text-gold-400 mx-auto" />
+      <div className="space-y-4 rounded-lg border border-gold-500/40 bg-zinc-900/60 p-8 text-center backdrop-blur-md">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-gold-400" />
         <h3 className="font-serif text-2xl font-bold text-zinc-100">
           Inquiry Transmitted Securely
         </h3>
-        <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
+        <p className="mx-auto max-w-md text-sm leading-relaxed text-zinc-300">
           Your transmission has been encrypted and routed directly to our Managing Principal&apos;s
           confidential queue under standard non-disclosure protocol. An executive partner will reach
           out within 4 business hours.
@@ -66,28 +66,28 @@ export function LeadForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-6 md:p-10 rounded-lg border border-zinc-800 bg-zinc-950/80 backdrop-blur-xl shadow-2xl space-y-6"
+      className="space-y-6 rounded-lg border border-zinc-800 bg-zinc-950/80 p-6 shadow-2xl backdrop-blur-xl md:p-10"
     >
       <div className="flex items-center justify-between border-b border-zinc-800/80 pb-4">
         <div>
-          <span className="text-[10px] uppercase font-mono tracking-widest text-gold-400">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-gold-400">
             Encrypted Channel
           </span>
           <h3 className="font-serif text-xl font-semibold text-zinc-100">
             Confidential Strategic Inquiry
           </h3>
         </div>
-        <Shield className="w-5 h-5 text-gold-400" />
+        <Shield className="h-5 w-5 text-gold-400" />
       </div>
 
       {errorMessage && (
-        <div className="p-4 rounded-sm bg-red-950/40 border border-red-800/50 flex items-start gap-3 text-red-200 text-xs">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
+        <div className="flex items-start gap-3 rounded-sm border border-red-800/50 bg-red-950/40 p-4 text-xs text-red-200">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
           <span>{errorMessage}</span>
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="fullName">Full Name & Honorific</Label>
           <Input
@@ -112,7 +112,7 @@ export function LeadForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="companyName">Enterprise / Institution Name</Label>
           <Input
@@ -135,12 +135,12 @@ export function LeadForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="space-y-2">
           <Label htmlFor="serviceInterest">Advisory Practice</Label>
           <select
             id="serviceInterest"
-            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:outline-none focus:border-gold-500/80"
+            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:border-gold-500/80 focus:outline-none"
             value={formData.serviceInterest}
             onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
           >
@@ -157,7 +157,7 @@ export function LeadForm() {
           <Label htmlFor="industry">Industry Sector</Label>
           <select
             id="industry"
-            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:outline-none focus:border-gold-500/80"
+            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:border-gold-500/80 focus:outline-none"
             value={formData.industry}
             onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
           >
@@ -174,7 +174,7 @@ export function LeadForm() {
           <Label htmlFor="estimatedBudgetRange">Engagement Scale</Label>
           <select
             id="estimatedBudgetRange"
-            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:outline-none focus:border-gold-500/80"
+            className="flex h-11 w-full rounded-sm border border-zinc-800 bg-zinc-950/80 px-3 text-xs text-zinc-200 focus:border-gold-500/80 focus:outline-none"
             value={formData.estimatedBudgetRange}
             onChange={(e) => setFormData({ ...formData, estimatedBudgetRange: e.target.value })}
           >
@@ -208,18 +208,18 @@ export function LeadForm() {
       >
         {loading ? (
           <>
-            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Transmitting Under Protocol...
           </>
         ) : (
           <>
-            <Send className="w-4 h-4 mr-2" />
+            <Send className="mr-2 h-4 w-4" />
             Initiate Confidential Consultation
           </>
         )}
       </Button>
 
-      <p className="text-[11px] text-zinc-400 text-center font-mono">
+      <p className="text-center font-mono text-[11px] text-zinc-400">
         All communications are legally privileged under prospective counsel confidentiality
         provisions.
       </p>
