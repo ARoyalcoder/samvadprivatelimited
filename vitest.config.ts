@@ -18,6 +18,7 @@ export default defineConfig({
       "@samvad/telemetry": path.resolve(__dirname, "./packages/telemetry/src"),
       "@samvad/auth": path.resolve(__dirname, "./packages/auth/src"),
       "@samvad/ui": path.resolve(__dirname, "./packages/ui/src"),
+      "@": path.resolve(__dirname, "./apps/web"),
     },
   },
 });
