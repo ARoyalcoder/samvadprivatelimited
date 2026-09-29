@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Shield, Lock } from "lucide-react";
+import { BrandLockup } from "@samvad/ui";
 
 export function Footer() {
   return (
@@ -9,14 +10,9 @@ export function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Col 1: Brand & Charter */}
           <div className="space-y-4 md:col-span-2">
-            <div className="flex items-center space-x-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-gradient-to-br from-gold-400 to-gold-700 font-bold text-zinc-950">
-                <span className="font-serif text-sm">S</span>
-              </div>
-              <span className="font-serif text-base font-bold tracking-[0.2em] text-zinc-100">
-                SAMVAD
-              </span>
-            </div>
+            <Link href="/" className="group inline-block">
+              <BrandLockup layout="horizontal" size="md" markTone="gradient" />
+            </Link>
             <p className="max-w-md text-xs leading-relaxed text-zinc-400">
               SAMVAD PERCEPTION ADVISORY is an institutional-grade strategic communications,
               reputation management, and perception intelligence advisory. We serve sovereign

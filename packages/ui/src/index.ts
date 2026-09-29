@@ -57,6 +57,9 @@ export * from "./components/feedback/skeleton";
 export * from "./components/feedback/empty-state";
 export * from "./components/feedback/error-state";
 
+// Brand Visual Identity
+export * from "./components/brand";
+
 // Motion
 export * from "./components/motion/custom-cursor";
 export * from "./components/motion/page-transition";

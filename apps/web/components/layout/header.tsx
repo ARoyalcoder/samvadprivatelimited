@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Button } from "@samvad/ui";
+import { Button, BrandLockup } from "@samvad/ui";
 import { ShieldCheck, Menu, X } from "lucide-react";
 
 export function Header() {
@@ -27,22 +27,24 @@ export function Header() {
     >
       <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
         {/* Brand identity */}
-        <Link href="/" className="group flex items-center space-x-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-gradient-to-br from-gold-400 to-gold-700 font-bold text-zinc-950 shadow-md shadow-gold-500/20 transition-transform duration-300 group-hover:scale-105">
-            <span className="font-serif text-base tracking-tighter">S</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-sm font-bold uppercase tracking-[0.18em] text-zinc-100 transition-colors group-hover:text-gold-300 md:text-base">
-              SAMVAD
-            </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-400">
-              Perception Advisory
-            </span>
-          </div>
+        <Link href="/" className="group">
+          <BrandLockup layout="horizontal" size="md" markTone="gradient" />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center space-x-8 text-xs font-medium uppercase tracking-widest text-zinc-300 lg:flex">
+        <nav className="hidden items-center space-x-7 text-xs font-medium uppercase tracking-widest text-zinc-300 lg:flex">
+          <Link
+            href="/brand-identity"
+            className="text-gold-400 transition-colors hover:text-gold-300"
+          >
+            Brand Identity
+          </Link>
+          <Link
+            href="/design-system"
+            className="text-paper-300 transition-colors hover:text-gold-400"
+          >
+            Design System
+          </Link>
           <Link href="#services" className="transition-colors duration-200 hover:text-gold-400">
             Advisory Practices
           </Link>
