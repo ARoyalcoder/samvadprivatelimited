@@ -50,6 +50,7 @@ export * from "./components/data-display/badge";
 export * from "./components/data-display/tabs";
 export * from "./components/data-display/accordion";
 export * from "./components/data-display/marquee";
+export * from "./components/data-display/timeline";
 
 // Media
 export * from "./components/media/image-reveal";
