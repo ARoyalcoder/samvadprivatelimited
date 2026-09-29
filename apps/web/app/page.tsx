@@ -18,6 +18,7 @@ import {
   CardDescription,
   CardContent,
   Badge,
+  SamvadImage,
 } from "@samvad/ui";
 import { PerceptionGlobe } from "@/components/canvas/perception-globe";
 import { LeadForm } from "@/components/sections/lead-form";
@@ -332,33 +333,46 @@ export default function HomePage() {
       <section id="case-studies" className="border-t border-zinc-900 bg-zinc-950 py-24">
         <div className="container mx-auto px-6 md:px-12">
           <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-900/90 via-zinc-950 to-zinc-950 p-8 md:p-14">
-            <div className="max-w-3xl space-y-6">
-              <Badge variant="gold">Case Record #8104</Badge>
-              <h2 className="font-serif text-2xl font-bold leading-tight text-zinc-100 md:text-4xl">
-                Cross-Border FinTech Consortium: Sovereign De-escalation & $1.8B Deal Preservation
-              </h2>
-              <p className="text-xs leading-relaxed text-zinc-300 md:text-sm">
-                Facing sudden regulatory blockades and an aggressive adversarial disinformation
-                campaign in Southeast Asia, SAMVAD executed an 18-week perception restructuring
-                protocol. Forensic source identification coupled with legislative briefing pacified
-                parliamentary hostility, securing full regulatory green-light.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                <Badge variant="gold">Case Record #8104</Badge>
+                <h2 className="font-serif text-2xl font-bold leading-tight text-zinc-100 md:text-4xl">
+                  Cross-Border FinTech Consortium: Sovereign De-escalation & $1.8B Deal Preservation
+                </h2>
+                <p className="text-xs leading-relaxed text-zinc-300 md:text-sm">
+                  Facing sudden regulatory blockades and an aggressive adversarial disinformation
+                  campaign in Southeast Asia, SAMVAD executed an 18-week perception restructuring
+                  protocol. Forensic source identification coupled with legislative briefing pacified
+                  parliamentary hostility, securing full regulatory green-light.
+                </p>
 
-              <div className="grid grid-cols-1 gap-6 border-t border-zinc-800 pt-4 sm:grid-cols-3">
-                <div>
-                  <div className="font-serif text-2xl font-bold text-gold-400">100%</div>
-                  <div className="text-[11px] text-zinc-400">Regulatory Approval Attained</div>
-                </div>
-                <div>
-                  <div className="font-serif text-2xl font-bold text-zinc-100">+74%</div>
-                  <div className="text-[11px] text-zinc-400">
-                    Institutional Sentiment Turnaround
+                <div className="grid grid-cols-1 gap-6 border-t border-zinc-800 pt-4 sm:grid-cols-3">
+                  <div>
+                    <div className="font-serif text-2xl font-bold text-gold-400">100%</div>
+                    <div className="text-[11px] text-zinc-400">Regulatory Approval Attained</div>
+                  </div>
+                  <div>
+                    <div className="font-serif text-2xl font-bold text-zinc-100">+74%</div>
+                    <div className="text-[11px] text-zinc-400">
+                      Institutional Sentiment Turnaround
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-serif text-2xl font-bold text-zinc-100">$1.8 Billion</div>
+                    <div className="text-[11px] text-zinc-400">Transaction Valuation Preserved</div>
                   </div>
                 </div>
-                <div>
-                  <div className="font-serif text-2xl font-bold text-zinc-100">$1.8 Billion</div>
-                  <div className="text-[11px] text-zinc-400">Transaction Valuation Preserved</div>
-                </div>
+              </div>
+
+              {/* Case Record Visual Dossier */}
+              <div className="lg:col-span-5">
+                <SamvadImage
+                  assetId="case-study-briefing-binder"
+                  aspectRatio="16:9"
+                  zoomOnHover
+                  className="rounded-lg shadow-2xl border border-zinc-800/80"
+                  caption="Confidential advisory dossier prepared for ministerial review."
+                />
               </div>
             </div>
           </div>
@@ -388,6 +402,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
+                assetId: "leadership-skyline-silhouette",
                 title:
                   "The Death of Reactive PR: Why Sovereign Brands Need Perception Architecture",
                 category: "Thought Leadership",
@@ -395,12 +410,14 @@ export default function HomePage() {
                 author: "Vikramaditya Sharma, Managing Principal",
               },
               {
+                assetId: "tech-datacenter-optical-core",
                 title: "Algorithmic Asymmetry: How Disinformation Weaponizes Search Indexing",
                 category: "Intelligence Dossier",
                 readTime: "11 min read",
                 author: "SAMVAD Intelligence Unit",
               },
               {
+                assetId: "reputation-crisis-monitoring",
                 title:
                   "Crisis in the Boardroom: 10 Operational Rules for Hostile Activist Campaigns",
                 category: "Crisis Casebook",
@@ -410,19 +427,27 @@ export default function HomePage() {
             ].map((article, i) => (
               <div
                 key={i}
-                className="flex flex-col justify-between space-y-4 rounded-lg border border-zinc-800 bg-zinc-950 p-6 transition-colors hover:border-gold-500/40"
+                className="group flex flex-col justify-between overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 transition-colors hover:border-gold-500/40"
               >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400">
-                    <span className="text-gold-400">{article.category}</span>
-                    <span>{article.readTime}</span>
+                <SamvadImage
+                  assetId={article.assetId}
+                  aspectRatio="16:9"
+                  zoomOnHover
+                  className="w-full"
+                />
+                <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400">
+                      <span className="text-gold-400">{article.category}</span>
+                      <span>{article.readTime}</span>
+                    </div>
+                    <h3 className="font-serif text-lg font-semibold leading-snug text-zinc-100 group-hover:text-gold-200 transition-colors">
+                      {article.title}
+                    </h3>
                   </div>
-                  <h3 className="font-serif text-lg font-semibold leading-snug text-zinc-100">
-                    {article.title}
-                  </h3>
-                </div>
-                <div className="border-t border-zinc-900 pt-3 text-[11px] text-zinc-400">
-                  {article.author}
+                  <div className="border-t border-zinc-900 pt-3 text-[11px] text-zinc-400">
+                    {article.author}
+                  </div>
                 </div>
               </div>
             ))}

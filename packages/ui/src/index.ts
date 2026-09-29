@@ -50,6 +50,8 @@ export * from "./components/data-display/marquee";
 // Media
 export * from "./components/media/image-reveal";
 export * from "./components/media/hover-image";
+export * from "./components/media/samvad-image";
+export * from "./components/media/image-registry";
 
 // Feedback
 export * from "./components/feedback/loading";

@@ -45,6 +45,12 @@ export function Header() {
           >
             Design System
           </Link>
+          <Link
+            href="/asset-system"
+            className="text-paper-300 transition-colors hover:text-gold-400"
+          >
+            Asset System
+          </Link>
           <Link href="#services" className="transition-colors duration-200 hover:text-gold-400">
             Advisory Practices
           </Link>
@@ -89,6 +95,13 @@ export function Header() {
       {isOpen && (
         <div className="border-b border-zinc-800 bg-zinc-950/95 px-6 py-6 backdrop-blur-xl lg:hidden">
           <div className="flex flex-col space-y-4 text-xs font-semibold uppercase tracking-widest text-zinc-300">
+            <Link
+              href="/asset-system"
+              onClick={() => setIsOpen(false)}
+              className="py-2 hover:text-gold-400"
+            >
+              Asset System
+            </Link>
             <Link
               href="#services"
               onClick={() => setIsOpen(false)}
