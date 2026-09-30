@@ -19,10 +19,8 @@ import { SocialShareBar } from "@/components/insights/social-share-bar";
 import {
   Calendar,
   Clock,
-  User,
   ArrowRight,
   ChevronRight,
-  ArrowUpRight,
   Bookmark,
   CheckCircle2,
   Tag,

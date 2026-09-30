@@ -12,13 +12,10 @@ import { InsightsSearchFilter } from "@/components/insights/insights-search-filt
 import {
   Calendar,
   Clock,
-  User,
   ArrowRight,
   ChevronRight,
-  BookOpen,
   Sparkles,
   Mail,
-  ShieldCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
