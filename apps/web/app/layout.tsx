@@ -3,6 +3,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { SearchProvider } from "@/lib/search/search-context";
+import { SearchDialog } from "@/components/search/search-dialog";
 
 export const metadata: Metadata = {
   title: "SAMVAD PERCEPTION ADVISORY | Strategic Communications & Reputation Management",
@@ -45,11 +47,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className="flex min-h-screen flex-col bg-zinc-950 font-sans text-zinc-100 antialiased">
-        <SmoothScrollProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScrollProvider>
+        <SearchProvider>
+          <SmoothScrollProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <SearchDialog />
+          </SmoothScrollProvider>
+        </SearchProvider>
       </body>
     </html>
   );

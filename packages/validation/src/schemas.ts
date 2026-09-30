@@ -427,3 +427,29 @@ export const contactSubmissionSchema = z.object({
 
 export type ContactSubmissionInput = z.infer<typeof contactSubmissionSchema>;
 
+/**
+ * Global Search Category Filter Enum
+ */
+export const searchCategoryEnum = z.enum([
+  "ALL",
+  "SERVICES",
+  "INDUSTRIES",
+  "CASE_STUDIES",
+  "INSIGHTS",
+  "NEWSROOM",
+]);
+
+export type SearchCategory = z.infer<typeof searchCategoryEnum>;
+
+/**
+ * Global Search Query Parameters Schema
+ */
+export const searchQuerySchema = z.object({
+  q: z.string().trim().max(200, "Query cannot exceed 200 characters").default(""),
+  type: searchCategoryEnum.default("ALL"),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(50).default(10),
+});
+
+export type SearchQueryInput = z.infer<typeof searchQuerySchema>;
+

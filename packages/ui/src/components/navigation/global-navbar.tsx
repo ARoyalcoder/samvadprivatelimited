@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   ArrowRight,
+  Search,
 } from "lucide-react";
 import { NavLinkComponent } from "./nav-data";
 
@@ -26,6 +27,7 @@ export interface GlobalNavbarProps extends React.HTMLAttributes<HTMLElement> {
   ctaText?: string;
   enableScrollAwareHide?: boolean;
   linkComponent?: NavLinkComponent;
+  onSearchClick?: () => void;
 }
 
 export const GlobalNavbar = React.forwardRef<HTMLElement, GlobalNavbarProps>(
@@ -35,6 +37,7 @@ export const GlobalNavbar = React.forwardRef<HTMLElement, GlobalNavbarProps>(
       ctaText = "Let's Talk",
       enableScrollAwareHide = true,
       linkComponent: LinkComp = DefaultLink,
+      onSearchClick,
       className,
       ...props
     },
@@ -239,7 +242,23 @@ export const GlobalNavbar = React.forwardRef<HTMLElement, GlobalNavbarProps>(
               </nav>
 
               {/* 3. Desktop Actions & Magnetic CTA */}
-              <div className="hidden lg:flex items-center gap-4 shrink-0">
+              <div className="hidden lg:flex items-center gap-3 shrink-0">
+                {/* Search Dialog Trigger */}
+                {onSearchClick && (
+                  <button
+                    type="button"
+                    onClick={onSearchClick}
+                    className="group flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-obsidian-800 bg-obsidian-900/60 hover:border-gold-500/40 hover:bg-obsidian-850 text-obsidian-400 hover:text-sand-100 transition-all text-xs font-mono"
+                    aria-label="Open global search (Cmd+K)"
+                  >
+                    <Search className="h-3.5 w-3.5 text-gold-400 group-hover:scale-110 transition-transform" />
+                    <span className="hidden xl:inline text-[11px] text-sand-300">Search</span>
+                    <kbd className="text-[10px] px-1 py-0.2 rounded bg-obsidian-800 border border-obsidian-700 text-obsidian-400 group-hover:text-gold-300">
+                      ⌘K
+                    </kbd>
+                  </button>
+                )}
+
                 <LinkComp
                   href="/asset-system"
                   className="font-mono text-[11px] uppercase tracking-wider text-obsidian-400 hover:text-gold-300 transition-colors"
@@ -260,8 +279,19 @@ export const GlobalNavbar = React.forwardRef<HTMLElement, GlobalNavbarProps>(
                 </LinkComp>
               </div>
 
-              {/* 4. Mobile Hamburger Button */}
-              <div className="flex items-center gap-3 lg:hidden">
+              {/* 4. Mobile Actions & Hamburger */}
+              <div className="flex items-center gap-2 lg:hidden">
+                {onSearchClick && (
+                  <button
+                    type="button"
+                    onClick={onSearchClick}
+                    className="flex h-10 w-10 items-center justify-center rounded-sm border border-obsidian-800 text-sand-300 hover:border-gold-500/50 hover:text-gold-300 transition-colors"
+                    aria-label="Open search dialog"
+                  >
+                    <Search className="h-4 w-4 text-gold-400" />
+                  </button>
+                )}
+
                 <LinkComp href={ctaHref} className="sm:inline-block hidden">
                   <MagneticButton variant="gold" size="sm" className="font-mono text-[11px] uppercase tracking-wider px-3 py-1.5">
                     <span>{ctaText}</span>
@@ -296,6 +326,7 @@ export const GlobalNavbar = React.forwardRef<HTMLElement, GlobalNavbarProps>(
           isOpen={mobileOpen}
           onClose={() => setMobileOpen(false)}
           linkComponent={LinkComp}
+          onSearchClick={onSearchClick}
         />
       </>
     );

@@ -13,6 +13,7 @@ import {
   ChevronDown,
   X,
   ArrowRight,
+  Search,
 } from "lucide-react";
 import { BrandLockup } from "../brand/brand-mark";
 import { MagneticButton } from "../buttons/magnetic-button";
@@ -27,12 +28,14 @@ export interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   linkComponent?: NavLinkComponent;
+  onSearchClick?: () => void;
 }
 
 export function MobileDrawer({
   isOpen,
   onClose,
   linkComponent: LinkComp = DefaultLink,
+  onSearchClick,
 }: MobileDrawerProps) {
   const [openSection, setOpenSection] = React.useState<"services" | "industries" | null>(null);
 
@@ -102,6 +105,26 @@ export function MobileDrawer({
 
             {/* Navigation Links Body */}
             <div className="flex-1 px-6 py-6 space-y-6">
+              {/* Quick Search Button */}
+              {onSearchClick && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    onSearchClick();
+                  }}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-obsidian-800 bg-obsidian-900/70 text-obsidian-300 hover:text-sand-100 hover:border-gold-500/40 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Search className="h-4 w-4 text-gold-400" />
+                    <span className="text-xs font-mono">Search website...</span>
+                  </div>
+                  <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-obsidian-850 text-obsidian-400 border border-obsidian-750">
+                    ⌘K
+                  </kbd>
+                </button>
+              )}
+
               {/* Primary Nav List */}
               <nav className="space-y-1">
                 {/* 1. About Link */}
