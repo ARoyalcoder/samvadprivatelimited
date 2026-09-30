@@ -264,3 +264,62 @@ export function validateMediaFile(
   return { valid: true, detectedType: matchedType };
 }
 
+/**
+ * Leadership Experience Milestone Schema
+ */
+export const leadershipExperienceItemSchema = z.object({
+  title: z.string().min(2, "Experience title must be at least 2 characters"),
+  organization: z.string().min(2, "Organization must be at least 2 characters"),
+  period: z.string().optional(),
+  description: z.string().optional(),
+});
+
+export type LeadershipExperienceItem = z.infer<typeof leadershipExperienceItemSchema>;
+
+/**
+ * Leadership Practice Profile Schema
+ * Strictly enforces non-fabrication transparency and CMS data integrity
+ */
+export const leadershipProfileSchema = z.object({
+  id: z.string(),
+  slug: z.string().regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  designation: z.string().min(3, "Designation must be at least 3 characters"),
+  roleCategory: z
+    .enum(["Executive Leadership", "Practice Leadership", "Senior Advisory Council"])
+    .default("Practice Leadership"),
+  statusBadge: z.string().optional(),
+  photoUrl: z.string(),
+  photoAlt: z.string().min(10, "Alt text must be at least 10 characters for accessibility"),
+  quote: z.string().optional(),
+  biography: z.string().min(30, "Biography must be at least 30 characters"),
+  expertise: z.array(z.string().min(2)).min(1, "At least one expertise domain is required"),
+  experience: z.array(leadershipExperienceItemSchema).min(1, "At least one experience record is required"),
+  areasOfFocus: z.array(z.string().min(2)).min(1, "At least one area of focus is required"),
+  orderIndex: z.number().int().default(0),
+  isFeatured: z.boolean().default(true),
+  isPlaceholder: z.boolean().default(true),
+  advisoryPractice: z.string(),
+  primaryOffice: z.string().default("New Delhi"),
+  contactProtocol: z.string().default("Direct Consultation via Office of the Managing Principal"),
+  relatedMonographs: z
+    .array(
+      z.object({
+        title: z.string(),
+        slug: z.string(),
+        date: z.string().optional(),
+      })
+    )
+    .optional(),
+  relatedServices: z
+    .array(
+      z.object({
+        title: z.string(),
+        slug: z.string(),
+      })
+    )
+    .optional(),
+});
+
+export type LeadershipProfile = z.infer<typeof leadershipProfileSchema>;
+

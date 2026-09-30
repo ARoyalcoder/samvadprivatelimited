@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Container, Badge, SamvadImage } from "@samvad/ui";
-import { Users, Lock, AlertCircle } from "lucide-react";
+import { Users, Lock, AlertCircle, ChevronRight } from "lucide-react";
 
 export function AboutLeadership() {
   const leaders = [
@@ -152,6 +153,20 @@ export function AboutLeadership() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom CTA to Full Leadership Directory */}
+        <div className="pt-8 border-t border-obsidian-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="font-mono text-xs text-obsidian-400">
+            Full governance charter and detailed partner dossiers are cataloged in our leadership directory.
+          </div>
+          <Link
+            href="/leadership"
+            className="rounded-xs border border-gold-500/40 bg-gold-500/10 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-gold-300 hover:bg-gold-500/20 hover:border-gold-500 transition-all flex items-center gap-2"
+          >
+            <span>Examine Advisory Bench</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
       </Container>
     </section>

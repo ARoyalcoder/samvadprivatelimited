@@ -231,3 +231,26 @@ model MediaAsset {
   @@index([createdAt])
 }
 
+model LeadershipProfile {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  name             String
+  designation      String
+  roleCategory     String   @default("Practice Leadership")
+  photoUrl         String
+  photoAlt         String
+  quote            String?  @db.Text
+  biography        String   @db.Text
+  expertise        Json     // string[]
+  experience       Json     // { title: string, organization: string, period?: string, description?: string }[]
+  areasOfFocus     Json     // string[]
+  orderIndex       Int      @default(0)
+  isFeatured       Boolean  @default(true)
+  isPlaceholder    Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([orderIndex])
+  @@index([isFeatured])
+}
+
