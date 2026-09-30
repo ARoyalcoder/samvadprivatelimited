@@ -54,6 +54,14 @@ enum PublicationStatus {
   ARCHIVED
 }
 
+enum MediaType {
+  IMAGE
+  VIDEO
+  PDF
+  PRESS_KIT
+  DOCUMENT
+}
+
 model Lead {
   id                   String       @id @default(cuid())
   fullName             String
@@ -195,3 +203,31 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([timestamp])
 }
+
+model MediaAsset {
+  id             String     @id @default(cuid())
+  title          String
+  description    String?    @db.Text
+  altText        String?
+  filename       String
+  storageKey     String     @unique
+  cdnUrl         String
+  thumbnailUrl   String?
+  mediaType      MediaType
+  mimeType       String
+  fileSizeBytes  BigInt
+  dimensions     Json?      // { width: number, height: number, aspectRatio: string }
+  videoDuration  Float?
+  checksumSha256 String?
+  tags           String[]
+  category       String?
+  isPublic       Boolean    @default(true)
+  uploadedById   String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([mediaType])
+  @@index([isPublic])
+  @@index([createdAt])
+}
+

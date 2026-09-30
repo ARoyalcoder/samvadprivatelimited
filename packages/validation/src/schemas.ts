@@ -143,3 +143,124 @@ export const insightArticleSchema = z.object({
   contentMarkdown: z.string().min(50),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
 });
+
+/**
+ * Media Library Validation & Security Constraints
+ */
+export const mediaTypeEnum = z.enum([
+  "IMAGE",
+  "VIDEO",
+  "PDF",
+  "PRESS_KIT",
+  "DOCUMENT",
+]);
+
+export type MediaType = z.infer<typeof mediaTypeEnum>;
+
+export const MEDIA_SIZE_LIMITS: Record<MediaType, number> = {
+  IMAGE: 15 * 1024 * 1024, // 15 MB
+  VIDEO: 250 * 1024 * 1024, // 250 MB
+  PDF: 50 * 1024 * 1024, // 50 MB
+  PRESS_KIT: 100 * 1024 * 1024, // 100 MB
+  DOCUMENT: 50 * 1024 * 1024, // 50 MB
+};
+
+export const ALLOWED_MIME_TYPES: Record<MediaType, string[]> = {
+  IMAGE: [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/svg+xml",
+    "image/avif",
+  ],
+  VIDEO: ["video/mp4", "video/webm", "video/quicktime"],
+  PDF: ["application/pdf"],
+  PRESS_KIT: [
+    "application/zip",
+    "application/x-zip-compressed",
+    "application/pdf",
+  ],
+  DOCUMENT: [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "text/plain",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  ],
+};
+
+export const mediaUploadMetadataSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(2, "Asset title must be at least 2 characters")
+    .max(200, "Asset title cannot exceed 200 characters"),
+  description: z.string().trim().max(2000).optional().nullable(),
+  altText: z
+    .string()
+    .trim()
+    .max(500, "Alt text cannot exceed 500 characters")
+    .optional()
+    .nullable(),
+  mediaType: mediaTypeEnum,
+  category: z.string().trim().max(80).optional().nullable(),
+  tags: z.array(z.string().trim().min(1).max(50)).default([]),
+  isPublic: z.boolean().default(true),
+});
+
+export type MediaUploadMetadataInput = z.infer<typeof mediaUploadMetadataSchema>;
+
+/**
+ * Validates file MIME type, size limit, and media category alignment.
+ */
+export function validateMediaFile(
+  mimeType: string,
+  sizeBytes: number,
+  expectedType?: MediaType
+): { valid: boolean; error?: string; detectedType?: MediaType } {
+  // Infer or match media type
+  let matchedType: MediaType | undefined = expectedType;
+
+  if (!matchedType) {
+    for (const [type, mimes] of Object.entries(ALLOWED_MIME_TYPES) as [
+      MediaType,
+      string[]
+    ][]) {
+      if (mimes.includes(mimeType)) {
+        matchedType = type;
+        break;
+      }
+    }
+  }
+
+  if (!matchedType) {
+    return {
+      valid: false,
+      error: `Unsupported MIME type: "${mimeType}". File type is not permitted in the SAMVAD media library.`,
+    };
+  }
+
+  const allowedMimes = ALLOWED_MIME_TYPES[matchedType];
+  if (!allowedMimes.includes(mimeType)) {
+    return {
+      valid: false,
+      error: `Invalid file format for ${matchedType}. Expected one of: ${allowedMimes.join(", ")}`,
+      detectedType: matchedType,
+    };
+  }
+
+  const limitBytes = MEDIA_SIZE_LIMITS[matchedType];
+  if (sizeBytes > limitBytes) {
+    const limitMb = Math.round(limitBytes / (1024 * 1024));
+    const sizeMb = (sizeBytes / (1024 * 1024)).toFixed(2);
+    return {
+      valid: false,
+      error: `File size (${sizeMb} MB) exceeds maximum permitted limit of ${limitMb} MB for ${matchedType} assets.`,
+      detectedType: matchedType,
+    };
+  }
+
+  return { valid: true, detectedType: matchedType };
+}
+
