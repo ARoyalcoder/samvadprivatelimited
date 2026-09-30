@@ -323,3 +323,107 @@ export const leadershipProfileSchema = z.object({
 
 export type LeadershipProfile = z.infer<typeof leadershipProfileSchema>;
 
+/**
+ * Contact System: Required Services Selection
+ */
+export const contactServiceEnum = z.enum([
+  "PR",
+  "Strategic Communications",
+  "Reputation Management",
+  "Digital Communications",
+  "Crisis Communications",
+  "Advisory",
+  "Other",
+]);
+
+export type ContactService = z.infer<typeof contactServiceEnum>;
+
+/**
+ * Contact System: Target Industry Sectors
+ */
+export const contactIndustryEnum = z.enum([
+  "Technology",
+  "Financial Services",
+  "Healthcare",
+  "Infrastructure",
+  "Real Estate",
+  "Consumer",
+  "Startups",
+  "Institutions",
+  "Other",
+]);
+
+export type ContactIndustry = z.infer<typeof contactIndustryEnum>;
+
+/**
+ * Master Contact & Lead-Generation Ingestion Schema
+ * Includes honeypot, velocity timer, and disposable email rejection
+ */
+export const contactSubmissionSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Full name must be at least 2 characters")
+    .max(100, "Full name cannot exceed 100 characters"),
+  company: z
+    .string()
+    .trim()
+    .min(2, "Company or organization name must be at least 2 characters")
+    .max(120, "Company name cannot exceed 120 characters"),
+  designation: z
+    .string()
+    .trim()
+    .min(2, "Designation / Title must be at least 2 characters")
+    .max(100, "Designation cannot exceed 100 characters"),
+  email: z
+    .string()
+    .trim()
+    .email("A valid business or institutional email is required")
+    .max(150, "Email cannot exceed 150 characters")
+    .refine(
+      (email) => {
+        const disposable = [
+          "tempmail.com",
+          "mailinator.com",
+          "10minutemail.com",
+          "throwawaymail.com",
+          "guerrillamail.com",
+          "yopmail.com",
+          "trashmail.com",
+          "sharklasers.com",
+        ];
+        const domain = email.split("@")[1]?.toLowerCase();
+        return !domain || !disposable.includes(domain);
+      },
+      {
+        message:
+          "Disposable or temporary email addresses are not accepted for executive inquiries.",
+      }
+    ),
+  phone: z
+    .string()
+    .trim()
+    .regex(
+      /^[+0-9\s\-()]{7,25}$/,
+      "Please provide a valid phone number (at least 7 digits)"
+    )
+    .optional()
+    .nullable()
+    .or(z.literal("")),
+  industry: contactIndustryEnum,
+  serviceRequired: contactServiceEnum,
+  message: z
+    .string()
+    .trim()
+    .min(15, "Inquiry brief must be at least 15 characters")
+    .max(4000, "Inquiry brief cannot exceed 4000 characters"),
+  honeypot: z
+    .string()
+    .max(0, "Automated spam detected")
+    .optional()
+    .default(""),
+  clientTimestamp: z.number().optional(),
+});
+
+export type ContactSubmissionInput = z.infer<typeof contactSubmissionSchema>;
+
