@@ -257,3 +257,48 @@ model LeadershipProfile {
   @@index([isFeatured])
 }
 
+enum SubscriberStatus {
+  PENDING
+  SUBSCRIBED
+  UNSUBSCRIBED
+  BOUNCED
+}
+
+model NewsletterSubscriber {
+  id                String                 @id @default(cuid())
+  email             String                 @unique
+  status            SubscriberStatus       @default(SUBSCRIBED)
+  source            String                 @default("WEBSITE_FOOTER")
+  consentGiven      Boolean                @default(true)
+  consentedAt       DateTime               @default(now())
+  unsubscribeToken  String                 @unique @default(cuid())
+  unsubscribedAt    DateTime?
+  unsubscribeReason String?
+  ipHash            String?
+  userAgent         String?
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  deliveryLogs      NewsletterDeliveryLog[]
+
+  @@index([status])
+  @@index([email])
+  @@index([createdAt])
+  @@index([unsubscribeToken])
+}
+
+model NewsletterDeliveryLog {
+  id           String                @id @default(cuid())
+  subscriberId String
+  subscriber   NewsletterSubscriber  @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  subject      String
+  templateName String
+  status       String                @default("SENT") // QUEUED, SENT, FAILED
+  errorMessage String?
+  sentAt       DateTime              @default(now())
+
+  @@index([subscriberId])
+  @@index([status])
+  @@index([sentAt])
+}
+

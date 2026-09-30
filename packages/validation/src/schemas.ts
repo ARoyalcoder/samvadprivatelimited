@@ -453,3 +453,97 @@ export const searchQuerySchema = z.object({
 
 export type SearchQueryInput = z.infer<typeof searchQuerySchema>;
 
+/**
+ * Newsletter Subscriber Status Enum
+ */
+export const subscriberStatusEnum = z.enum([
+  "PENDING",
+  "SUBSCRIBED",
+  "UNSUBSCRIBED",
+  "BOUNCED",
+]);
+
+export type SubscriberStatus = z.infer<typeof subscriberStatusEnum>;
+
+/**
+ * Newsletter Subscription Input Schema
+ */
+export const newsletterSubscriptionSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email("Please provide a valid institutional or personal email address")
+    .max(150, "Email cannot exceed 150 characters")
+    .refine(
+      (email) => {
+        const disposable = [
+          "tempmail.com",
+          "mailinator.com",
+          "10minutemail.com",
+          "throwawaymail.com",
+          "guerrillamail.com",
+          "yopmail.com",
+          "trashmail.com",
+          "sharklasers.com",
+          "dispostable.com",
+        ];
+        const domain = email.split("@")[1]?.toLowerCase();
+        return !domain || !disposable.includes(domain);
+      },
+      {
+        message:
+          "Temporary or disposable email addresses are not permitted for executive dispatches.",
+      }
+    ),
+  consent: z.literal(true, {
+    errorMap: () => ({
+      message:
+        "Explicit consent is required to receive SAMVAD Perception Advisory intelligence dispatches.",
+    }),
+  }),
+  source: z.string().trim().max(100).default("WEBSITE_FOOTER"),
+  honeypot: z.string().max(0, "Automated bot submission detected").optional().default(""),
+  clientTimestamp: z.number().optional(),
+});
+
+export type NewsletterSubscriptionInput = z.infer<
+  typeof newsletterSubscriptionSchema
+>;
+
+/**
+ * Newsletter Unsubscribe Input Schema
+ */
+export const newsletterUnsubscribeSchema = z.object({
+  token: z
+    .string()
+    .trim()
+    .min(8, "A valid cryptographic unsubscribe token is required"),
+  reason: z
+    .string()
+    .trim()
+    .max(250, "Reason cannot exceed 250 characters")
+    .optional()
+    .nullable(),
+});
+
+export type NewsletterUnsubscribeInput = z.infer<
+  typeof newsletterUnsubscribeSchema
+>;
+
+/**
+ * Admin Subscriber Management Query Filter Schema
+ */
+export const adminSubscriberFilterSchema = z.object({
+  status: z
+    .enum(["ALL", "PENDING", "SUBSCRIBED", "UNSUBSCRIBED", "BOUNCED"])
+    .default("ALL"),
+  search: z.string().trim().default(""),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20),
+});
+
+export type AdminSubscriberFilterInput = z.infer<
+  typeof adminSubscriberFilterSchema
+>;
+

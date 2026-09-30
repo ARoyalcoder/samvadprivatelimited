@@ -40,6 +40,32 @@ export default function AdminFoundationPage() {
             <span>Audit Trail: Immutable Log Active</span>
           </div>
         </div>
+
+        {/* Portal Operations Navigation */}
+        <div className="grid grid-cols-2 gap-3 pt-2">
+          <a
+            href="/subscribers"
+            className="flex flex-col items-center justify-center p-3 rounded border border-zinc-800 bg-zinc-950/50 hover:border-gold-500/40 hover:bg-zinc-900 transition-colors text-center group"
+          >
+            <span className="font-serif text-sm font-medium text-zinc-200 group-hover:text-gold-300">
+              Subscribers
+            </span>
+            <span className="text-[10px] font-mono text-zinc-500 mt-0.5">
+              Dispatches &amp; Opt-Outs
+            </span>
+          </a>
+          <a
+            href="/media"
+            className="flex flex-col items-center justify-center p-3 rounded border border-zinc-800 bg-zinc-950/50 hover:border-gold-500/40 hover:bg-zinc-900 transition-colors text-center group"
+          >
+            <span className="font-serif text-sm font-medium text-zinc-200 group-hover:text-gold-300">
+              Media Assets
+            </span>
+            <span className="text-[10px] font-mono text-zinc-500 mt-0.5">
+              CDN &amp; Ingestion
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );

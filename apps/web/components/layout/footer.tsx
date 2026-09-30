@@ -2,11 +2,37 @@ import * as React from "react";
 import Link from "next/link";
 import { Shield, Lock } from "lucide-react";
 import { BrandLockup } from "@samvad/ui";
+import { NewsletterSubscribeForm } from "@/components/newsletter/newsletter-subscribe-form";
 
 export function Footer() {
   return (
     <footer className="border-t border-zinc-800/80 bg-zinc-950 py-16 text-xs text-zinc-400">
       <div className="container mx-auto px-6 md:px-12">
+        {/* Executive Newsletter Dispatch Section */}
+        <div className="mb-14 pb-12 border-b border-zinc-900 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-6 space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold-400 animate-pulse" />
+              <span className="font-mono text-xs uppercase tracking-widest text-gold-400">
+                Institutional Intel
+              </span>
+            </div>
+            <h3 className="font-serif text-xl sm:text-2xl text-zinc-100 font-normal">
+              Subscribe to SAMVAD Executive Dispatches
+            </h3>
+            <p className="text-xs text-zinc-400 max-w-xl leading-relaxed">
+              Curated strategic counsel, perception telemetry, crisis casebooks, and sovereign communication doctrine delivered fortnightly to boardrooms and senior counsel.
+            </p>
+          </div>
+          <div className="lg:col-span-6">
+            <NewsletterSubscribeForm
+              source="FOOTER_PRIMARY"
+              title=""
+              description=""
+              variant="footer"
+            />
+          </div>
+        </div>
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Col 1: Brand & Charter */}
           <div className="space-y-4 md:col-span-2">
@@ -106,6 +132,9 @@ export function Footer() {
             <span className="cursor-pointer hover:text-zinc-400">Confidentiality Protocol</span>
             <span className="cursor-pointer hover:text-zinc-400">Institutional Disclosures</span>
             <span className="cursor-pointer hover:text-zinc-400">Security Safeguards</span>
+            <Link href="/unsubscribe" className="text-zinc-500 hover:text-zinc-300 transition-colors">
+              Dispatch Preferences
+            </Link>
           </div>
         </div>
       </div>
