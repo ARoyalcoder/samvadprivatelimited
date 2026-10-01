@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { searchQuerySchema } from "@samvad/validation";
 import { searchEngine } from "@/lib/search/search-service";
+import { getOrSetCache } from "@samvad/redis";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,13 @@ export async function GET(request: NextRequest) {
     const rawQuery = searchParams.get("q") ?? "";
 
     if (suggestOnly) {
-      const suggestions = await searchEngine.getSuggestions(rawQuery);
+      const suggestCacheKey = `search:suggest:${encodeURIComponent(rawQuery.toLowerCase().trim())}`;
+      const suggestions = await getOrSetCache(
+        suggestCacheKey,
+        () => searchEngine.getSuggestions(rawQuery),
+        300, // 5 min in Redis
+        60   // 1 min in L1 Memory
+      );
       return NextResponse.json({
         query: rawQuery,
         suggestions,
@@ -39,12 +46,19 @@ export async function GET(request: NextRequest) {
 
     const { q, type, page, limit } = parseResult.data;
 
-    const payload = await searchEngine.search({
-      query: q,
-      domain: type,
-      page,
-      limit,
-    });
+    const cacheKey = `search:results:${type}:${page}:${limit}:${encodeURIComponent(q.toLowerCase().trim())}`;
+    const payload = await getOrSetCache(
+      cacheKey,
+      () =>
+        searchEngine.search({
+          query: q,
+          domain: type,
+          page,
+          limit,
+        }),
+      120, // 2 minutes in Redis
+      30   // 30 seconds in L1 Memory
+    );
 
     return NextResponse.json(payload, {
       status: 200,

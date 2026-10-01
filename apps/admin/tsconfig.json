@@ -7,7 +7,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@samvad/types": ["../../packages/types/src/index.ts"],
+      "@samvad/auth": ["../../packages/auth/src/index.ts"],
+      "@samvad/auth/edge": ["../../packages/auth/src/edge.ts"],
+      "@samvad/redis": ["../../packages/redis/src/index.ts"],
+      "@samvad/database": ["../../packages/database/src/index.ts"],
+      "@samvad/validation": ["../../packages/validation/src/index.ts"],
+      "@samvad/logger": ["../../packages/logger/src/index.ts"],
+      "@samvad/telemetry": ["../../packages/telemetry/src/index.ts"],
+      "@samvad/ui": ["../../packages/ui/src/index.ts"]
     },
     "incremental": true
   },

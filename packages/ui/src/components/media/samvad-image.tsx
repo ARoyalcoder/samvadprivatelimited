@@ -145,7 +145,7 @@ export function SamvadImage({
         data-ai-generated={registeredAsset?.isAiGenerated ? "true" : "false"}
       >
         {/* Shimmer / Blur Placeholder */}
-        {!isLoaded && !hasError && (
+        {!isLoaded && !hasError && src ? (
           <div
             className="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-700 ease-out"
             style={{
@@ -155,15 +155,15 @@ export function SamvadImage({
             }}
             aria-hidden="true"
           />
-        )}
+        ) : null}
 
         {/* Shimmer loader pulse */}
-        {!isLoaded && !hasError && (
+        {!isLoaded && !hasError && src ? (
           <div className="absolute inset-0 z-10 animate-pulse bg-obsidian-850/60" />
-        )}
+        ) : null}
 
         {/* Main Editorial Image */}
-        {!hasError ? (
+        {!hasError && src ? (
           <img
             src={src}
             alt={alt}

@@ -1,4 +1,4 @@
-import { redis } from "./client.js";
+import { redis } from "./client";
 
 export interface RateLimitResult {
   allowed: boolean;

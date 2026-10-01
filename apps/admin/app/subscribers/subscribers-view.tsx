@@ -67,7 +67,7 @@ export function SubscribersView() {
       const data = await res.json();
 
       setSubscribers(data.subscribers || []);
-      setStats(data.stats || stats);
+      setStats((prev) => data.stats || prev);
       setTotalPages(data.totalPages || 1);
     } catch (err) {
       console.error("Subscribers fetch error:", err);

@@ -28,16 +28,18 @@ function PerceptionCore() {
   });
 
   useFrame((_, delta) => {
+    // Clamp delta to prevent huge jumps on tab switch / lag spike
+    const clampedDelta = Math.min(delta, 0.1);
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.12;
-      meshRef.current.rotation.x += delta * 0.04;
+      meshRef.current.rotation.y += clampedDelta * 0.12;
+      meshRef.current.rotation.x += clampedDelta * 0.04;
     }
     if (wireframeRef.current) {
-      wireframeRef.current.rotation.y -= delta * 0.08;
-      wireframeRef.current.rotation.z += delta * 0.02;
+      wireframeRef.current.rotation.y -= clampedDelta * 0.08;
+      wireframeRef.current.rotation.z += clampedDelta * 0.02;
     }
     if (particlesRef.current) {
-      particlesRef.current.rotation.y += delta * 0.05;
+      particlesRef.current.rotation.y += clampedDelta * 0.05;
     }
   });
 
@@ -75,9 +77,43 @@ function PerceptionCore() {
 
 export function PerceptionGlobe() {
   const [mounted, setMounted] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setMounted(true);
+
+    // Viewport Intersection Observer: Pause WebGL canvas rendering when out of viewport
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined" && containerRef.current) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          setIsVisible(entry?.isIntersecting ?? true);
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(containerRef.current);
+    }
+
+    // Tab Visibility API: pause when tab is in background
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsVisible(false);
+      } else if (containerRef.current) {
+        // Re-check bounding client rect
+        const rect = containerRef.current.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsVisible(inView);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, []);
 
   if (!mounted) {
@@ -89,8 +125,17 @@ export function PerceptionGlobe() {
   }
 
   return (
-    <div className="relative h-[420px] w-full lg:h-[540px]">
-      <Canvas camera={{ position: [0, 0, 4.8], fov: 45 }} gl={{ antialias: true, alpha: true }}>
+    <div ref={containerRef} className="relative h-[420px] w-full lg:h-[540px]">
+      <Canvas
+        camera={{ position: [0, 0, 4.8], fov: 45 }}
+        dpr={[1, 1.5]} // Cap DPR to 1.5x max to prevent 3x retina overdraw
+        frameloop={isVisible ? "always" : "never"}
+        gl={{
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance",
+        }}
+      >
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 6, 5]} intensity={1.4} color="#fdfbf7" />
         <pointLight position={[-4, -3, -4]} intensity={0.5} color="#c39651" />

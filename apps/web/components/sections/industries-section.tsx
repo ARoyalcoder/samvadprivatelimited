@@ -32,7 +32,7 @@ export function IndustriesSection() {
       id: "infrastructure-energy",
       title: "Critical Infrastructure & Energy",
       badge: "National Arteries",
-      imageAsset: "infrastructure-highspeed-rail",
+      imageAsset: "infra-highspeed-viaduct",
       description:
         "Grid security communications, energy transition credibility, environmental litigation defense, and public infrastructure accords.",
       focus: "Energy transition politics, ESG polarization de-escalation, pipeline security.",
@@ -42,7 +42,7 @@ export function IndustriesSection() {
       id: "healthcare-lifesciences",
       title: "Healthcare & Life Sciences",
       badge: "Clinical & Bio-Ethics",
-      imageAsset: "healthcare-biotech-optics",
+      imageAsset: "health-biotech-cleanroom",
       description:
         "Clinical trial perception management, patent cliff litigation defense, bio-ethics messaging, and pricing scrutiny mitigation.",
       focus: "FDA & international regulatory clearance, IP disputes, public health optics.",
@@ -62,7 +62,7 @@ export function IndustriesSection() {
       id: "family-offices",
       title: "Family Offices & Sovereign Funds",
       badge: "Discreet Wealth",
-      imageAsset: "business-strategic-briefing-table",
+      imageAsset: "meetings-briefing-table",
       description:
         "Confidential multi-generational wealth stewardship, succession communications, cross-border privacy shielding, and philanthropic legacy.",
       focus: "Non-attribution reputation moats, family governance mediation, offshore privacy.",

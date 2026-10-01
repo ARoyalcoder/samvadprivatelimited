@@ -18,14 +18,63 @@ export type IndustryType =
   | "ENTERPRISE_TECH"
   | "FAMILY_OFFICES_UHNW";
 
-export type LeadStatus = "NEW" | "IN_REVIEW" | "QUALIFIED" | "CONTACTED" | "CONVERTED" | "ARCHIVED";
+export type LeadStatus =
+  | "NEW"
+  | "CONTACTED"
+  | "QUALIFIED"
+  | "IN_PROGRESS"
+  | "CONVERTED"
+  | "CLOSED"
+  | "IN_REVIEW"
+  | "ARCHIVED";
 
-export type UserRole = "SUPER_ADMIN" | "COMMUNICATIONS_DIRECTOR" | "EDITOR" | "ANALYST";
+export interface LeadNote {
+  id: string;
+  leadId: string;
+  authorId: string;
+  authorName: string;
+  authorEmail: string;
+  content: string;
+  createdAt: string;
+}
 
-export type InsightCategory =
-  "THOUGHT_LEADERSHIP" | "MARKET_ANALYSIS" | "CRISIS_CASEBOOK" | "POLICY_BRIEF";
+export type LeadActivityType =
+  | "STATUS_CHANGE"
+  | "ASSIGNMENT"
+  | "NOTE_ADDED"
+  | "CRM_SYNC"
+  | "FIELD_UPDATE"
+  | "INQUIRY_CREATED";
 
-export type PublicationStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED";
+export interface LeadHistoryItem {
+  id: string;
+  leadId: string;
+  actorId: string;
+  actorName: string;
+  activityType: LeadActivityType;
+  title: string;
+  details?: Record<string, unknown> | null;
+  previousValue?: string | null;
+  newValue?: string | null;
+  timestamp: string;
+}
+
+export type CrmSyncStatus = "NOT_CONFIGURED" | "PENDING" | "SYNCED" | "FAILED";
+
+export interface CrmSyncInfo {
+  status: CrmSyncStatus;
+  provider?: string | null;
+  externalId?: string | null;
+  lastSyncedAt?: string | null;
+  errorMessage?: string | null;
+}
+
+export interface LeadAssignee {
+  userId: string;
+  userName: string;
+  userEmail: string;
+  assignedAt: string;
+}
 
 export interface Lead {
   id: string;
@@ -34,15 +83,70 @@ export interface Lead {
   companyName: string;
   jobTitle?: string | null;
   phoneNumber?: string | null;
-  serviceInterest: ServiceType;
-  industry: IndustryType;
+  serviceInterest?: ServiceType | null;
+  serviceRequired?: string;
+  industry?: IndustryType | string;
+  industryType?: IndustryType | null;
   estimatedBudgetRange?: string | null;
   message: string;
   status: LeadStatus;
+  referenceCode?: string | null;
+  assignedTo?: LeadAssignee | null;
+  notes?: LeadNote[];
+  history?: LeadHistoryItem[];
+  crmSync?: CrmSyncInfo;
   sourceIp?: string | null;
   userAgent?: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+export interface DetailedLead extends Lead {
+  assignedTo: LeadAssignee | null;
+  notes: LeadNote[];
+  history: LeadHistoryItem[];
+  crmSync: CrmSyncInfo;
+}
+
+export type UserRole =
+  | "SUPER_ADMIN"
+  | "CONTENT_ADMIN"
+  | "EDITOR"
+  | "AUTHOR"
+  | "ANALYST"
+  | "COMMUNICATIONS_DIRECTOR";
+
+export type InsightCategory =
+  "THOUGHT_LEADERSHIP" | "MARKET_ANALYSIS" | "CRISIS_CASEBOOK" | "POLICY_BRIEF";
+
+export type PublicationStatus = "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
+
+export type CmsEntityType =
+  | "PAGES"
+  | "SERVICES"
+  | "INDUSTRIES"
+  | "CASE_STUDIES"
+  | "INSIGHTS"
+  | "NEWSROOM"
+  | "LEADERSHIP"
+  | "MEDIA";
+
+export type CmsLifecycleStatus = "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
+
+export interface CmsEntity {
+  id: string;
+  entityType: CmsEntityType;
+  title: string;
+  slug: string;
+  status: CmsLifecycleStatus;
+  author: string;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  featuredImage?: string | null;
+  metadata?: Record<string, unknown> | null;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  publishedAt?: string | Date | null;
 }
 
 export interface ServiceItem {

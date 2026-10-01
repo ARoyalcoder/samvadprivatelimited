@@ -1,3 +1,3 @@
-export * from "./client.js";
-export * from "./cache.js";
-export * from "./rate-limiter.js";
+export * from "./client";
+export * from "./cache";
+export * from "./rate-limiter";

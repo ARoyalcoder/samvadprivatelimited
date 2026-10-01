@@ -20,10 +20,12 @@ export const industryTypeEnum = z.enum([
 
 export const leadStatusEnum = z.enum([
   "NEW",
-  "IN_REVIEW",
-  "QUALIFIED",
   "CONTACTED",
+  "QUALIFIED",
+  "IN_PROGRESS",
   "CONVERTED",
+  "CLOSED",
+  "IN_REVIEW",
   "ARCHIVED",
 ]);
 
@@ -547,3 +549,185 @@ export type AdminSubscriberFilterInput = z.infer<
   typeof adminSubscriberFilterSchema
 >;
 
+/**
+ * Enterprise Admin Role Enum & Auth Schemas
+ */
+export const adminRoleEnum = z.enum([
+  "SUPER_ADMIN",
+  "CONTENT_ADMIN",
+  "EDITOR",
+  "AUTHOR",
+  "ANALYST",
+  "COMMUNICATIONS_DIRECTOR",
+]);
+
+export const adminLoginSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Valid corporate administrator email is required")
+    .toLowerCase(),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .max(128, "Password cannot exceed 128 characters"),
+  honeypot: z
+    .string()
+    .max(0, "Automated bot submission detected")
+    .optional()
+    .default(""),
+});
+
+export type AdminLoginInput = z.infer<typeof adminLoginSchema>;
+
+export const adminMfaVerifySchema = z.object({
+  challengeToken: z
+    .string()
+    .trim()
+    .min(10, "MFA challenge token is required"),
+  code: z
+    .string()
+    .trim()
+    .min(6, "Verification code must be at least 6 characters")
+    .max(20, "Verification code cannot exceed 20 characters"),
+  isBackupCode: z.boolean().default(false),
+});
+
+export type AdminMfaVerifyInput = z.infer<typeof adminMfaVerifySchema>;
+
+export const adminUserCreateSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Valid administrator email is required")
+    .toLowerCase(),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(100),
+  password: z
+    .string()
+    .min(10, "Administrative password must be at least 10 characters")
+    .max(128),
+  role: adminRoleEnum.default("ANALYST"),
+});
+
+export type AdminUserCreateInput = z.infer<typeof adminUserCreateSchema>;
+
+export const adminUserUpdateRoleSchema = z.object({
+  userId: z.string().trim().min(1, "User ID is required"),
+  role: adminRoleEnum,
+});
+
+export type AdminUserUpdateRoleInput = z.infer<typeof adminUserUpdateRoleSchema>;
+
+/**
+ * Enterprise CMS Entities & Lifecycle Validation Schemas
+ */
+export const cmsEntityTypeEnum = z.enum([
+  "PAGES",
+  "SERVICES",
+  "INDUSTRIES",
+  "CASE_STUDIES",
+  "INSIGHTS",
+  "NEWSROOM",
+  "LEADERSHIP",
+  "MEDIA",
+]);
+
+export const cmsLifecycleStatusEnum = z.enum([
+  "DRAFT",
+  "REVIEW",
+  "PUBLISHED",
+  "ARCHIVED",
+]);
+
+export const cmsEntityMutationSchema = z.object({
+  id: z.string().optional(),
+  entityType: cmsEntityTypeEnum,
+  title: z
+    .string()
+    .trim()
+    .min(2, "Title must be at least 2 characters")
+    .max(200, "Title cannot exceed 200 characters"),
+  slug: z
+    .string()
+    .trim()
+    .min(2, "Slug must be at least 2 characters")
+    .regex(
+      /^[a-z0-9-_/]+$/,
+      "Slug must only contain lowercase alphanumeric characters, hyphens, and slashes"
+    ),
+  status: cmsLifecycleStatusEnum.default("DRAFT"),
+  author: z
+    .string()
+    .trim()
+    .min(2, "Author must be at least 2 characters")
+    .max(100),
+  seoTitle: z
+    .string()
+    .trim()
+    .max(160, "SEO title must not exceed 160 characters")
+    .optional()
+    .nullable(),
+  seoDescription: z
+    .string()
+    .trim()
+    .max(320, "SEO description must not exceed 320 characters")
+    .optional()
+    .nullable(),
+  featuredImage: z
+    .string()
+    .trim()
+    .url("Featured image must be a valid URL")
+    .optional()
+    .nullable()
+    .or(z.literal("")),
+  metadata: z.record(z.unknown()).optional().nullable(),
+  publishedAt: z.string().optional().nullable(),
+});
+
+export type CmsEntityMutationInput = z.infer<typeof cmsEntityMutationSchema>;
+
+export const cmsStatusTransitionSchema = z.object({
+  id: z.string().min(1, "Entity ID is required"),
+  entityType: cmsEntityTypeEnum,
+  targetStatus: cmsLifecycleStatusEnum,
+});
+
+export type CmsStatusTransitionInput = z.infer<typeof cmsStatusTransitionSchema>;
+
+/**
+ * Lead Management Schemas
+ */
+export const leadStatusUpdateSchema = z.object({
+  leadId: z.string().min(1, "Lead ID is required"),
+  status: leadStatusEnum,
+  reason: z.string().max(300, "Reason cannot exceed 300 characters").optional(),
+});
+export type LeadStatusUpdateInput = z.infer<typeof leadStatusUpdateSchema>;
+
+export const leadAssignSchema = z.object({
+  leadId: z.string().min(1, "Lead ID is required"),
+  assignedToUserId: z.string().min(1, "Assignee User ID is required"),
+  assignedToUserName: z.string().min(1, "Assignee User Name is required"),
+  assignedToUserEmail: z.string().email("Valid assignee corporate email is required"),
+});
+export type LeadAssignInput = z.infer<typeof leadAssignSchema>;
+
+export const leadAddNoteSchema = z.object({
+  leadId: z.string().min(1, "Lead ID is required"),
+  content: z
+    .string()
+    .trim()
+    .min(2, "Note content must be at least 2 characters")
+    .max(2000, "Note content cannot exceed 2000 characters"),
+});
+export type LeadAddNoteInput = z.infer<typeof leadAddNoteSchema>;
+
+export const crmSyncTriggerSchema = z.object({
+  leadId: z.string().min(1, "Lead ID is required"),
+  provider: z.enum(["HUBSPOT", "SALESFORCE", "WEBHOOK", "MOCK"]).optional(),
+});
+export type CrmSyncTriggerInput = z.infer<typeof crmSyncTriggerSchema>;

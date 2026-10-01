@@ -30,6 +30,8 @@ interface ServicePageProps {
   }>;
 }
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   return getAllServiceSlugs();
 }

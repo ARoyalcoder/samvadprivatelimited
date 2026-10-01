@@ -163,6 +163,9 @@ importers:
       '@react-three/fiber':
         specifier: ^9.0.4
         version: 9.8.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(three@0.174.0)
+      '@samvad/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
       '@samvad/config':
         specifier: workspace:*
         version: link:../../packages/config

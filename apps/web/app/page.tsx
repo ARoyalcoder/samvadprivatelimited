@@ -11,6 +11,8 @@ import { InsightsSection } from "@/components/sections/insights-section";
 import { NewsroomSection } from "@/components/sections/newsroom-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 
+export const revalidate = 3600;
+
 export default function HomePage() {
   return (
     <div className="flex w-full flex-col overflow-hidden bg-obsidian-950 text-sand-100">

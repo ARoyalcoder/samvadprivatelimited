@@ -211,23 +211,25 @@ export async function POST(req: NextRequest) {
       userAgent,
     });
 
-    // 8. Trigger Email Notifications (Internal Triage + Client Confirmation)
-    try {
-      await sendLeadNotificationEmails({
-        referenceCode,
-        name: data.name,
-        company: data.company,
-        designation: data.designation,
-        email: data.email,
-        phone: data.phone,
-        industry: data.industry,
-        serviceRequired: data.serviceRequired,
-        message: data.message,
-        receivedAt,
-      });
-    } catch (emailErr) {
-      console.warn("[Email Notification Warning]:", (emailErr as Error).message);
-    }
+    // 8. Trigger Email Notifications Asynchronously (Non-blocking worker dispatch)
+    void Promise.resolve().then(async () => {
+      try {
+        await sendLeadNotificationEmails({
+          referenceCode,
+          name: data.name,
+          company: data.company,
+          designation: data.designation,
+          email: data.email,
+          phone: data.phone,
+          industry: data.industry,
+          serviceRequired: data.serviceRequired,
+          message: data.message,
+          receivedAt,
+        });
+      } catch (emailErr) {
+        console.warn("[Async Email Notification Warning]:", (emailErr as Error).message);
+      }
+    });
 
     // 9. Sanitized Safe Response (Never leaks internal keys or DB credentials)
     return NextResponse.json(
