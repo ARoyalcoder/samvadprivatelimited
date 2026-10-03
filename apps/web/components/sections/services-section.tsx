@@ -26,16 +26,16 @@ export function ServicesSection() {
       eyebrow: "Predictive Defense",
       category: "intelligence",
       badge: "Horizon Radar",
-      accent: "text-blue-400",
-      borderAccent: "hover:border-blue-500/40",
+      accent: "text-[#647b8a]",
+      borderAccent: "hover:border-[#647b8a]/40",
       description:
-        "Algorithmic listening, early adversary signal detection, and media graph modeling to detect and neutralize perception hazards 60–90 days before public escalation.",
+        "Early signal detection, sentiment intelligence, and media mapping to identify perception risks before escalation.",
       deliverables: [
-        "Continuous adversarial discourse & vector threat mapping",
-        "Key Opinion Leader (KOL) network arbitration & resonance",
-        "Algorithmic search index & feed vulnerability audit",
+        "Adversarial discourse mapping",
+        "Opinion leader network analysis",
+        "Search & feed vulnerability audits",
       ],
-      sla: "Continuous 24/7 horizon scanning",
+      sla: "Continuous horizon scanning",
     },
     {
       id: "crisis-architecture",
@@ -44,16 +44,16 @@ export function ServicesSection() {
       eyebrow: "Rapid Response",
       category: "defense",
       badge: "24/7 War Room",
-      accent: "text-red-400",
-      borderAccent: "hover:border-red-500/40",
+      accent: "text-[#9a4b45]",
+      borderAccent: "hover:border-[#9a4b45]/40",
       description:
-        "Decisive war-room management for active investigations, hostile regulatory probes, high-exposure litigation, and coordinated adversarial smear campaigns.",
+        "Rapid response for investigations, regulatory scrutiny, litigation, and high-exposure communications.",
       deliverables: [
-        "Immediate 24/7 Senior Command Center activation",
-        "Judicial, regulatory & cross-jurisdiction narrative alignment",
-        "Forensic disinformation containment & counter-briefings",
+        "Senior crisis response",
+        "Regulatory & legal messaging",
+        "Disinformation containment",
       ],
-      sla: "< 15 minute mobilization SLA",
+      sla: "< 15 minute mobilization",
     },
     {
       id: "strategic-communications",
@@ -62,16 +62,16 @@ export function ServicesSection() {
       eyebrow: "Capital Markets",
       category: "capital",
       badge: "Value Creation",
-      accent: "text-gold-400",
-      borderAccent: "hover:border-gold-500/40",
+      accent: "text-[#a67c45]",
+      borderAccent: "hover:border-[#a67c45]/40",
       description:
-        "Architecting sovereign and capital-market narratives for landmark mergers, cross-border acquisitions, private-to-public transformations, and shareholder votes.",
+        "Strategic communications for major transactions, acquisitions, public offerings, and shareholder decisions.",
       deliverables: [
-        "Transaction valuation & enterprise thesis framing",
-        "Multinational regulatory & antitrust narrative alignment",
-        "Institutional investor & proxy advisory trust defense",
+        "Transaction value framing",
+        "Regulatory & antitrust alignment",
+        "Investor communications",
       ],
-      sla: "Multi-jurisdictional synchronization",
+      sla: "Multi-jurisdictional coordination",
     },
     {
       id: "public-affairs",
@@ -80,16 +80,16 @@ export function ServicesSection() {
       eyebrow: "Institutional Accord",
       category: "policy",
       badge: "Statecraft",
-      accent: "text-emerald-400",
-      borderAccent: "hover:border-emerald-500/40",
+      accent: "text-[#587b69]",
+      borderAccent: "hover:border-[#587b69]/40",
       description:
-        "Building bi-partisan policy consensus and sovereign credibility in complex, highly-regulated corridors where public interest meets commercial necessity.",
+        "Policy and stakeholder engagement where public interest, regulation, and commercial priorities intersect.",
       deliverables: [
-        "Sovereign priority & national capability dossiers",
-        "Ministerial, parliamentary & legislative briefings",
-        "Cross-jurisdictional trade & regulatory advisory",
+        "Government briefing materials",
+        "Policy stakeholder alignment",
+        "Trade & regulatory advisory",
       ],
-      sla: "Direct sovereign corridor access",
+      sla: "Direct institutional engagement",
     },
     {
       id: "executive-positioning",
@@ -98,16 +98,16 @@ export function ServicesSection() {
       eyebrow: "Reputation Stewardship",
       category: "defense",
       badge: "Confidential",
-      accent: "text-sand-200",
-      borderAccent: "hover:border-sand-400/40",
+      accent: "text-[#596267]",
+      borderAccent: "hover:border-[#596267]/40",
       description:
-        "Stewardship for sovereign leaders, founders, and managing principals navigating high-visibility public scrutiny, leadership transitions, and legacy preservation.",
+        "Reputation stewardship for leaders navigating public scrutiny, transitions, and long-term legacy.",
       deliverables: [
-        "Executive narrative doctrine & keynote architecture",
-        "Discreet peer-level media & editorial alignment",
-        "Personal reputational moat & legacy insulation",
+        "Executive narrative strategy",
+        "Media & editorial alignment",
+        "Reputation & legacy protection",
       ],
-      sla: "Zero-attribution stewardship",
+      sla: "Confidential stewardship",
     },
     {
       id: "digital-sovereignty",
@@ -116,16 +116,16 @@ export function ServicesSection() {
       eyebrow: "Information Integrity",
       category: "intelligence",
       badge: "Frontier Tech",
-      accent: "text-purple-400",
-      borderAccent: "hover:border-purple-500/40",
+      accent: "text-[#796c82]",
+      borderAccent: "hover:border-[#796c82]/40",
       description:
-        "Protecting organizations from AI-generated hallucinations, automated search bias, algorithmic misinformation indexing, and knowledge-graph distortion.",
+        "Protecting organizations from AI misinformation, search bias, and knowledge-graph distortion.",
       deliverables: [
-        "LLM & generative AI knowledge-graph corrections",
-        "Algorithmic search reputation restoration",
-        "Automated botnet & coordinated smear neutralization",
+        "AI knowledge-graph corrections",
+        "Search reputation restoration",
+        "Coordinated misinformation response",
       ],
-      sla: "Algorithmic telemetry defense",
+      sla: "Algorithmic integrity defense",
     },
   ];
 
@@ -137,28 +137,31 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/60 py-24 lg:py-32"
+      className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-24 lg:py-32"
     >
       {/* Background radial accent */}
-      <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold-500/5 blur-[140px]" />
+      <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-[#a67c45]/[0.035] blur-[140px]" />
 
       <Container size="xl" className="relative z-10 space-y-16">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#a67c45]" />
               Advisory Disciplines
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-sand-100 leading-tight">
-              Disciplines of Narrative Dominance & <br />
-              <span className="font-normal italic text-gold-300">
-                Institutional Statecraft
+
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-[#1d2529] leading-tight">
+              Strategic disciplines for
+              <br />
+              <span className="font-normal italic text-[#a67c45]">
+                complex environments
               </span>
             </h2>
-            <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed">
-              We operate at the intersection of quantitative sentiment intelligence, institutional
-              diplomacy, and strategic positioning to insulate enterprise valuation.
+
+            <p className="text-[#697176] text-sm sm:text-base font-light leading-relaxed">
+              Intelligence, communications, policy, and reputation strategy
+              for high-stakes institutional challenges.
             </p>
           </div>
 
@@ -177,8 +180,8 @@ export function ServicesSection() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`font-mono text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition-all ${
                   activeTab === tab.id
-                    ? "border-gold-500/40 bg-gold-500/10 text-gold-300"
-                    : "border-obsidian-750 bg-obsidian-850 text-obsidian-400 hover:text-sand-300 hover:border-obsidian-700"
+                    ? "border-[#a67c45]/45 bg-[#a67c45]/10 text-[#8c6537]"
+                    : "border-[#d0c9bd] bg-[#ebe7de] text-[#8a8f91] hover:text-[#596267] hover:border-[#bdb5a8]"
                 }`}
               >
                 {tab.label}
@@ -191,25 +194,27 @@ export function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service) => {
             const Icon = service.icon;
+
             return (
               <div
                 key={service.id}
-                className={`group relative flex flex-col justify-between rounded-xs border border-obsidian-800 bg-obsidian-950 p-8 transition-all duration-300 ${service.borderAccent} hover:bg-obsidian-900 shadow-elevation-1 hover:shadow-elevation-2`}
+                className={`group relative flex flex-col justify-between rounded-xs border border-[#d0c9bd] bg-[#ebe7de]/75 p-8 transition-all duration-300 ${service.borderAccent} hover:bg-[#e7e2d8] shadow-[0_12px_35px_rgba(29,37,41,0.06)] hover:shadow-[0_20px_50px_rgba(29,37,41,0.1)]`}
               >
-                {/* Hairline top glow */}
-                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Hairline top accent */}
+                <div className="absolute top-0 left-6 right-6 h-px bg-[#a67c45]/40 opacity-0 group-hover:opacity-100 transition-opacity" />
 
                 <div className="space-y-6">
                   {/* Top Bar with Icon and Badge */}
                   <div className="flex items-center justify-between">
                     <div
-                      className={`h-10 w-10 rounded-xs border border-obsidian-750 bg-obsidian-900 flex items-center justify-center ${service.accent}`}
+                      className={`h-10 w-10 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] flex items-center justify-center ${service.accent}`}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
+
                     <Badge
                       variant="outline"
-                      className="border-obsidian-750 bg-obsidian-850 font-mono text-[9px] uppercase tracking-widest text-gold-300"
+                      className="border-[#d0c9bd] bg-[#f3f0e8] font-mono text-[9px] uppercase tracking-widest text-[#8c6537]"
                     >
                       {service.badge}
                     </Badge>
@@ -217,28 +222,33 @@ export function ServicesSection() {
 
                   {/* Service Title & Eyebrow */}
                   <div className="space-y-1.5">
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-obsidian-400">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-[#8a8f91]">
                       {service.eyebrow}
                     </div>
-                    <h3 className="font-serif text-xl font-normal text-sand-100 group-hover:text-gold-200 transition-colors">
+
+                    <h3 className="font-serif text-xl font-normal text-[#1d2529] group-hover:text-[#8c6537] transition-colors">
                       {service.title}
                     </h3>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs leading-relaxed text-sand-400 font-light">
+                  <p className="text-xs leading-relaxed text-[#697176] font-light">
                     {service.description}
                   </p>
 
                   {/* Core Deliverables */}
-                  <div className="space-y-2 pt-2 border-t border-obsidian-850">
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-sand-300">
-                      Core Deliverables
+                  <div className="space-y-2 pt-2 border-t border-[#d8d1c5]">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-[#596267]">
+                      Key Capabilities
                     </div>
+
                     <ul className="space-y-1.5">
                       {service.deliverables.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-sand-400 font-light">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-gold-400 shrink-0 mt-0.5" />
+                        <li
+                          key={idx}
+                          className="flex items-start gap-2 text-xs text-[#697176] font-light"
+                        >
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[#a67c45] shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -247,14 +257,15 @@ export function ServicesSection() {
                 </div>
 
                 {/* Bottom SLA & Action */}
-                <div className="mt-8 pt-4 border-t border-obsidian-850 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-obsidian-400">
-                    <Clock className="h-3 w-3 text-gold-400" />
+                <div className="mt-8 pt-4 border-t border-[#d8d1c5] flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#8a8f91]">
+                    <Clock className="h-3 w-3 text-[#a67c45]" />
                     <span>{service.sla}</span>
                   </div>
+
                   <Link
                     href="#contact"
-                    className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-gold-400 hover:text-gold-300"
+                    className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-[#a67c45] hover:text-[#7f5c32]"
                   >
                     <span>Engage</span>
                     <ArrowRight className="h-3 w-3" />

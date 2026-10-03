@@ -63,13 +63,13 @@ export function InteractiveMethodology() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-obsidian-950 py-16 lg:py-24">
+    <section className="relative overflow-hidden bg-[#f3f0e8] py-16 lg:py-24">
       {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-[500px] w-[500px] rounded-full bg-gold-500/5 blur-[150px]" />
+      <div className="pointer-events-none absolute left-1/3 top-1/4 h-[500px] w-[500px] rounded-full bg-[#a67c45]/8 blur-[150px]" />
 
       <Container size="xl" className="space-y-10">
         {/* Sticky Stage Scrubber & Accessibility Controls */}
-        <div className="sticky top-20 z-30 rounded-xs border border-obsidian-800 bg-obsidian-950/90 p-3 backdrop-blur-xl shadow-elevation-2">
+        <div className="sticky top-20 z-30 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8]/95 p-3 shadow-elevation-2 backdrop-blur-xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Scrubber Tabs */}
             <div
@@ -88,11 +88,13 @@ export function InteractiveMethodology() {
                     className={cn(
                       "flex items-center gap-2 whitespace-nowrap rounded-xs px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider transition-all",
                       isActive
-                        ? "border border-gold-500/50 bg-gold-500/10 text-gold-300 shadow-sm"
-                        : "border border-transparent text-obsidian-400 hover:text-sand-300 hover:border-obsidian-750"
+                        ? "border border-[#a67c45]/50 bg-[#a67c45]/10 text-[#8a6437] shadow-sm"
+                        : "border border-transparent text-[#7a807f] hover:text-[#394247] hover:border-[#c5beb2]"
                     )}
                   >
-                    <span className="font-semibold text-gold-400">{stage.num}</span>
+                    <span className="font-semibold text-[#a67c45]">
+                      {stage.num}
+                    </span>
                     <span>{stage.name}</span>
                   </button>
                 );
@@ -100,21 +102,25 @@ export function InteractiveMethodology() {
             </div>
 
             {/* Static / Motion Accessibility Toggle */}
-            <div className="flex items-center gap-3 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-t-0 border-obsidian-850">
+            <div className="flex items-center gap-3 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-t-0 border-[#d8d1c5]">
               <button
                 type="button"
                 onClick={() => setStaticMode(!staticMode)}
-                className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-obsidian-400 hover:text-gold-300 transition-colors"
-                aria-label={staticMode ? "Enable animated visualization" : "Disable animation (static mode)"}
+                className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#7a807f] hover:text-[#8a6437] transition-colors"
+                aria-label={
+                  staticMode
+                    ? "Enable animated visualization"
+                    : "Disable animation (static mode)"
+                }
               >
                 {staticMode ? (
                   <>
-                    <EyeOff className="h-3.5 w-3.5 text-amber-400" />
+                    <EyeOff className="h-3.5 w-3.5 text-[#a67c45]" />
                     <span>Mode: Static Snapshot</span>
                   </>
                 ) : (
                   <>
-                    <Eye className="h-3.5 w-3.5 text-emerald-400" />
+                    <Eye className="h-3.5 w-3.5 text-emerald-700" />
                     <span>Mode: Live Visual Topology</span>
                   </>
                 )}
@@ -136,48 +142,53 @@ export function InteractiveMethodology() {
                 className={cn(
                   "scroll-mt-36 rounded-xs border p-8 sm:p-10 transition-all duration-300 space-y-8",
                   activeStageIndex === idx
-                    ? "border-gold-500/50 bg-obsidian-900/80 shadow-elevation-2"
-                    : "border-obsidian-800/80 bg-obsidian-950/60 opacity-80 hover:opacity-100"
+                    ? "border-[#a67c45]/50 bg-[#ebe7de] shadow-elevation-2"
+                    : "border-[#d8d1c5]/80 bg-[#f3f0e8]/80 opacity-80 hover:opacity-100"
                 )}
               >
                 {/* Stage Header */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-semibold text-gold-400 tracking-widest">
+                    <span className="font-mono text-xs font-semibold text-[#a67c45] tracking-widest">
                       STAGE {stage.num} · {stage.name}
                     </span>
+
                     <Badge
                       variant="outline"
-                      className="border-obsidian-750 font-mono text-[9px] uppercase tracking-wider text-sand-300"
+                      className="border-[#c5beb2] font-mono text-[9px] uppercase tracking-wider text-[#626a6d]"
                     >
                       {stage.eyebrow}
                     </Badge>
                   </div>
 
-                  <h3 className="font-serif text-3xl sm:text-4xl font-light text-sand-100 leading-tight">
+                  <h3 className="font-serif text-3xl sm:text-4xl font-light text-[#1d2529] leading-tight">
                     {stage.title}
                   </h3>
 
-                  <p className="font-serif text-lg text-gold-300/90 italic font-normal">
+                  <p className="font-serif text-lg text-[#8a6437] italic font-normal">
                     {stage.tagline}
                   </p>
                 </div>
 
                 {/* Explanation */}
-                <div className="space-y-3 text-sand-300 font-light text-sm sm:text-base leading-relaxed">
+                <div className="space-y-3 text-[#4f595d] font-light text-sm sm:text-base leading-relaxed">
                   <p>{stage.explanation}</p>
                 </div>
 
                 {/* Activities List */}
-                <div className="space-y-3 pt-4 border-t border-obsidian-850">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-sand-200 font-semibold flex items-center gap-2">
-                    <SlidersHorizontal className="h-3.5 w-3.5 text-gold-400" />
+                <div className="space-y-3 pt-4 border-t border-[#d8d1c5]">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-[#394247] font-semibold flex items-center gap-2">
+                    <SlidersHorizontal className="h-3.5 w-3.5 text-[#a67c45]" />
                     <span>Operational Activities</span>
                   </div>
+
                   <ul className="space-y-2">
                     {stage.activities.map((act, aIdx) => (
-                      <li key={aIdx} className="flex items-start gap-2.5 text-xs text-sand-400 font-light">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-gold-400 shrink-0 mt-0.5" />
+                      <li
+                        key={aIdx}
+                        className="flex items-start gap-2.5 text-xs text-[#626a6d] font-light"
+                      >
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[#a67c45] shrink-0 mt-0.5" />
                         <span>{act}</span>
                       </li>
                     ))}
@@ -185,18 +196,19 @@ export function InteractiveMethodology() {
                 </div>
 
                 {/* Outputs List */}
-                <div className="space-y-3 pt-4 border-t border-obsidian-850">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-sand-200 font-semibold flex items-center gap-2">
-                    <FileText className="h-3.5 w-3.5 text-gold-400" />
-                    <span>Tangible Stage Outputs</span>
+                <div className="space-y-3 pt-4 border-t border-[#d8d1c5]">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-[#394247] font-semibold flex items-center gap-2">
+                    <FileText className="h-3.5 w-3.5 text-[#a67c45]" />
+                    <span>Stage Outputs</span>
                   </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {stage.outputs.map((out, oIdx) => (
                       <div
                         key={oIdx}
-                        className="rounded-xs border border-obsidian-800 bg-obsidian-950 px-3 py-2 text-xs font-mono text-sand-300 flex items-center gap-2"
+                        className="rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] px-3 py-2 text-xs font-mono text-[#4f595d] flex items-center gap-2"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-gold-400 shrink-0" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#a67c45] shrink-0" />
                         <span>{out}</span>
                       </div>
                     ))}
@@ -204,7 +216,7 @@ export function InteractiveMethodology() {
                 </div>
 
                 {/* Senior Counsel Perspective Quote */}
-                <blockquote className="rounded-xs border-l-2 border-gold-400/80 bg-obsidian-950 p-5 font-serif text-sm italic text-sand-300 leading-relaxed">
+                <blockquote className="rounded-xs border-l-2 border-[#a67c45]/80 bg-[#f3f0e8] p-5 font-serif text-sm italic text-[#4f595d] leading-relaxed">
                   &ldquo;{stage.quote}&rdquo;
                 </blockquote>
               </article>
@@ -213,12 +225,16 @@ export function InteractiveMethodology() {
 
           {/* Right Column: Sticky Visual Environment (5 Cols) */}
           <div className="lg:col-span-5 sticky top-36 space-y-6">
-            <div className="rounded-xs border border-obsidian-750 bg-obsidian-900/80 p-5 shadow-2xl backdrop-blur-md space-y-4">
-              <div className="flex items-center justify-between border-b border-obsidian-800 pb-3 font-mono text-xs">
-                <span className="text-gold-400 font-semibold">
+            <div className="rounded-xs border border-[#c5beb2] bg-[#ebe7de] p-5 shadow-2xl backdrop-blur-md space-y-4">
+              <div className="flex items-center justify-between border-b border-[#d0c9bd] pb-3 font-mono text-xs">
+                <span className="text-[#8a6437] font-semibold">
                   Visual Environment · Stage {activeStage.num}
                 </span>
-                <Badge variant="outline" className="border-gold-500/30 bg-gold-500/10 text-gold-300 font-mono text-[9px] uppercase tracking-wider">
+
+                <Badge
+                  variant="outline"
+                  className="border-[#a67c45]/30 bg-[#a67c45]/10 text-[#8a6437] font-mono text-[9px] uppercase tracking-wider"
+                >
                   {staticMode ? "Static Snapshot" : "Dynamic Canvas"}
                 </Badge>
               </div>
@@ -231,22 +247,24 @@ export function InteractiveMethodology() {
 
               {/* Stage Context Box */}
               <div className="space-y-2 pt-2">
-                <div className="font-mono text-[10px] uppercase tracking-wider text-obsidian-400">
+                <div className="font-mono text-[10px] uppercase tracking-wider text-[#7a807f]">
                   Active Methodology Phase:
                 </div>
-                <div className="font-serif text-xl font-normal text-sand-100">
+
+                <div className="font-serif text-xl font-normal text-[#1d2529]">
                   {activeStage.num} {activeStage.name}: {activeStage.title}
                 </div>
-                <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                <p className="text-xs text-[#626a6d] font-light leading-relaxed">
                   {activeStage.tagline}
                 </p>
               </div>
 
               {/* Scrubber Quick Step */}
-              <div className="pt-3 border-t border-obsidian-800 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 text-xs font-mono text-obsidian-400">
-                  <Radio className="h-3 w-3 text-gold-400 animate-pulse" />
-                  <span>Interactive Topology Synchronization</span>
+              <div className="pt-3 border-t border-[#d0c9bd] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-[#7a807f]">
+                  <Radio className="h-3 w-3 text-[#a67c45] animate-pulse" />
+                  <span>Interactive Topology Sync</span>
                 </div>
               </div>
             </div>

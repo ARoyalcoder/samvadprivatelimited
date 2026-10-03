@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import {
   Container,
   Badge,
@@ -9,10 +10,12 @@ import {
   MagneticButton,
   SamvadImage,
 } from "@samvad/ui";
+
 import {
   getIndustryBySlug,
   getAllIndustrySlugs,
 } from "@/lib/industries-data";
+
 import {
   ArrowRight,
   ShieldCheck,
@@ -53,7 +56,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function IndustryDetailPage({ params }: IndustryPageProps) {
+export default async function IndustryDetailPage({
+  params,
+}: IndustryPageProps) {
   const { slug } = await params;
   const industry = getIndustryBySlug(slug);
 
@@ -62,54 +67,76 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
   }
 
   return (
-    <div className="flex w-full flex-col overflow-hidden bg-obsidian-950 text-sand-100">
+    <div className="flex w-full flex-col overflow-hidden bg-[#f3f0e8] text-[#1d2529]">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden pt-32 pb-20 lg:pt-36 lg:pb-24 border-b border-obsidian-800">
-        {/* Background ambient lighting */}
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[900px] rounded-full bg-gold-500/5 blur-[150px]" />
+      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden pt-32 pb-20 lg:pt-36 lg:pb-24 border-b border-[#d8d1c5]">
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[900px] rounded-full bg-[#a67c45]/5 blur-[150px]" />
 
-        <Container size="xl" className="relative z-10 flex-1 flex flex-col justify-center space-y-8">
+        <Container
+          size="xl"
+          className="relative z-10 flex-1 flex flex-col justify-center space-y-8"
+        >
           {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-[11px] text-obsidian-400">
-            <Link href="/" className="hover:text-sand-300 transition-colors">
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-2 font-mono text-[11px] text-[#777970]"
+          >
+            <Link
+              href="/"
+              className="transition-colors hover:text-[#3f4847]"
+            >
               Home
             </Link>
+
             <ChevronRight className="h-3 w-3" />
-            <Link href="/industries" className="hover:text-sand-300 transition-colors">
+
+            <Link
+              href="/industries"
+              className="transition-colors hover:text-[#3f4847]"
+            >
               Industries
             </Link>
+
             <ChevronRight className="h-3 w-3" />
-            <span className="text-gold-400">{industry.title}</span>
+
+            <span className="text-[#a67c45]">{industry.title}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-6 lg:col-span-7">
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xs bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-xs text-gold-400 font-semibold">
+                <span className="rounded-xs border border-[#a67c45]/30 bg-[#a67c45]/10 px-2.5 py-1 font-mono text-xs font-semibold text-[#8d683d]">
                   SECTOR {industry.code}
                 </span>
-                <Badge variant="outline" className="border-obsidian-750 font-mono text-[9px] uppercase tracking-wider text-sand-300">
+
+                <Badge
+                  variant="outline"
+                  className="border-[#c9c2b6] bg-[#ebe7de] font-mono text-[9px] uppercase tracking-wider text-[#626760]"
+                >
                   {industry.categoryGroup}
                 </Badge>
               </div>
 
               <div className="space-y-3">
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-sand-100 leading-[1.06]">
+                <h1 className="font-serif text-4xl font-light leading-[1.06] tracking-tight text-[#1d2529] sm:text-5xl lg:text-6xl">
                   {industry.title}
                 </h1>
-                <p className="font-serif text-lg sm:text-xl text-gold-300/90 font-normal italic">
+
+                <p className="font-serif text-lg font-normal italic text-[#a67c45] sm:text-xl">
                   {industry.tagline}
                 </p>
               </div>
 
-              <p className="text-sand-300 font-light text-sm sm:text-base leading-relaxed max-w-2xl">
+              <p className="max-w-2xl text-sm font-light leading-relaxed text-[#626760] sm:text-base">
                 {industry.longDescription}
               </p>
 
               {/* CMS Governance Disclaimer Pill */}
-              <div className="p-3.5 rounded-xs border border-obsidian-800 bg-obsidian-900/60 text-xs text-obsidian-400 font-mono">
-                <span className="text-gold-400 font-semibold">[CMS FRAMEWORK]: </span>
+              <div className="rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-3.5 font-mono text-xs text-[#777970]">
+                <span className="font-semibold text-[#a67c45]">
+                  [CMS FRAMEWORK]:{" "}
+                </span>
                 {industry.cmsApprovalNotice}
               </div>
 
@@ -118,9 +145,9 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
                   <MagneticButton
                     variant="gold"
                     size="md"
-                    className="font-mono text-xs uppercase tracking-wider px-6 py-3.5"
+                    className="px-6 py-3.5 font-mono text-xs uppercase tracking-wider"
                   >
-                    <span>Request {industry.title} Consultation</span>
+                    <span>Request Consultation</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </MagneticButton>
                 </Link>
@@ -129,7 +156,7 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
                   <Button
                     variant="outline"
                     size="md"
-                    className="font-mono text-xs uppercase tracking-wider border-obsidian-750 text-sand-300 hover:border-gold-500/50 hover:bg-obsidian-900 px-6 py-3.5"
+                    className="border-[#c9c2b6] bg-[#f3f0e8] px-6 py-3.5 font-mono text-xs uppercase tracking-wider text-[#3f4847] hover:border-[#a67c45]/50 hover:bg-[#ebe7de]"
                   >
                     All Sectors
                   </Button>
@@ -138,12 +165,23 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
             </div>
 
             {/* Right Hero Image */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-xs border border-obsidian-750 bg-obsidian-900/60 p-3 shadow-2xl backdrop-blur-sm">
-                <span className="pointer-events-none absolute -left-1 -top-1 font-mono text-[10px] text-gold-400/80 select-none">+</span>
-                <span className="pointer-events-none absolute -right-1 -top-1 font-mono text-[10px] text-gold-400/80 select-none">+</span>
-                <span className="pointer-events-none absolute -bottom-1 -left-1 font-mono text-[10px] text-gold-400/80 select-none">+</span>
-                <span className="pointer-events-none absolute -bottom-1 -right-1 font-mono text-[10px] text-gold-400/80 select-none">+</span>
+            <div className="relative lg:col-span-5">
+              <div className="relative rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-3 shadow-sm">
+                <span className="pointer-events-none absolute -left-1 -top-1 select-none font-mono text-[10px] text-[#a67c45]/80">
+                  +
+                </span>
+
+                <span className="pointer-events-none absolute -right-1 -top-1 select-none font-mono text-[10px] text-[#a67c45]/80">
+                  +
+                </span>
+
+                <span className="pointer-events-none absolute -bottom-1 -left-1 select-none font-mono text-[10px] text-[#a67c45]/80">
+                  +
+                </span>
+
+                <span className="pointer-events-none absolute -bottom-1 -right-1 select-none font-mono text-[10px] text-[#a67c45]/80">
+                  +
+                </span>
 
                 <SamvadImage
                   assetId={industry.imageAssetId}
@@ -159,44 +197,49 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 2. INDUSTRY CHALLENGES SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-950 py-20 lg:py-28">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#ebe7de] py-20 lg:py-28">
         <Container size="xl" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-red-400">
-              <AlertTriangle className="h-3 w-3 text-red-400" />
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <AlertTriangle className="h-3 w-3 text-[#a67c45]" />
               Sector Frictions
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
-              High-Consequence Industry Challenges
+
+            <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
+              Industry Challenges
             </h2>
-            <p className="text-sand-400 text-xs sm:text-sm font-light leading-relaxed">
-              Systemic hurdles, regulatory scrutiny, and market crosswinds unique to {industry.title}.
+
+            <p className="text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
+              Key risks and pressures across {industry.title}.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {industry.challenges.map((challenge, idx) => (
               <div
                 key={idx}
-                className="rounded-xs border border-obsidian-800 bg-obsidian-900/60 p-6 flex flex-col justify-between space-y-4"
+                className="flex flex-col justify-between space-y-4 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-6 shadow-sm"
               >
                 <div className="space-y-2">
-                  <div className="font-mono text-xs text-red-400 font-semibold">
+                  <div className="font-mono text-xs font-semibold text-[#a67c45]">
                     CHALLENGE 0{idx + 1}
                   </div>
-                  <h3 className="font-serif text-lg font-normal text-sand-100">
+
+                  <h3 className="font-serif text-lg font-normal text-[#1d2529]">
                     {challenge.title}
                   </h3>
-                  <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                  <p className="text-xs font-light leading-relaxed text-[#626760]">
                     {challenge.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-obsidian-850 space-y-1">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-obsidian-400">
-                    Enterprise Exposure:
+                <div className="space-y-1 border-t border-[#d8d1c5] pt-3">
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-[#777970]">
+                    Enterprise Exposure
                   </div>
-                  <p className="text-xs text-sand-300 font-light">
+
+                  <p className="text-xs font-light text-[#3f4847]">
                     {challenge.impact}
                   </p>
                 </div>
@@ -207,45 +250,52 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 3. COMMUNICATION NEEDS SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/40 py-20 lg:py-28">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-20 lg:py-28">
         <Container size="xl" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <Activity className="h-3 w-3 text-gold-400" />
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <Activity className="h-3 w-3 text-[#a67c45]" />
               Strategic Imperatives
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
-              Core Communication Needs
+
+            <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
+              Communication Needs
             </h2>
-            <p className="text-sand-400 text-xs sm:text-sm font-light leading-relaxed">
-              Mandatory perception and communication capabilities required to withstand scrutiny.
+
+            <p className="text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
+              Core capabilities required under scrutiny.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {industry.communicationNeeds.map((need, idx) => (
               <div
                 key={idx}
-                className="rounded-xs border border-obsidian-800 bg-obsidian-950 p-6 flex flex-col justify-between space-y-4"
+                className="flex flex-col justify-between space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6 shadow-sm"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between font-mono text-[10px]">
-                    <span className="text-gold-400 font-semibold">NEED 0{idx + 1}</span>
-                    <span className="text-obsidian-400 font-mono text-[9px] uppercase tracking-wider">
+                    <span className="font-semibold text-[#a67c45]">
+                      NEED 0{idx + 1}
+                    </span>
+
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-[#777970]">
                       {need.urgency}
                     </span>
                   </div>
-                  <h3 className="font-serif text-lg font-normal text-sand-100">
+
+                  <h3 className="font-serif text-lg font-normal text-[#1d2529]">
                     {need.need}
                   </h3>
-                  <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                  <p className="text-xs font-light leading-relaxed text-[#626760]">
                     {need.rationale}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-obsidian-850 flex items-center gap-2 text-xs font-mono text-gold-400">
+                <div className="flex items-center gap-2 border-t border-[#d8d1c5] pt-3 font-mono text-xs text-[#a67c45]">
                   <ShieldCheck className="h-3.5 w-3.5" />
-                  <span>SAMVAD Protocol Specified</span>
+                  <span>Protocol Specified</span>
                 </div>
               </div>
             ))}
@@ -254,42 +304,45 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 4. RELEVANT SERVICES SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-950 py-20 lg:py-28">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#ebe7de] py-20 lg:py-28">
         <Container size="xl" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <Layers className="h-3 w-3 text-gold-400" />
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <Layers className="h-3 w-3 text-[#a67c45]" />
               Practice Integration
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
+
+            <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
               Relevant Advisory Services
             </h2>
-            <p className="text-sand-400 text-xs sm:text-sm font-light leading-relaxed">
-              Primary disciplines deployed to navigate {industry.title} headwinds.
+
+            <p className="text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
+              Practices deployed across {industry.title}.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {industry.relevantServices.map((srv) => (
               <div
                 key={srv.slug}
-                className="group rounded-xs border border-obsidian-800 bg-obsidian-900/60 p-6 flex flex-col justify-between space-y-4 hover:border-gold-500/40 transition-all"
+                className="group flex flex-col justify-between space-y-4 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-6 shadow-sm transition-all hover:border-[#a67c45]/40 hover:bg-[#eee9df]"
               >
                 <div className="space-y-2">
-                  <h3 className="font-serif text-lg font-normal text-sand-100 group-hover:text-gold-200 transition-colors">
+                  <h3 className="font-serif text-lg font-normal text-[#1d2529] transition-colors group-hover:text-[#8d683d]">
                     {srv.title}
                   </h3>
-                  <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                  <p className="text-xs font-light leading-relaxed text-[#626760]">
                     {srv.rationale}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-obsidian-850">
+                <div className="border-t border-[#d8d1c5] pt-3">
                   <Link
                     href={`/services/${srv.slug}`}
-                    className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-gold-400 hover:text-gold-300"
+                    className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-[#a67c45] hover:text-[#8d683d]"
                   >
-                    <span>Inspect {srv.title} Practice</span>
+                    <span>View Practice</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -300,49 +353,58 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 5. CASE STUDIES SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/40 py-20 lg:py-28">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-20 lg:py-28">
         <Container size="xl" className="space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div className="space-y-2 max-w-2xl">
-              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <div className="max-w-2xl space-y-2">
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
                 Case Records
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
-                Sector Case Precedents
+
+              <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
+                Sector Case Records
               </h2>
             </div>
+
             <Link
               href="/#case-studies"
-              className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-gold-400 hover:text-gold-300"
+              className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-[#a67c45] hover:text-[#8d683d]"
             >
-              <span>All Declassified Dossiers</span>
+              <span>All Case Records</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {industry.caseStudies.map((cs) => (
               <div
                 key={cs.ref}
-                className="rounded-xs border border-obsidian-800 bg-obsidian-950 p-8 space-y-6"
+                className="space-y-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-8 shadow-sm"
               >
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="text-gold-400 font-semibold">{cs.ref}</span>
-                  <span className="text-obsidian-400">{cs.sector}</span>
+                  <span className="font-semibold text-[#a67c45]">
+                    {cs.ref}
+                  </span>
+
+                  <span className="text-[#777970]">{cs.sector}</span>
                 </div>
-                <h3 className="font-serif text-xl font-normal text-sand-100">
+
+                <h3 className="font-serif text-xl font-normal text-[#1d2529]">
                   {cs.title}
                 </h3>
-                <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                <p className="text-xs font-light leading-relaxed text-[#626760]">
                   {cs.outcome}
                 </p>
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-obsidian-850">
+
+                <div className="grid grid-cols-2 gap-4 border-t border-[#d8d1c5] pt-4">
                   {cs.metrics.map((m, mIdx) => (
                     <div key={mIdx}>
-                      <div className="font-serif text-2xl font-light text-gold-300">
+                      <div className="font-serif text-2xl font-light text-[#a67c45]">
                         {m.value}
                       </div>
-                      <div className="font-mono text-[10px] uppercase tracking-wider text-sand-400">
+
+                      <div className="font-mono text-[10px] uppercase tracking-wider text-[#777970]">
                         {m.label}
                       </div>
                     </div>
@@ -355,37 +417,44 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 6. INSIGHTS SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-950 py-20 lg:py-28">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#ebe7de] py-20 lg:py-28">
         <Container size="xl" className="space-y-12">
-          <div className="space-y-3 max-w-2xl">
-            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              Thought Leadership
+          <div className="max-w-2xl space-y-3">
+            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              Research
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
-              Relevant Executive Intelligence
+
+            <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
+              Executive Intelligence
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {industry.insights.map((insight, idx) => (
               <div
                 key={idx}
-                className="rounded-xs border border-obsidian-800 bg-obsidian-900/60 p-6 flex flex-col justify-between space-y-4"
+                className="flex flex-col justify-between space-y-4 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-6 shadow-sm"
               >
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between font-mono text-[10px] text-obsidian-400">
-                    <span className="text-gold-400">{insight.category}</span>
+                  <div className="flex items-center justify-between font-mono text-[10px] text-[#777970]">
+                    <span className="text-[#a67c45]">
+                      {insight.category}
+                    </span>
+
                     <span>{insight.readTime}</span>
                   </div>
-                  <h3 className="font-serif text-lg font-normal text-sand-100">
+
+                  <h3 className="font-serif text-lg font-normal text-[#1d2529]">
                     {insight.title}
                   </h3>
                 </div>
-                <div className="pt-3 border-t border-obsidian-850 flex items-center justify-between text-xs font-mono text-obsidian-400">
+
+                <div className="flex items-center justify-between border-t border-[#d8d1c5] pt-3 text-xs font-mono text-[#777970]">
                   <span>{insight.author}</span>
+
                   <Link
                     href="/#intelligence"
-                    className="text-gold-400 hover:text-gold-300 inline-flex items-center gap-1"
+                    className="inline-flex items-center gap-1 text-[#a67c45] hover:text-[#8d683d]"
                   >
                     <span>Read</span>
                     <ArrowUpRight className="h-3 w-3" />
@@ -398,48 +467,51 @@ export default async function IndustryDetailPage({ params }: IndustryPageProps) 
       </section>
 
       {/* 7. CTA SECTION */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-gradient-to-b from-obsidian-950 to-obsidian-900 py-24 text-center">
-        <Container size="xl" className="space-y-8 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1.5">
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold-300 font-semibold">
-              Confidential Sector Briefing
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-24 text-center">
+        <Container size="xl" className="mx-auto max-w-3xl space-y-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#a67c45]/30 bg-[#ebe7de] px-3.5 py-1.5">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#a67c45]">
+              Confidential Briefing
             </span>
           </div>
 
-          <h2 className="font-serif text-4xl sm:text-5xl font-light text-sand-100 leading-tight">
-            Consult With Our <br />
-            <span className="font-normal italic text-gold-300">
-              {industry.title} Sector Specialists
+          <h2 className="font-serif text-4xl font-light leading-tight text-[#1d2529] sm:text-5xl">
+            Consult Our
+            <br />
+            <span className="font-normal italic text-[#a67c45]">
+              {industry.title} Specialists
             </span>
           </h2>
 
-          <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed max-w-xl mx-auto">
-            Engage our senior partners under non-disclosure protocols to evaluate your sector-specific
-            perception risks, regulatory horizons, and narrative architecture.
+          <p className="mx-auto max-w-xl text-sm font-light leading-relaxed text-[#626760] sm:text-base">
+            Review sector-specific perception, regulatory, and narrative
+            risks under strict confidentiality.
           </p>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link href="/#contact">
               <MagneticButton
                 variant="gold"
                 size="lg"
-                className="font-mono text-xs uppercase tracking-wider px-8 py-4"
+                className="px-8 py-4 font-mono text-xs uppercase tracking-wider"
               >
-                <span>Initiate Confidential Assessment</span>
+                <span>Request Assessment</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </MagneticButton>
             </Link>
           </div>
 
-          <div className="pt-6 flex items-center justify-center gap-4 text-xs font-mono text-obsidian-400">
+          <div className="flex items-center justify-center gap-4 pt-6 font-mono text-xs text-[#777970]">
             <div className="flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5 text-gold-400" />
-              <span>Strict Discretion Protocol</span>
+              <Lock className="h-3.5 w-3.5 text-[#a67c45]" />
+              <span>Strict Discretion</span>
             </div>
-            <span className="text-obsidian-700">·</span>
+
+            <span className="text-[#c5beb2]">·</span>
+
             <div className="flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-gold-400" />
-              <span>Direct Partner Intake</span>
+              <Clock className="h-3.5 w-3.5 text-[#a67c45]" />
+              <span>Partner Intake</span>
             </div>
           </div>
         </Container>

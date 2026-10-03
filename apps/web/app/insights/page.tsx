@@ -1,14 +1,26 @@
 import * as React from "react";
+
 import type { Metadata } from "next";
+
 import Link from "next/link";
-import { Container, Badge, Button, MagneticButton, SamvadImage } from "@samvad/ui";
+
+import {
+  Container,
+  Badge,
+  Button,
+  MagneticButton,
+  SamvadImage,
+} from "@samvad/ui";
+
 import {
   getAllArticles,
   getFeaturedArticle,
   getAllCategories,
   getAllTags,
 } from "@/lib/insights-data";
+
 import { InsightsSearchFilter } from "@/components/insights/insights-search-filter";
+
 import {
   Calendar,
   Clock,
@@ -21,7 +33,7 @@ import {
 export const metadata: Metadata = {
   title: "Insights & Strategic Review | SAMVAD Perception Advisory",
   description:
-    "Authoritative thought leadership, empirical studies on disinformation, and strategic perception doctrine published by SAMVAD senior partners and researchers.",
+    "Research, perception intelligence, and strategic analysis from SAMVAD.",
   keywords: [
     "Perception Architecture",
     "Disinformation Forensics",
@@ -38,38 +50,49 @@ export default function InsightsPage() {
   const tags = getAllTags();
 
   return (
-    <div className="flex w-full flex-col overflow-hidden bg-obsidian-950 text-sand-100">
+    <div className="flex w-full flex-col overflow-hidden bg-[#f3f0e8] text-[#1d2529]">
       {/* 1. EDITORIAL MASTHEAD */}
-      <section className="relative overflow-hidden pt-32 pb-16 lg:pt-36 lg:pb-20 border-b border-obsidian-800">
-        {/* Ambient atmospheric lighting */}
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[900px] rounded-full bg-gold-500/5 blur-[160px]" />
+      <section className="relative overflow-hidden border-b border-[#d8d1c5] pb-16 pt-32 lg:pb-20 lg:pt-36">
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[550px] w-[900px] -translate-x-1/2 rounded-full bg-[#a67c45]/5 blur-[160px]" />
 
-        <Container size="xl" className="relative z-10 flex flex-col justify-center space-y-6">
-          {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-[11px] text-obsidian-400">
-            <Link href="/" className="hover:text-sand-300 transition-colors">
+        <Container
+          size="xl"
+          className="relative z-10 flex flex-col justify-center space-y-6"
+        >
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-2 font-mono text-[11px] text-[#777970]"
+          >
+            <Link
+              href="/"
+              className="transition-colors hover:text-[#3f4847]"
+            >
               Home
             </Link>
+
             <ChevronRight className="h-3 w-3" />
-            <span className="text-gold-400">Insights &amp; Strategic Review</span>
+
+            <span className="text-[#a67c45]">
+              Insights &amp; Strategic Review
+            </span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
-              Strategic Intelligence &amp; Research Review
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#a67c45]" />
+              Intelligence &amp; Research
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-sand-100 leading-[1.08]">
-              Executive Thought Leadership &amp; <br />
-              <span className="font-normal italic text-gold-300">
+            <h1 className="font-serif text-4xl font-light leading-[1.08] tracking-tight text-[#1d2529] sm:text-5xl lg:text-6xl">
+              Executive Insights
+              <br />
+              <span className="font-normal italic text-[#a67c45]">
                 Perception Doctrine
               </span>
             </h1>
 
-            <p className="font-sans text-sm sm:text-base text-sand-300 font-light leading-relaxed max-w-2xl">
-              Original research, technical analyses of algorithmic distortion, and operational statecraft
-              published by our senior advisory partners and computational intelligence unit.
+            <p className="max-w-2xl font-sans text-sm font-light leading-relaxed text-[#626760] sm:text-base">
+              Research and analysis for complex institutional environments.
             </p>
           </div>
         </Container>
@@ -77,72 +100,93 @@ export default function InsightsPage() {
 
       {/* 2. PROMINENT FEATURED EDITORIAL ARTICLE */}
       {featured && (
-        <section className="border-b border-obsidian-800 bg-obsidian-900/50 py-16 lg:py-20">
+        <section className="border-b border-[#d8d1c5] bg-[#ebe7de] py-16 lg:py-20">
           <Container size="xl">
             <div className="space-y-6">
-              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold-400">
-                <Sparkles className="h-3.5 w-3.5 text-gold-400" />
-                <span>Featured Monograph</span>
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Featured</span>
               </div>
 
-              <article className="group relative rounded-xs border border-obsidian-750 bg-obsidian-900/80 p-8 sm:p-10 lg:p-12 backdrop-blur-md transition-all duration-300 hover:border-gold-500/50 hover:bg-obsidian-900/90 shadow-elevation-2">
-                {/* Architectural corner marks */}
-                <span className="pointer-events-none absolute left-1 top-1 font-mono text-xs text-gold-500/50 select-none">+</span>
-                <span className="pointer-events-none absolute right-1 top-1 font-mono text-xs text-gold-500/50 select-none">+</span>
-                <span className="pointer-events-none absolute bottom-1 left-1 font-mono text-xs text-gold-500/50 select-none">+</span>
-                <span className="pointer-events-none absolute bottom-1 right-1 font-mono text-xs text-gold-500/50 select-none">+</span>
+              <article className="group relative rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-8 shadow-sm transition-all duration-300 hover:border-[#a67c45]/50 hover:bg-[#eee9df] sm:p-10 lg:p-12">
+                <span className="pointer-events-none absolute left-1 top-1 select-none font-mono text-xs text-[#a67c45]/50">
+                  +
+                </span>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                  {/* Left Column: Typography & Byline */}
-                  <div className="lg:col-span-7 space-y-6">
+                <span className="pointer-events-none absolute right-1 top-1 select-none font-mono text-xs text-[#a67c45]/50">
+                  +
+                </span>
+
+                <span className="pointer-events-none absolute bottom-1 left-1 select-none font-mono text-xs text-[#a67c45]/50">
+                  +
+                </span>
+
+                <span className="pointer-events-none absolute bottom-1 right-1 select-none font-mono text-xs text-[#a67c45]/50">
+                  +
+                </span>
+
+                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+                  {/* Left Column */}
+                  <div className="space-y-6 lg:col-span-7">
                     <div className="flex flex-wrap items-center gap-3">
                       <Badge
                         variant="outline"
-                        className="border-gold-500/40 bg-gold-500/10 font-mono text-[10px] uppercase tracking-widest text-gold-300"
+                        className="border-[#a67c45]/40 bg-[#a67c45]/10 font-mono text-[10px] uppercase tracking-widest text-[#8d683d]"
                       >
                         {featured.category}
                       </Badge>
-                      <span className="font-mono text-xs text-obsidian-500">·</span>
-                      <span className="font-mono text-xs text-obsidian-400 flex items-center gap-1.5">
-                        <Clock className="h-3.5 w-3.5 text-gold-400" />
-                        {featured.readingTimeMinutes} min read
+
+                      <span className="font-mono text-xs text-[#c5beb2]">
+                        ·
                       </span>
-                      <span className="font-mono text-xs text-obsidian-500">·</span>
-                      <span className="font-mono text-xs text-obsidian-400 flex items-center gap-1.5">
+
+                      <span className="flex items-center gap-1.5 font-mono text-xs text-[#777970]">
+                        <Clock className="h-3.5 w-3.5 text-[#a67c45]" />
+                        {featured.readingTimeMinutes} min
+                      </span>
+
+                      <span className="font-mono text-xs text-[#c5beb2]">
+                        ·
+                      </span>
+
+                      <span className="flex items-center gap-1.5 font-mono text-xs text-[#777970]">
                         <Calendar className="h-3.5 w-3.5" />
                         {featured.publishedDisplay}
                       </span>
                     </div>
 
                     <div className="space-y-3">
-                      <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light text-sand-100 group-hover:text-gold-200 transition-colors leading-[1.18]">
+                      <h2 className="font-serif text-2xl font-light leading-[1.18] text-[#1d2529] transition-colors group-hover:text-[#8d683d] sm:text-3xl lg:text-4xl">
                         <Link href={`/insights/${featured.slug}`}>
                           {featured.title}
                         </Link>
                       </h2>
-                      <p className="font-sans text-xs sm:text-sm text-sand-300 font-light leading-relaxed">
+
+                      <p className="font-sans text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
                         {featured.subtitle}
                       </p>
                     </div>
 
-                    <p className="font-sans text-xs sm:text-sm text-sand-400 font-light leading-relaxed line-clamp-3">
+                    <p className="line-clamp-3 font-sans text-xs font-light leading-relaxed text-[#777970] sm:text-sm">
                       {featured.excerpt}
                     </p>
 
                     {/* Author Byline & Read CTA */}
-                    <div className="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-obsidian-800">
+                    <div className="flex flex-wrap items-center justify-between gap-6 border-t border-[#d8d1c5] pt-6">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full border border-gold-500/30 bg-obsidian-950 flex items-center justify-center text-gold-400 font-serif text-sm">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#a67c45]/30 bg-[#ebe7de] font-serif text-sm text-[#a67c45]">
                           {featured.author.name
                             .split(" ")
                             .map((n) => n[0])
                             .join("")}
                         </div>
+
                         <div>
-                          <div className="font-mono text-xs text-sand-200 font-medium">
+                          <div className="font-mono text-xs font-medium text-[#3f4847]">
                             {featured.author.name}
                           </div>
-                          <div className="text-[11px] text-obsidian-400 font-light">
+
+                          <div className="text-[11px] font-light text-[#777970]">
                             {featured.author.role}
                           </div>
                         </div>
@@ -153,9 +197,9 @@ export default function InsightsPage() {
                           <Button
                             variant="gold"
                             size="sm"
-                            className="font-mono text-xs uppercase tracking-wider px-6 py-2.5"
+                            className="px-6 py-2.5 font-mono text-xs uppercase tracking-wider"
                           >
-                            <span>Read Full Monograph</span>
+                            <span>Read</span>
                             <ArrowRight className="ml-2 h-3.5 w-3.5" />
                           </Button>
                         </MagneticButton>
@@ -163,15 +207,15 @@ export default function InsightsPage() {
                     </div>
                   </div>
 
-                  {/* Right Column: Editorial Visual */}
+                  {/* Right Column */}
                   <div className="lg:col-span-5">
-                    <div className="relative aspect-[16/9] lg:aspect-[4/3] overflow-hidden rounded-xs border border-obsidian-750 bg-obsidian-950 p-2 shadow-2xl">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-2 shadow-sm lg:aspect-[4/3]">
                       <SamvadImage
                         assetId={featured.coverAssetId}
                         aspectRatio="16:9"
                         priority
                         zoomOnHover
-                        className="h-full w-full object-cover rounded-xs"
+                        className="h-full w-full rounded-xs object-cover"
                         caption={featured.coverCaption}
                       />
                     </div>
@@ -184,17 +228,19 @@ export default function InsightsPage() {
       )}
 
       {/* 3. SEARCH & COMPLETE CATALOG */}
-      <section className="py-16 lg:py-24">
+      <section className="bg-[#f3f0e8] py-16 lg:py-24">
         <Container size="xl" className="space-y-12">
           <div className="space-y-2">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-gold-400">
-              01 · Publication Archive
+            <div className="font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
+              01 · Archive
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-light text-sand-100">
-              Strategic Analyses &amp; Policy Papers
+
+            <h2 className="font-serif text-2xl font-light text-[#1d2529] sm:text-3xl">
+              Strategic Research
             </h2>
-            <p className="text-xs sm:text-sm text-sand-400 font-light max-w-xl">
-              Search by subject, filter by practice discipline, or explore specific policy topics across our active thought-leadership publications.
+
+            <p className="max-w-xl text-xs font-light text-[#626760] sm:text-sm">
+              Search by category, topic, or keyword.
             </p>
           </div>
 
@@ -207,30 +253,33 @@ export default function InsightsPage() {
       </section>
 
       {/* 4. CONFIDENTIAL EXECUTIVE DISPATCH SUBSCRIPTION */}
-      <section className="border-t border-obsidian-800 bg-obsidian-900/60 py-20">
+      <section className="border-t border-[#d8d1c5] bg-[#ebe7de] py-20">
         <Container size="xl">
-          <div className="rounded-xs border border-obsidian-750 bg-obsidian-950/80 p-8 sm:p-12 lg:p-14 backdrop-blur-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold-400">
+          <div className="flex flex-col items-start justify-between gap-8 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-8 shadow-sm sm:p-12 lg:flex-row lg:items-center lg:p-14">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
                 <Mail className="h-3.5 w-3.5" />
-                <span>Private Executive Dispatch</span>
+                <span>Private Dispatch</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-light text-sand-100">
-                Receive In-Camera Intelligence &amp; Research Monographs
+
+              <h3 className="font-serif text-2xl font-light text-[#1d2529] sm:text-3xl">
+                Executive Intelligence
               </h3>
-              <p className="text-xs sm:text-sm text-sand-400 font-light leading-relaxed">
-                A private, periodic intelligence briefing delivered directly to corporate board members, sovereign ministers, and strategic communications directors. No marketing noise.
+
+              <p className="text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
+                Periodic research and strategic analysis for institutional
+                leaders.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
+            <div className="w-full shrink-0 sm:w-auto">
               <Link href="/about#contact">
                 <Button
                   variant="gold"
                   size="md"
-                  className="font-mono text-xs uppercase tracking-widest px-8 py-3.5 w-full sm:w-auto"
+                  className="w-full px-8 py-3.5 font-mono text-xs uppercase tracking-widest sm:w-auto"
                 >
-                  <span>Request Dispatch Access</span>
+                  <span>Request Access</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
