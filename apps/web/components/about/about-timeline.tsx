@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+
 import { Container, Timeline, type TimelineItem } from "@samvad/ui";
+
 import { History, AlertCircle } from "lucide-react";
 
 export function AboutTimeline() {
@@ -11,27 +13,27 @@ export function AboutTimeline() {
       dateOrPeriod: "[INCORPORATION DATE / YEAR PLACEHOLDER]",
       title: "Statutory Incorporation & Practice Charter",
       description:
-        "Formal incorporation of SAMVAD PERCEPTION ADVISORY PRIVATE LIMITED as a specialized strategic communications and perception advisory practice. Initial deployment of sovereign counsel and confidential advisory protocols.",
+        "Formal incorporation of SAMVAD PERCEPTION ADVISORY PRIVATE LIMITED as a specialized strategic communications and perception advisory practice.",
       tag: "Statutory Incorporation",
       isPlaceholder: true,
       details: [
-        "[Statutory registration number and official registrar filings to be verified]",
-        "Establishment of core non-disclosure covenant and client air-gapping protocol",
-        "Initial focus on enterprise crisis defense and regulatory advisory",
+        "[Statutory registration number and official filings to be verified]",
+        "Core non-disclosure and client air-gapping protocols established",
+        "Initial focus on enterprise crisis and regulatory advisory",
       ],
     },
     {
       id: "timeline-intelligence-desk",
       dateOrPeriod: "[PHASE I MILESTONE PLACEHOLDER]",
-      title: "Establishment of Perception Intelligence & Telemetry Desk",
+      title: "Perception Intelligence & Telemetry Desk",
       description:
-        "Formalization of the quantitative sentiment topology and algorithmic listening practice. Development of predictive monitoring methodologies to detect adversarial disinformation and short-seller campaigns ahead of public escalation.",
+        "Formalization of quantitative sentiment analysis and algorithmic listening capabilities to identify emerging perception risks ahead of escalation.",
       tag: "Practice Evolution",
       isPlaceholder: true,
       details: [
-        "[Specific practice launch date to be populated from corporate archives]",
-        "Integration of algorithmic search graph analysis and key opinion leader topology",
-        "Deployment of 24/7 rapid response war-room mobilization framework",
+        "[Practice launch date to be verified from corporate archives]",
+        "Search graph and key-opinion-leader analysis",
+        "Rapid-response war-room framework",
       ],
     },
     {
@@ -39,75 +41,80 @@ export function AboutTimeline() {
       dateOrPeriod: "[PHASE II MILESTONE PLACEHOLDER]",
       title: "Cross-Border Corridors & Regional Expansion",
       description:
-        "Expansion of advisory capabilities across key economic corridors (New Delhi, Mumbai, Singapore, and London) to counsel cross-border M&A transactions, sovereign wealth funds, and critical infrastructure consortia.",
+        "Expansion across key economic corridors including New Delhi, Mumbai, Singapore, and London to support cross-border transactions and institutional mandates.",
       tag: "Corridor Expansion",
       isPlaceholder: true,
       details: [
-        "[Regional office operational timeline to be confirmed from registered leases]",
-        "Establishment of bilateral parliamentary and legislative briefing capabilities",
-        "Cross-border antitrust and regulatory de-escalation protocols",
+        "[Regional office timeline to be formally confirmed]",
+        "Parliamentary and legislative briefing capabilities",
+        "Cross-border regulatory de-escalation protocols",
       ],
     },
     {
       id: "timeline-frontier-tech",
       dateOrPeriod: "[PRESENT / ONGOING PROTOCOL]",
-      title: "Digital Sovereignty & Frontier AI Algorithm Defense",
+      title: "Digital Sovereignty & Frontier AI Defense",
       description:
-        "Inauguration of the Digital Sovereignty practice, specifically engineering countermeasures against automated LLM knowledge-graph distortions, synthetic media threats, and algorithmic search volatility for sovereign brands.",
+        "Development of the Digital Sovereignty practice focused on LLM knowledge-graph distortion, synthetic media, and algorithmic search volatility.",
       tag: "Current Focus",
       isPlaceholder: true,
       details: [
-        "Continuous horizon scanning and LLM training data perception audits",
-        "Expansion into deep-tech, aerospace, and sovereign capability mandates",
-        "Operational scaling to support 1,000+ concurrent enterprise stakeholders",
+        "Continuous horizon scanning and LLM perception audits",
+        "Deep-tech, aerospace, and sovereign capability mandates",
+        "Operational scaling for enterprise stakeholders",
       ],
     },
   ];
 
   return (
-    <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/60 py-24 lg:py-32">
+    <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#ebe7de] py-24 lg:py-32">
       {/* Ambient background lighting */}
-      <div className="pointer-events-none absolute right-10 top-1/3 h-[450px] w-[450px] rounded-full bg-gold-500/5 blur-[140px]" />
+      <div className="pointer-events-none absolute right-10 top-1/3 h-[450px] w-[450px] rounded-full bg-[#a67c45]/5 blur-[140px]" />
 
       <Container size="xl" className="relative z-10 space-y-16">
         {/* Section Header */}
-        <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-            <History className="h-3 w-3 text-gold-400" />
+        <div className="max-w-2xl space-y-4">
+          <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+            <History className="h-3 w-3 text-[#a67c45]" />
             Institutional Trajectory
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-sand-100 leading-tight">
-            Company History &amp; <br />
-            <span className="font-normal italic text-gold-300">
+
+          <h2 className="font-serif text-3xl font-light leading-tight text-[#1d2529] sm:text-4xl lg:text-5xl">
+            Company History <br />
+            <span className="font-normal italic text-[#a67c45]">
               Evolutionary Milestones
             </span>
           </h2>
-          <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed">
-            A documented chronological progression of SAMVAD&apos;s institutional capabilities.
-            In strict compliance with factual accuracy, unverified dates and corporate achievements
-            are held as explicit placeholders until verified by official corporate registrar filings.
+
+          <p className="text-sm font-light leading-relaxed text-[#626760] sm:text-base">
+            A documented progression of SAMVAD&apos;s institutional
+            capabilities. Unverified dates and achievements remain explicit
+            placeholders until formally verified.
           </p>
         </div>
 
         {/* Factual Integrity Disclaimer Notice */}
-        <div className="rounded-xs border border-amber-500/30 bg-amber-500/5 p-5 text-xs text-amber-200/90 font-light flex items-start gap-3">
-          <AlertCircle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-xs border border-[#b68a52]/35 bg-[#a67c45]/5 p-5 text-xs font-light text-[#625544]">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#a67c45]" />
+
           <div className="space-y-1">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-amber-300 font-semibold block">
-              Factual Disclosure &amp; Content Integrity Policy
+            <span className="block font-mono text-[11px] font-semibold uppercase tracking-wider text-[#8d683d]">
+              Factual Disclosure &amp; Content Integrity
             </span>
-            <p className="text-xs text-amber-200/80 leading-relaxed">
-              SAMVAD PERCEPTION ADVISORY maintains strict factual veracity across all public communications.
-              The historical milestones below utilize explicit <span className="font-mono text-amber-300">[PLACEHOLDER]</span> markers
-              which will be populated with official statutory incorporation records, regulatory certifications,
-              and verifiable corporate dates upon formal archival audit. No achievements or historical dates
-              have been fabricated.
+
+            <p className="text-xs leading-relaxed text-[#70675b]">
+              SAMVAD maintains factual accuracy across public communications.
+              Historical milestones use explicit{" "}
+              <span className="font-mono text-[#8d683d]">[PLACEHOLDER]</span>{" "}
+              markers until official records and verifiable dates are
+              confirmed. No historical dates or achievements have been
+              fabricated.
             </p>
           </div>
         </div>
 
         {/* Reusable Timeline Component */}
-        <div className="pt-4 max-w-4xl">
+        <div className="max-w-4xl pt-4">
           <Timeline
             items={historyItems}
             layout="left"

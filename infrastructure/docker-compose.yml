@@ -5,9 +5,9 @@ services:
     container_name: samvad_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: samvad_user
-      POSTGRES_PASSWORD: samvad_secret_password
-      POSTGRES_DB: samvad_perception
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Naveen
+      POSTGRES_DB: samvad
     ports:
       - "5432:5432"
     volumes:

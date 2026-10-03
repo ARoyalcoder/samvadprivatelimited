@@ -17,7 +17,10 @@ import {
 } from "lucide-react";
 import { SearchCategory } from "@samvad/validation";
 import { useSearch } from "@/lib/search/search-context";
-import { SearchResultItem, SearchResultPayload } from "@/lib/search/search-types";
+import {
+  SearchResultItem,
+  SearchResultPayload,
+} from "@/lib/search/search-types";
 
 const DOMAIN_TABS: Array<{ id: SearchCategory; label: string }> = [
   { id: "ALL", label: "All" },
@@ -33,23 +36,28 @@ const DOMAIN_COLOR_CONFIG: Record<
   { badgeClass: string; icon: React.ComponentType<{ className?: string }> }
 > = {
   SERVICES: {
-    badgeClass: "bg-gold-500/10 text-gold-300 border-gold-500/30",
+    badgeClass:
+      "bg-[#a67c45]/10 text-[#a67c45] border-[#a67c45]/25",
     icon: Compass,
   },
   INDUSTRIES: {
-    badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+    badgeClass:
+      "bg-[#536b7b]/10 text-[#536b7b] border-[#536b7b]/25",
     icon: Building2,
   },
   CASE_STUDIES: {
-    badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+    badgeClass:
+      "bg-[#66745f]/10 text-[#66745f] border-[#66745f]/25",
     icon: Briefcase,
   },
   INSIGHTS: {
-    badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
+    badgeClass:
+      "bg-[#655d75]/10 text-[#655d75] border-[#655d75]/25",
     icon: FileText,
   },
   NEWSROOM: {
-    badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
+    badgeClass:
+      "bg-[#815b52]/10 text-[#815b52] border-[#815b52]/25",
     icon: Newspaper,
   },
 };
@@ -68,9 +76,11 @@ export function SearchDialog() {
   const router = useRouter();
 
   const [query, setQuery] = React.useState("");
-  const [activeTab, setActiveTab] = React.useState<SearchCategory>("ALL");
+  const [activeTab, setActiveTab] =
+    React.useState<SearchCategory>("ALL");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [payload, setPayload] = React.useState<SearchResultPayload | null>(null);
+  const [payload, setPayload] =
+    React.useState<SearchResultPayload | null>(null);
   const [results, setResults] = React.useState<SearchResultItem[]>([]);
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
   const [page, setPage] = React.useState<number>(1);
@@ -86,6 +96,7 @@ export function SearchDialog() {
       if (initialQuery) {
         setQuery(initialQuery);
       }
+
       setTimeout(() => {
         inputRef.current?.focus();
         inputRef.current?.select();
@@ -109,6 +120,7 @@ export function SearchDialog() {
       append: boolean = false
     ) => {
       setIsLoading(true);
+
       try {
         const params = new URLSearchParams({
           q: q.trim(),
@@ -118,9 +130,11 @@ export function SearchDialog() {
         });
 
         const res = await fetch(`/api/search?${params.toString()}`);
+
         if (!res.ok) {
           throw new Error("Failed to search");
         }
+
         const data: SearchResultPayload = await res.json();
         setPayload(data);
 
@@ -175,13 +189,18 @@ export function SearchDialog() {
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
+      setActiveIndex((prev) =>
+        prev < results.length - 1 ? prev + 1 : 0
+      );
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setActiveIndex((prev) => (prev > 0 ? prev - 1 : results.length - 1));
+      setActiveIndex((prev) =>
+        prev > 0 ? prev - 1 : results.length - 1
+      );
     } else if (e.key === "Enter") {
       e.preventDefault();
       const current = results[activeIndex];
+
       if (current) {
         closeSearch();
         router.push(current.url);
@@ -207,9 +226,12 @@ export function SearchDialog() {
 
   const handleViewFullPage = () => {
     closeSearch();
+
     const params = new URLSearchParams();
+
     if (query) params.set("q", query);
     if (activeTab !== "ALL") params.set("type", activeTab);
+
     router.push(`/search?${params.toString()}`);
   };
 
@@ -220,62 +242,67 @@ export function SearchDialog() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="global-search-title"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-6"
+      className="fixed inset-0 z-50 flex items-start justify-center px-3 pt-12 sm:px-6 sm:pt-20"
       onKeyDown={handleKeyDown}
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-obsidian-950/80 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-[#101417]/75 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
         onClick={closeSearch}
         aria-hidden="true"
       />
 
       {/* Dialog Card */}
-      <div className="relative w-full max-w-3xl rounded-xl border border-obsidian-800 bg-obsidian-900/95 shadow-2xl shadow-obsidian-950/80 backdrop-blur-xl overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-150">
+      <div className="relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden border border-[#c9c3b8] bg-[#f3f0e8] shadow-[0_30px_80px_rgba(20,25,28,0.3)] animate-in zoom-in-95 duration-150">
         <h2 id="global-search-title" className="sr-only">
           Global Website Search
         </h2>
 
         {/* Input Bar */}
-        <div className="relative flex items-center border-b border-obsidian-800 px-4 py-3.5 bg-obsidian-950/60">
-          <Search className="h-5 w-5 text-obsidian-400 shrink-0 mr-3" />
+        <div className="relative flex items-center border-b border-[#1d2529]/15 bg-[#ebe7de] px-4 py-3.5">
+          <Search className="mr-3 h-5 w-5 shrink-0 text-[#777e80]" />
+
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search practices, industries, case studies, intelligence, newsroom..."
-            className="flex-1 bg-transparent text-sm sm:text-base text-sand-100 placeholder:text-obsidian-500 focus:outline-none"
+            placeholder="Search services, sectors, insights..."
+            className="flex-1 bg-transparent text-sm text-[#1d2529] placeholder:text-[#999b97] focus:outline-none sm:text-base"
             autoComplete="off"
             spellCheck={false}
           />
+
           <div className="flex items-center gap-2">
             {isLoading && (
-              <Loader2 className="h-4 w-4 animate-spin text-gold-400" />
+              <Loader2 className="h-4 w-4 animate-spin text-[#a67c45]" />
             )}
+
             {query && (
               <button
                 type="button"
                 onClick={() => setQuery("")}
                 aria-label="Clear query"
-                className="p-1 rounded text-obsidian-400 hover:text-sand-100 hover:bg-obsidian-800 transition-colors"
+                className="rounded p-1 text-[#777e80] transition-colors hover:bg-[#ded9cf] hover:text-[#1d2529]"
               >
                 <X className="h-4 w-4" />
               </button>
             )}
-            <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono tracking-widest uppercase rounded border border-obsidian-700 bg-obsidian-800/80 text-obsidian-400">
+
+            <kbd className="hidden items-center border border-[#1d2529]/15 bg-[#f3f0e8] px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-[#858987] sm:inline-flex">
               ESC
             </kbd>
           </div>
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto px-4 py-2 border-b border-obsidian-800/80 bg-obsidian-950/40 no-scrollbar">
+        <div className="flex items-center gap-0 overflow-x-auto border-b border-[#1d2529]/12 bg-[#f3f0e8] px-4 no-scrollbar">
           {DOMAIN_TABS.map((tab) => {
             const count =
               payload?.countsByDomain?.[
                 tab.id as keyof typeof payload.countsByDomain
               ] ?? 0;
+
             const isSelected = activeTab === tab.id;
 
             return (
@@ -283,73 +310,89 @@ export function SearchDialog() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 type="button"
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono tracking-wider transition-all whitespace-nowrap ${
+                className={`relative flex shrink-0 items-center gap-2 px-3 py-3 font-mono text-[9px] uppercase tracking-[0.12em] transition-all ${
                   isSelected
-                    ? "bg-gold-500/20 text-gold-300 border border-gold-500/40 font-semibold"
-                    : "text-obsidian-400 hover:text-sand-200 hover:bg-obsidian-800/50 border border-transparent"
+                    ? "bg-[#1d2529] text-[#f3f0e8]"
+                    : "text-[#737a7d] hover:bg-[#ebe7de] hover:text-[#1d2529]"
                 }`}
               >
                 <span>{tab.label}</span>
+
                 {payload && (
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                    className={
                       isSelected
-                        ? "bg-gold-500/30 text-gold-200"
-                        : "bg-obsidian-800 text-obsidian-400"
-                    }`}
+                        ? "text-[#c7a77b]"
+                        : "text-[#a0a29e]"
+                    }
                   >
                     {count}
                   </span>
+                )}
+
+                {isSelected && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a67c45]" />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Dynamic Autocomplete Suggestions (when typing) */}
-        {query && payload && payload.suggestions && payload.suggestions.length > 0 && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-obsidian-950/30 border-b border-obsidian-800/40 overflow-x-auto no-scrollbar">
-            <Sparkles className="h-3.5 w-3.5 text-gold-400 shrink-0" />
-            <span className="text-[11px] font-mono text-obsidian-400 shrink-0 uppercase tracking-wider">
-              Suggestions:
-            </span>
-            <div className="flex items-center gap-1.5">
-              {payload.suggestions.slice(0, 4).map((sug) => (
-                <button
-                  key={sug}
-                  type="button"
-                  onClick={() => handleSelectRecommendation(sug)}
-                  className="text-xs text-sand-300 hover:text-gold-300 bg-obsidian-800/60 hover:bg-obsidian-800 px-2 py-0.5 rounded border border-obsidian-700/60 transition-colors whitespace-nowrap"
-                >
-                  {sug}
-                </button>
-              ))}
+        {/* Dynamic Autocomplete Suggestions */}
+        {query &&
+          payload &&
+          payload.suggestions &&
+          payload.suggestions.length > 0 && (
+            <div className="flex items-center gap-2 overflow-x-auto border-b border-[#1d2529]/10 bg-[#ebe7de] px-4 py-2 no-scrollbar">
+              <Sparkles className="h-3.5 w-3.5 shrink-0 text-[#a67c45]" />
+
+              <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.12em] text-[#898d8a]">
+                Suggestions
+              </span>
+
+              <div className="flex items-center gap-2">
+                {payload.suggestions.slice(0, 4).map((sug) => (
+                  <button
+                    key={sug}
+                    type="button"
+                    onClick={() =>
+                      handleSelectRecommendation(sug)
+                    }
+                    className="whitespace-nowrap border-b border-[#1d2529]/15 px-1 py-0.5 text-xs text-[#596165] transition-colors hover:border-[#a67c45] hover:text-[#a67c45]"
+                  >
+                    {sug}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Body / Results List */}
         <div
           ref={listRef}
-          className="flex-1 overflow-y-auto px-3 sm:px-4 py-3 divide-y divide-obsidian-800/40"
+          className="flex-1 divide-y divide-[#1d2529]/10 overflow-y-auto bg-[#f3f0e8] px-3 py-3 sm:px-4"
         >
           {/* Empty Query: Discovery & Recommendations */}
           {!query && (
-            <div className="py-4 space-y-6">
+            <div className="space-y-6 py-4">
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="h-4 w-4 text-gold-400" />
-                  <span className="text-xs font-mono uppercase tracking-widest text-obsidian-400">
-                    Curated Strategic Inquiries
+                <div className="mb-3 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-[#a67c45]" />
+
+                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#858a87]">
+                    Explore
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-2">
+
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
                   {POPULAR_RECOMMENDATIONS.map((rec) => (
                     <button
                       key={rec}
                       type="button"
-                      onClick={() => handleSelectRecommendation(rec)}
-                      className="text-xs px-3 py-1.5 rounded-lg border border-obsidian-800 bg-obsidian-950/60 text-sand-300 hover:text-gold-300 hover:border-gold-500/40 hover:bg-gold-500/5 transition-all text-left"
+                      onClick={() =>
+                        handleSelectRecommendation(rec)
+                      }
+                      className="border-b border-[#1d2529]/15 pb-1 text-left text-xs text-[#596165] transition-colors hover:border-[#a67c45] hover:text-[#a67c45]"
                     >
                       {rec}
                     </button>
@@ -358,86 +401,104 @@ export function SearchDialog() {
               </div>
 
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-obsidian-400 block mb-3">
-                  Practice Navigation
+                <span className="mb-3 block font-mono text-[9px] uppercase tracking-[0.16em] text-[#858a87]">
+                  Navigate
                 </span>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+
+                <div className="grid grid-cols-2 gap-0 border-l border-t border-[#1d2529]/12 text-xs sm:grid-cols-3">
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/services");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Services Explorer</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      6 Strategic Practices
+                    <div className="font-medium text-[#1d2529]">
+                      Services
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Strategic practices
                     </div>
                   </button>
+
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/industries");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Industry Sectors</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      8 High-Stakes Arenas
+                    <div className="font-medium text-[#1d2529]">
+                      Industries
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Key sectors
                     </div>
                   </button>
+
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/work");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Case Archive</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      Disclosed Engagements
+                    <div className="font-medium text-[#1d2529]">
+                      Case Archive
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Selected work
                     </div>
                   </button>
+
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/insights");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Insights & Essays</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      Intelligence Briefs
+                    <div className="font-medium text-[#1d2529]">
+                      Insights
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Intelligence briefs
                     </div>
                   </button>
+
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/newsroom");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Newsroom</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      Press & Dispatches
+                    <div className="font-medium text-[#1d2529]">
+                      Newsroom
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Press & dispatches
                     </div>
                   </button>
+
                   <button
                     type="button"
                     onClick={() => {
                       closeSearch();
                       router.push("/leadership");
                     }}
-                    className="p-2.5 rounded-lg border border-obsidian-800/70 hover:border-gold-500/30 bg-obsidian-950/40 text-left hover:bg-obsidian-800/50 transition-colors"
+                    className="border-b border-r border-[#1d2529]/12 p-3 text-left transition-colors hover:bg-[#ebe7de]"
                   >
-                    <div className="font-semibold text-sand-200">Leadership</div>
-                    <div className="text-[11px] text-obsidian-400 mt-0.5">
-                      Partners & Directors
+                    <div className="font-medium text-[#1d2529]">
+                      Leadership
+                    </div>
+                    <div className="mt-0.5 text-[10px] text-[#858b8c]">
+                      Partners & directors
                     </div>
                   </button>
                 </div>
@@ -449,10 +510,14 @@ export function SearchDialog() {
           {results.length > 0 &&
             results.map((item, index) => {
               const isSelected = index === activeIndex;
-              const domainMeta = DOMAIN_COLOR_CONFIG[item.domain] || {
-                badgeClass: "bg-obsidian-800 text-obsidian-300 border-obsidian-700",
-                icon: Compass,
-              };
+
+              const domainMeta =
+                DOMAIN_COLOR_CONFIG[item.domain] || {
+                  badgeClass:
+                    "bg-[#1d2529]/5 text-[#596165] border-[#1d2529]/15",
+                  icon: Compass,
+                };
+
               const DomainIcon = domainMeta.icon;
 
               return (
@@ -461,59 +526,67 @@ export function SearchDialog() {
                   ref={isSelected ? activeItemRef : null}
                   onClick={() => handleSelectResult(item)}
                   onMouseEnter={() => setActiveIndex(index)}
-                  className={`group relative p-3 sm:p-3.5 my-1 rounded-lg cursor-pointer transition-all border ${
+                  className={`group relative my-1 cursor-pointer border px-3 py-3 transition-all sm:p-3.5 ${
                     isSelected
-                      ? "border-gold-500/40 bg-obsidian-950/90 shadow-md ring-1 ring-gold-500/20"
-                      : "border-transparent hover:bg-obsidian-950/50"
+                      ? "border-[#a67c45]/45 bg-[#ebe7de]"
+                      : "border-transparent hover:bg-[#ebe7de]/70"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
+                    <div className="min-w-0 flex-1">
                       {/* Domain and Badge */}
-                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      <div className="mb-1.5 flex flex-wrap items-center gap-2">
                         <span
-                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono tracking-wider uppercase border ${domainMeta.badgeClass}`}
+                          className={`inline-flex items-center gap-1 border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] ${domainMeta.badgeClass}`}
                         >
                           <DomainIcon className="h-3 w-3" />
                           <span>{item.domainLabel}</span>
                         </span>
+
                         {item.badge && (
-                          <span className="text-[10px] font-mono text-obsidian-400">
+                          <span className="font-mono text-[9px] text-[#858b8c]">
                             {item.badge}
                           </span>
                         )}
+
                         {item.publishedAt && (
-                          <span className="text-[10px] font-mono text-obsidian-500">
+                          <span className="font-mono text-[9px] text-[#9a9d99]">
                             {item.publishedAt}
                           </span>
                         )}
                       </div>
 
-                      {/* Title with highlighted match */}
+                      {/* Title */}
                       <h4
-                        className={`text-sm sm:text-base font-serif font-medium transition-colors ${
-                          isSelected ? "text-gold-200" : "text-sand-100"
+                        className={`font-serif text-sm font-medium transition-colors sm:text-base ${
+                          isSelected
+                            ? "text-[#a67c45]"
+                            : "text-[#1d2529]"
                         }`}
                         dangerouslySetInnerHTML={{
-                          __html: item.highlightedTitle || item.title,
+                          __html:
+                            item.highlightedTitle ||
+                            item.title,
                         }}
                       />
 
-                      {/* Description with contextual snippet & highlighted match */}
+                      {/* Description */}
                       <p
-                        className="text-xs text-sand-300/80 mt-1 line-clamp-2 leading-relaxed"
+                        className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#697174]"
                         dangerouslySetInnerHTML={{
-                          __html: item.highlightedDescription || item.description,
+                          __html:
+                            item.highlightedDescription ||
+                            item.description,
                         }}
                       />
 
                       {/* Tags */}
                       {item.tags && item.tags.length > 0 && (
-                        <div className="flex items-center gap-1.5 mt-2 flex-wrap">
+                        <div className="mt-2 flex flex-wrap items-center gap-2">
                           {item.tags.slice(0, 3).map((tag, tIdx) => (
                             <span
                               key={tIdx}
-                              className="text-[10px] font-mono text-obsidian-400 bg-obsidian-800/40 px-1.5 py-0.5 rounded"
+                              className="font-mono text-[9px] uppercase tracking-[0.06em] text-[#969a97]"
                             >
                               #{tag}
                             </span>
@@ -525,11 +598,11 @@ export function SearchDialog() {
                     {/* Active Selection Indicator */}
                     <div className="shrink-0 self-center">
                       {isSelected ? (
-                        <div className="flex items-center gap-1 text-gold-400 text-xs font-mono">
+                        <div className="flex items-center gap-1 font-mono text-xs text-[#a67c45]">
                           <CornerDownLeft className="h-4 w-4 animate-pulse" />
                         </div>
                       ) : (
-                        <ArrowRight className="h-4 w-4 text-obsidian-600 group-hover:text-sand-400 transition-colors" />
+                        <ArrowRight className="h-4 w-4 text-[#a5a8a5] transition-colors group-hover:text-[#a67c45]" />
                       )}
                     </div>
                   </div>
@@ -539,22 +612,30 @@ export function SearchDialog() {
 
           {/* No Results State */}
           {query && !isLoading && results.length === 0 && (
-            <div className="py-12 text-center space-y-3">
-              <Search className="h-8 w-8 text-obsidian-500 mx-auto stroke-[1.5]" />
-              <div className="text-sand-200 font-serif text-base">
-                No matching results found
+            <div className="space-y-3 py-12 text-center">
+              <Search className="mx-auto h-8 w-8 stroke-[1.5] text-[#a0a39f]" />
+
+              <div className="font-serif text-base text-[#1d2529]">
+                No matching results
               </div>
-              <p className="text-xs text-obsidian-400 max-w-sm mx-auto">
-                No indexed entries matched &ldquo;<span className="text-sand-300 font-medium">{query}</span>&rdquo;{" "}
-                {activeTab !== "ALL" && `within the ${activeTab.toLowerCase()} practice area`}.
+
+              <p className="mx-auto max-w-sm text-xs text-[#747b7d]">
+                Nothing matched &ldquo;
+                <span className="font-medium text-[#596165]">
+                  {query}
+                </span>
+                &rdquo;
+                {activeTab !== "ALL" &&
+                  ` in ${activeTab.toLowerCase()}.`}
               </p>
+
               {activeTab !== "ALL" && (
                 <button
                   type="button"
                   onClick={() => setActiveTab("ALL")}
-                  className="mt-2 text-xs font-mono text-gold-400 hover:text-gold-300 underline underline-offset-4"
+                  className="mt-2 font-mono text-xs text-[#a67c45] underline underline-offset-4 transition-colors hover:text-[#805d36]"
                 >
-                  Search across all practice domains →
+                  Search all domains →
                 </button>
               )}
             </div>
@@ -562,19 +643,20 @@ export function SearchDialog() {
 
           {/* Load More Button */}
           {hasMore && (
-            <div className="py-3 text-center">
+            <div className="py-4 text-center">
               <button
                 type="button"
                 onClick={handleLoadMore}
                 disabled={isLoading}
-                className="text-xs font-mono uppercase tracking-wider text-gold-400 hover:text-gold-300 bg-obsidian-950/60 border border-gold-500/30 px-4 py-2 rounded-lg hover:bg-gold-500/10 transition-colors disabled:opacity-50"
+                className="border border-[#1d2529]/20 bg-transparent px-4 py-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[#596165] transition-colors hover:border-[#a67c45] hover:text-[#a67c45] disabled:opacity-50"
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" /> Loading more...
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Loading...
                   </span>
                 ) : (
-                  <span>Load Next Page of Results</span>
+                  <span>Load more</span>
                 )}
               </button>
             </div>
@@ -582,26 +664,29 @@ export function SearchDialog() {
         </div>
 
         {/* Dialog Footer */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-t border-obsidian-800/80 bg-obsidian-950/80 text-[11px] font-mono text-obsidian-400">
+        <div className="flex items-center justify-between border-t border-[#1d2529]/12 bg-[#ebe7de] px-4 py-2.5 font-mono text-[10px] text-[#858a87]">
           <div className="flex items-center gap-3">
-            <span className="hidden sm:inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded border border-obsidian-700 bg-obsidian-900 text-obsidian-300">
+            <span className="hidden items-center gap-1 sm:inline-flex">
+              <kbd className="border border-[#1d2529]/15 bg-[#f3f0e8] px-1.5 py-0.5 text-[#687073]">
                 ↑
               </kbd>
-              <kbd className="px-1.5 py-0.5 rounded border border-obsidian-700 bg-obsidian-900 text-obsidian-300">
+              <kbd className="border border-[#1d2529]/15 bg-[#f3f0e8] px-1.5 py-0.5 text-[#687073]">
                 ↓
               </kbd>
               <span>navigate</span>
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded border border-obsidian-700 bg-obsidian-900 text-obsidian-300">
+
+            <span className="hidden items-center gap-1 sm:inline-flex">
+              <kbd className="border border-[#1d2529]/15 bg-[#f3f0e8] px-1.5 py-0.5 text-[#687073]">
                 ↵
               </kbd>
               <span>select</span>
             </span>
+
             {payload && (
-              <span className="text-obsidian-400">
-                {payload.totalResults} results ({payload.executionTimeMs}ms)
+              <span className="text-[#858a87]">
+                {payload.totalResults} results ·{" "}
+                {payload.executionTimeMs}ms
               </span>
             )}
           </div>
@@ -610,9 +695,9 @@ export function SearchDialog() {
             <button
               type="button"
               onClick={handleViewFullPage}
-              className="text-gold-400 hover:text-gold-300 inline-flex items-center gap-1 transition-colors hover:underline"
+              className="inline-flex items-center gap-1 text-[#a67c45] transition-colors hover:text-[#805d36] hover:underline"
             >
-              <span>Full Search Page</span>
+              <span>Full Search</span>
               <ArrowRight className="h-3 w-3" />
             </button>
           </div>

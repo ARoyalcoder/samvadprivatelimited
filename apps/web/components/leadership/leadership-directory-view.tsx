@@ -22,10 +22,11 @@ interface LeadershipDirectoryViewProps {
 export function LeadershipDirectoryView({
   profiles,
 }: LeadershipDirectoryViewProps) {
-  const [selectedCategory, setSelectedCategory] = React.useState<string>("ALL");
+  const [selectedCategory, setSelectedCategory] =
+    React.useState<string>("ALL");
 
   const categories = [
-    { key: "ALL", label: "All Advisory Bench" },
+    { key: "ALL", label: "All Advisors" },
     { key: "Executive Leadership", label: "Executive Leadership" },
     { key: "Practice Leadership", label: "Practice Leadership" },
     { key: "Senior Advisory Council", label: "Senior Advisory Council" },
@@ -39,10 +40,11 @@ export function LeadershipDirectoryView({
   return (
     <div className="space-y-16">
       {/* 1. CATEGORY FILTER TABS */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-obsidian-800 pb-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#d0c9bd] pb-6">
         <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat.key;
+
             return (
               <button
                 key={cat.key}
@@ -50,16 +52,19 @@ export function LeadershipDirectoryView({
                 onClick={() => setSelectedCategory(cat.key)}
                 className={`relative rounded-xs px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-300 ${
                   isActive
-                    ? "bg-gold-500/15 text-gold-300 border border-gold-500/40"
-                    : "border border-obsidian-800 bg-obsidian-900/60 text-obsidian-400 hover:text-sand-200 hover:border-obsidian-700"
+                    ? "bg-[#a67c45]/10 text-[#8a6437] border border-[#a67c45]/45"
+                    : "border border-[#d0c9bd] bg-[#ebe7de] text-[#7a807f] hover:text-[#394247] hover:border-[#a67c45]/40"
                 }`}
               >
                 <span>{cat.label}</span>
+
                 {isActive && (
-                  <span className="ml-2 inline-flex items-center justify-center rounded-full bg-gold-400/20 px-1.5 py-0.2 font-mono text-[10px] text-gold-300">
+                  <span className="ml-2 inline-flex items-center justify-center rounded-full bg-[#a67c45]/15 px-1.5 py-0.2 font-mono text-[10px] text-[#8a6437]">
                     {cat.key === "ALL"
                       ? profiles.length
-                      : profiles.filter((p) => p.roleCategory === cat.key).length}
+                      : profiles.filter(
+                          (p) => p.roleCategory === cat.key
+                        ).length}
                   </span>
                 )}
               </button>
@@ -67,9 +72,9 @@ export function LeadershipDirectoryView({
           })}
         </div>
 
-        <div className="flex items-center gap-2 font-mono text-[11px] text-obsidian-400">
-          <SlidersHorizontal className="h-3.5 w-3.5 text-gold-400" />
-          <span>Showing {filteredProfiles.length} Practice Stewards</span>
+        <div className="flex items-center gap-2 font-mono text-[11px] text-[#7a807f]">
+          <SlidersHorizontal className="h-3.5 w-3.5 text-[#a67c45]" />
+          <span>Showing {filteredProfiles.length} Advisors</span>
         </div>
       </div>
 
@@ -82,13 +87,13 @@ export function LeadershipDirectoryView({
             <article
               key={leader.id}
               id={leader.slug}
-              className="relative border-b border-obsidian-800/80 pb-20 last:border-b-0 last:pb-0"
+              className="relative border-b border-[#d0c9bd]/80 pb-20 last:border-b-0 last:pb-0"
             >
               {/* Profile Background Glow */}
               <div
                 className={`pointer-events-none absolute -top-10 ${
                   isEven ? "right-0" : "left-0"
-                } h-96 w-96 rounded-full bg-gold-500/5 blur-[120px]`}
+                } h-96 w-96 rounded-full bg-[#a67c45]/6 blur-[120px]`}
               />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -98,7 +103,7 @@ export function LeadershipDirectoryView({
                     isEven ? "lg:order-1" : "lg:order-2"
                   } space-y-4`}
                 >
-                  <div className="group relative overflow-hidden rounded-xs border border-obsidian-750 bg-obsidian-900 aspect-[4/5] shadow-2xl">
+                  <div className="group relative overflow-hidden rounded-xs border border-[#c5beb2] bg-[#ebe7de] aspect-[4/5] shadow-xl">
                     <Image
                       src={leader.photoUrl}
                       alt={leader.photoAlt}
@@ -108,30 +113,31 @@ export function LeadershipDirectoryView({
                     />
 
                     {/* Architectural hairline overlay */}
-                    <div className="pointer-events-none absolute inset-0 border border-gold-500/20" />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-obsidian-950 via-obsidian-950/60 to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 border border-[#a67c45]/20" />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#1d2529] via-[#1d2529]/55 to-transparent" />
 
                     {/* Top status tag */}
                     <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
                       <Badge
                         variant="outline"
-                        className="border-obsidian-700 bg-obsidian-950/90 font-mono text-[9px] uppercase tracking-wider text-gold-300 backdrop-blur-md"
+                        className="border-[#c5beb2] bg-[#1d2529]/85 font-mono text-[9px] uppercase tracking-wider text-[#ead6b8] backdrop-blur-md"
                       >
                         {leader.statusBadge || leader.roleCategory}
                       </Badge>
+
                       {leader.isPlaceholder && (
                         <Badge
                           variant="outline"
-                          className="border-perception-trust/40 bg-perception-trust/10 font-mono text-[9px] uppercase tracking-wider text-sand-300 backdrop-blur-md"
+                          className="border-emerald-700/40 bg-emerald-900/20 font-mono text-[9px] uppercase tracking-wider text-[#e5eee8] backdrop-blur-md"
                         >
-                          Factual Integrity Protected
+                          Verified Placeholder
                         </Badge>
                       )}
                     </div>
 
                     {/* Bottom stamp on photo */}
-                    <div className="absolute bottom-4 left-4 right-4 z-10 font-mono text-[10px] text-obsidian-400 flex items-center justify-between border-t border-obsidian-800/80 pt-2 backdrop-blur-sm">
-                      <span className="uppercase tracking-widest text-gold-400">
+                    <div className="absolute bottom-4 left-4 right-4 z-10 font-mono text-[10px] text-[#c8cbc8] flex items-center justify-between border-t border-[#d0c9bd]/30 pt-2 backdrop-blur-sm">
+                      <span className="uppercase tracking-widest text-[#d4aa70]">
                         {leader.primaryOffice}
                       </span>
                       <span>REF: {leader.id.toUpperCase()}</span>
@@ -139,10 +145,12 @@ export function LeadershipDirectoryView({
                   </div>
 
                   {/* Factual Integrity Micro-Notice */}
-                  <div className="rounded-xs border border-obsidian-800 bg-obsidian-950 p-3 flex items-start gap-2.5 font-mono text-[10px] text-obsidian-400">
-                    <ShieldCheck className="h-3.5 w-3.5 text-gold-400 shrink-0 mt-0.5" />
+                  <div className="rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-3 flex items-start gap-2.5 font-mono text-[10px] text-[#7a807f]">
+                    <ShieldCheck className="h-3.5 w-3.5 text-[#a67c45] shrink-0 mt-0.5" />
+
                     <p className="leading-tight">
-                      Executive persona maintained as verified CMS placeholder in strict compliance with non-fabrication governance.
+                      Executive profile maintained as a verified CMS
+                      placeholder under non-fabrication governance.
                     </p>
                   </div>
                 </div>
@@ -155,50 +163,54 @@ export function LeadershipDirectoryView({
                 >
                   {/* Category Index & Practice */}
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-xs font-semibold text-gold-400">
+                    <span className="font-mono text-xs font-semibold text-[#a67c45]">
                       0{index + 1} {"//"} {leader.roleCategory.toUpperCase()}
                     </span>
-                    <span className="text-obsidian-600">·</span>
-                    <span className="font-mono text-xs uppercase tracking-wider text-sand-400">
+
+                    <span className="text-[#b8b0a4]">·</span>
+
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#626a6d]">
                       {leader.advisoryPractice}
                     </span>
                   </div>
 
                   {/* Heading & Designation */}
                   <div className="space-y-2">
-                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light text-sand-100 leading-tight">
+                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light text-[#1d2529] leading-tight">
                       {leader.name}
                     </h2>
-                    <div className="font-serif text-lg sm:text-xl text-gold-300 font-normal italic">
+
+                    <div className="font-serif text-lg sm:text-xl text-[#8a6437] font-normal italic">
                       {leader.designation}
                     </div>
                   </div>
 
                   {/* Leader Thesis / Pull Quote */}
                   {leader.quote && (
-                    <div className="relative border-l-2 border-gold-500/60 pl-5 py-1">
-                      <blockquote className="font-serif text-base sm:text-lg text-sand-200 font-light italic leading-relaxed">
+                    <div className="relative border-l-2 border-[#a67c45]/60 pl-5 py-1">
+                      <blockquote className="font-serif text-base sm:text-lg text-[#394247] font-light italic leading-relaxed">
                         &ldquo;{leader.quote}&rdquo;
                       </blockquote>
                     </div>
                   )}
 
                   {/* Biography Paragraph */}
-                  <div className="font-sans text-sm sm:text-base text-sand-300 font-light leading-relaxed space-y-3">
+                  <div className="font-sans text-sm sm:text-base text-[#626a6d] font-light leading-relaxed space-y-3">
                     <p>{leader.biography}</p>
                   </div>
 
                   {/* Expertise Matrix */}
                   <div className="space-y-2.5 pt-2">
-                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-obsidian-400">
-                      <Award className="h-3 w-3 text-gold-400" />
-                      <span>Core Advisory Competencies</span>
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[#7a807f]">
+                      <Award className="h-3 w-3 text-[#a67c45]" />
+                      <span>Core Competencies</span>
                     </div>
+
                     <div className="flex flex-wrap gap-2">
                       {leader.expertise.map((exp, expIdx) => (
                         <span
                           key={expIdx}
-                          className="rounded-xs border border-obsidian-750 bg-obsidian-900/80 px-2.5 py-1 font-mono text-[11px] text-sand-300"
+                          className="rounded-xs border border-[#d0c9bd] bg-[#ebe7de] px-2.5 py-1 font-mono text-[11px] text-[#4f595d]"
                         >
                           {exp}
                         </span>
@@ -207,16 +219,20 @@ export function LeadershipDirectoryView({
                   </div>
 
                   {/* Areas of Focus & Experience Summary Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-obsidian-800/80">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#d0c9bd]/80">
                     <div className="space-y-2">
-                      <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-gold-400">
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#8a6437]">
                         <Target className="h-3 w-3" />
                         <span>Areas of Focus</span>
                       </div>
-                      <ul className="space-y-1 font-mono text-xs text-sand-300">
+
+                      <ul className="space-y-1 font-mono text-xs text-[#4f595d]">
                         {leader.areasOfFocus.map((focus, fIdx) => (
-                          <li key={fIdx} className="flex items-center gap-2">
-                            <span className="text-gold-400 text-xs">›</span>
+                          <li
+                            key={fIdx}
+                            className="flex items-center gap-2"
+                          >
+                            <span className="text-[#a67c45] text-xs">›</span>
                             <span>{focus}</span>
                           </li>
                         ))}
@@ -224,18 +240,21 @@ export function LeadershipDirectoryView({
                     </div>
 
                     <div className="space-y-2">
-                      <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-gold-400">
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#8a6437]">
                         <Briefcase className="h-3 w-3" />
                         <span>Recent Appointments</span>
                       </div>
-                      <div className="space-y-2 font-mono text-xs text-obsidian-400">
+
+                      <div className="space-y-2 font-mono text-xs text-[#7a807f]">
                         {leader.experience.slice(0, 2).map((exp, eIdx) => (
                           <div key={eIdx} className="space-y-0.5">
-                            <div className="text-sand-200 font-semibold truncate">
+                            <div className="text-[#394247] font-semibold truncate">
                               {exp.title}
                             </div>
-                            <div className="text-[10px] text-obsidian-400">
-                              {exp.organization} {exp.period && `(${exp.period})`}
+
+                            <div className="text-[10px] text-[#7a807f]">
+                              {exp.organization}{" "}
+                              {exp.period && `(${exp.period})`}
                             </div>
                           </div>
                         ))}
@@ -247,15 +266,15 @@ export function LeadershipDirectoryView({
                   <div className="pt-4 flex flex-wrap items-center gap-4">
                     <Link
                       href={`/leadership/${leader.slug}`}
-                      className="inline-flex items-center gap-2 rounded-xs border border-gold-500/40 bg-gold-500/10 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-gold-300 hover:bg-gold-500/20 hover:border-gold-500 transition-all duration-300"
+                      className="inline-flex items-center gap-2 rounded-xs border border-[#a67c45]/45 bg-[#a67c45]/10 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-[#8a6437] hover:bg-[#a67c45]/15 hover:border-[#a67c45] transition-all duration-300"
                     >
-                      <span>Examine Complete Dossier</span>
+                      <span>View Dossier</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </Link>
 
                     <Link
                       href="/about#leadership"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-obsidian-400 hover:text-sand-300 transition-colors"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-[#7a807f] hover:text-[#394247] transition-colors"
                     >
                       <span>Governance Charter</span>
                       <ChevronRight className="h-3 w-3" />

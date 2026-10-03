@@ -1,7 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, Loader2, CheckCircle2, AlertCircle, ShieldCheck } from "lucide-react";
+
+import {
+  ArrowRight,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+  ShieldCheck,
+} from "lucide-react";
+
 import { SubscribeResult } from "@/lib/newsletter/types";
 
 export interface NewsletterSubscribeFormProps {
@@ -23,7 +31,6 @@ export function NewsletterSubscribeForm({
   const [consent, setConsent] = React.useState(false);
   const [honeypot, setHoneypot] = React.useState("");
   const [mountTime] = React.useState<number>(() => Date.now());
-
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
   const [result, setResult] = React.useState<SubscribeResult | null>(null);
@@ -67,7 +74,11 @@ export function NewsletterSubscribeForm({
       setResult(data);
       setEmail("");
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : "An unexpected error occurred.");
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -76,18 +87,24 @@ export function NewsletterSubscribeForm({
   const isStandalone = variant === "standalone";
 
   return (
-    <div className={`relative ${isStandalone ? "space-y-4" : ""} ${className}`}>
+    <div
+      className={`relative ${
+        isStandalone ? "space-y-4" : ""
+      } ${className}`}
+    >
       {/* Title & Description */}
       {title && (
         <div className="mb-3 space-y-1">
           <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold-400 animate-pulse" />
-            <span className="font-mono text-[11px] uppercase tracking-widest text-gold-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#a67c45]" />
+
+            <span className="font-mono text-[11px] uppercase tracking-widest text-[#a67c45]">
               {title}
             </span>
           </div>
+
           {description && (
-            <p className="text-xs text-zinc-400 leading-relaxed font-light">
+            <p className="text-xs font-light leading-relaxed text-[#727a7d]">
               {description}
             </p>
           )}
@@ -96,19 +113,26 @@ export function NewsletterSubscribeForm({
 
       {/* Success State */}
       {result ? (
-        <div className="rounded-lg border border-gold-500/40 bg-zinc-900/80 p-4 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="animate-in fade-in rounded-xs border border-[#a67c45]/40 bg-[#ebe7de] p-4 duration-200">
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0 mt-0.5" />
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#a67c45]" />
+
             <div className="space-y-1">
-              <h5 className="font-serif text-sm font-medium text-zinc-100">
-                {result.isExisting ? "Subscription Active" : "Briefing Schedule Initiated"}
+              <h5 className="font-serif text-sm font-medium text-[#1d2529]">
+                {result.isExisting
+                  ? "Subscription Active"
+                  : "Briefing Schedule Initiated"}
               </h5>
-              <p className="text-xs text-zinc-300 leading-relaxed">
+
+              <p className="text-xs leading-relaxed text-[#566066]">
                 {result.message}
               </p>
-              <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-zinc-400">
-                <ShieldCheck className="h-3.5 w-3.5 text-gold-400" />
-                <span>Encrypted • No unsolicited syndication • One-click opt-out</span>
+
+              <div className="flex items-center gap-2 pt-2 font-mono text-[10px] text-[#8a918f]">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#a67c45]" />
+                <span>
+                  Encrypted • No unsolicited syndication • One-click opt-out
+                </span>
               </div>
             </div>
           </div>
@@ -118,6 +142,7 @@ export function NewsletterSubscribeForm({
           {/* Honeypot field (hidden from view) */}
           <div className="sr-only" aria-hidden="true">
             <label htmlFor="website_url_honeypot">Website URL</label>
+
             <input
               id="website_url_honeypot"
               type="text"
@@ -138,12 +163,13 @@ export function NewsletterSubscribeForm({
               placeholder="executive@institution.com"
               disabled={isLoading}
               required
-              className="w-full rounded-md border border-zinc-700 bg-zinc-900/90 px-3.5 py-2.5 text-xs text-zinc-100 placeholder:text-zinc-500 focus:border-gold-500/60 focus:outline-none focus:ring-1 focus:ring-gold-500/30 transition-all pr-24"
+              className="w-full rounded-xs border border-[#c9c2b7] bg-[#ebe7de] px-3.5 py-2.5 pr-24 text-xs text-[#1d2529] placeholder:text-[#9a9388] transition-all focus:border-[#a67c45]/60 focus:outline-none focus:ring-1 focus:ring-[#a67c45]/30"
             />
+
             <button
               type="submit"
               disabled={isLoading}
-              className="absolute right-1 top-1 bottom-1 flex items-center gap-1.5 rounded bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/40 px-3 font-mono text-[11px] uppercase tracking-wider transition-colors disabled:opacity-50"
+              className="absolute bottom-1 right-1 top-1 flex items-center gap-1.5 rounded-xs border border-[#a67c45]/40 bg-[#a67c45]/10 px-3 font-mono text-[11px] uppercase tracking-wider text-[#8d6737] transition-colors hover:bg-[#a67c45]/20 disabled:opacity-50"
             >
               {isLoading ? (
                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -157,23 +183,28 @@ export function NewsletterSubscribeForm({
           </div>
 
           {/* Consent Checkbox */}
-          <label className="flex items-start gap-2 cursor-pointer group text-[11px] text-zinc-400 select-none">
+          <label className="group flex cursor-pointer select-none items-start gap-2 text-[11px] text-[#8a918f]">
             <input
               type="checkbox"
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
               disabled={isLoading}
-              className="mt-0.5 h-3.5 w-3.5 rounded border-zinc-700 bg-zinc-900 text-gold-500 focus:ring-gold-500/40 focus:ring-offset-0 focus:ring-1 accent-gold-500"
+              className="mt-0.5 h-3.5 w-3.5 rounded border-[#c9c2b7] bg-[#ebe7de] text-[#a67c45] accent-[#a67c45] focus:ring-1 focus:ring-[#a67c45]/40 focus:ring-offset-0"
             />
-            <span className="leading-tight group-hover:text-zinc-300 transition-colors">
-              I agree to receive confidential intelligence dispatches and affirm the{" "}
-              <span className="text-gold-300 underline underline-offset-2">Privacy Charter</span>.
+
+            <span className="leading-tight transition-colors group-hover:text-[#566066]">
+              I agree to receive confidential intelligence dispatches and
+              affirm the{" "}
+              <span className="text-[#8d6737] underline underline-offset-2">
+                Privacy Charter
+              </span>
+              .
             </span>
           </label>
 
           {/* Inline Error Message */}
           {errorMsg && (
-            <div className="flex items-center gap-2 text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded p-2">
+            <div className="flex items-center gap-2 rounded-xs border border-rose-700/20 bg-rose-700/5 p-2 text-xs text-rose-700">
               <AlertCircle className="h-3.5 w-3.5 shrink-0" />
               <span>{errorMsg}</span>
             </div>

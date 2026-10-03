@@ -1,9 +1,17 @@
 "use client";
 
 import * as React from "react";
+
 import Link from "next/link";
+
 import { Container, Badge, SamvadImage } from "@samvad/ui";
-import { Users, Lock, AlertCircle, ChevronRight } from "lucide-react";
+
+import {
+  Users,
+  Lock,
+  AlertCircle,
+  ChevronRight,
+} from "lucide-react";
 
 export function AboutLeadership() {
   const leaders = [
@@ -12,105 +20,126 @@ export function AboutLeadership() {
       practice: "Strategic Communications & Sovereign Advisory",
       namePlaceholder: "[EXECUTIVE PRINCIPAL PLACEHOLDER]",
       statusBadge: "Practice Founder [Placeholder]",
-      bio: "Leads firm strategy and sovereign statecraft engagements. Decades of combined experience in high-stakes corporate restructurings, cross-border M&A transactions, and enterprise perception architecture. [Real executive profile to be populated upon corporate clearance].",
+      bio: "Leads firm strategy and sovereign advisory engagements across restructurings, cross-border transactions, and perception strategy. [Executive profile pending corporate clearance].",
       imageAsset: "leadership-skyline-silhouette",
-      focusAreas: ["Sovereign Mandates", "Capital Markets Narrative", "Boardroom Strategy"],
+      focusAreas: [
+        "Sovereign Mandates",
+        "Capital Markets Narrative",
+        "Boardroom Strategy",
+      ],
     },
     {
       role: "Senior Partner",
       practice: "Crisis Architecture & Litigation Defense",
       namePlaceholder: "[SENIOR LITIGATION PARTNER PLACEHOLDER]",
       statusBadge: "War Room Lead [Placeholder]",
-      bio: "Oversees 24/7 emergency response protocols, regulatory investigations, and courtroom perception management during active litigation exposure. [Real partner credentials to be populated from senior practice records].",
+      bio: "Oversees emergency response, regulatory investigations, and litigation communications. [Partner credentials pending verified practice records].",
       imageAsset: "corp-comm-press-podium",
-      focusAreas: ["Hostile Activist Defense", "Regulatory Probes", "Judicial Comms"],
+      focusAreas: [
+        "Hostile Activist Defense",
+        "Regulatory Probes",
+        "Judicial Comms",
+      ],
     },
     {
       role: "Partner & Head of Telemetry",
       practice: "Perception Intelligence & Algorithmic Defense",
       namePlaceholder: "[INTELLIGENCE HEAD PLACEHOLDER]",
       statusBadge: "Telemetry Lead [Placeholder]",
-      bio: "Directs quantitative sentiment topology, media graph modeling, and algorithmic search integrity protocols to identify latent perception hazards before public escalation. [Real bio to be added from technology practice].",
+      bio: "Directs sentiment topology, media graph modeling, and search integrity protocols to identify emerging perception risks. [Profile pending technology practice clearance].",
       imageAsset: "tech-datacenter-optical-core",
-      focusAreas: ["LLM Knowledge-Graphs", "Sentiment Topology", "Disinformation Defense"],
+      focusAreas: [
+        "LLM Knowledge-Graphs",
+        "Sentiment Topology",
+        "Disinformation Defense",
+      ],
     },
     {
       role: "Senior Advisory Counsel",
       practice: "Public Affairs & Regulatory Diplomacy",
       namePlaceholder: "[PUBLIC AFFAIRS COUNSEL PLACEHOLDER]",
       statusBadge: "Sovereign Bench [Placeholder]",
-      bio: "Specializes in ministerial briefings, parliamentary committee alignment, and sovereign capability positioning across heavily regulated national infrastructure sectors. [Real credentials to be populated from advisory council].",
+      bio: "Advises on ministerial briefings, parliamentary engagement, and sovereign capability positioning across regulated infrastructure sectors. [Credentials pending advisory council verification].",
       imageAsset: "business-strategic-briefing-table",
-      focusAreas: ["Parliamentary Accord", "Bilateral Diplomacy", "Critical Infrastructure"],
+      focusAreas: [
+        "Parliamentary Accord",
+        "Bilateral Diplomacy",
+        "Critical Infrastructure",
+      ],
     },
   ];
 
   return (
-    <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-950 py-24 lg:py-32">
+    <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-24 lg:py-32">
       {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute left-10 top-1/4 h-[450px] w-[450px] rounded-full bg-gold-500/5 blur-[140px]" />
+      <div className="pointer-events-none absolute left-10 top-1/4 h-[450px] w-[450px] rounded-full bg-[#a67c45]/5 blur-[140px]" />
 
       <Container size="xl" className="relative z-10 space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <Users className="h-3 w-3 text-gold-400" />
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <Users className="h-3 w-3 text-[#a67c45]" />
               Leadership &amp; Governance
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-sand-100 leading-tight">
-              Advisory Bench &amp; <br />
-              <span className="font-normal italic text-gold-300">
+
+            <h2 className="font-serif text-3xl font-light leading-tight text-[#1d2529] sm:text-4xl lg:text-5xl">
+              Advisory Bench <br />
+              <span className="font-normal italic text-[#a67c45]">
                 Practice Leadership
               </span>
             </h2>
-            <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed">
-              Our firm is governed by senior principals and practice leaders who directly steward every
-              engagement. In adherence to strict factual integrity, executive identities are presented
-              with explicit placeholder designations until formal public roster clearance.
+
+            <p className="text-sm font-light leading-relaxed text-[#626760] sm:text-base">
+              Senior principals and practice leaders directly steward every
+              engagement. Executive identities remain placeholders until
+              formally cleared for public disclosure.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-xs text-obsidian-400">
-            <Lock className="h-4 w-4 text-gold-400" />
-            <span>Zero Unattributed Publicity Protocol</span>
+          <div className="flex items-center gap-2 font-mono text-xs text-[#777970]">
+            <Lock className="h-4 w-4 text-[#a67c45]" />
+            <span>Zero Unattributed Publicity</span>
           </div>
         </div>
 
         {/* Factual Disclaimer Banner */}
-        <div className="rounded-xs border border-obsidian-800 bg-obsidian-900/50 p-4 text-xs font-mono text-obsidian-300 flex items-start gap-3">
-          <AlertCircle className="h-4 w-4 text-gold-400 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-4 text-xs font-mono text-[#626760]">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#a67c45]" />
+
           <div className="space-y-1">
-            <span className="text-gold-400 font-semibold uppercase tracking-wider">
-              Confidentiality &amp; Roster Transparency Notice
+            <span className="font-semibold uppercase tracking-wider text-[#8d683d]">
+              Confidentiality &amp; Roster Transparency
             </span>
-            <p className="font-sans text-xs text-sand-400 font-light leading-relaxed">
-              Certain members of SAMVAD&apos;s senior advisory bench, including former senior diplomats
-              and judicial counsel, maintain non-public profiles in accordance with ongoing sovereign
-              non-disclosure covenants. Individual partner biographies will be published upon verified corporate approval.
+
+            <p className="font-sans text-xs font-light leading-relaxed text-[#626760]">
+              Certain senior advisors maintain non-public profiles under
+              confidentiality covenants. Individual biographies will be
+              published following verified corporate approval.
             </p>
           </div>
         </div>
 
         {/* 4 Leaders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {leaders.map((leader, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-xs border border-obsidian-800 bg-obsidian-900/60 transition-all duration-300 hover:border-gold-500/40 hover:bg-obsidian-900 shadow-elevation-1"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-xs border border-[#d0c9bd] bg-[#ebe7de] shadow-sm transition-all duration-300 hover:border-[#a67c45]/50 hover:bg-[#e9e4da]"
             >
               {/* Leader Photo / Placeholder */}
-              <div className="relative overflow-hidden aspect-[4/5] border-b border-obsidian-800/80 bg-obsidian-950">
+              <div className="relative aspect-[4/5] overflow-hidden border-b border-[#d8d1c5] bg-[#e2ddd3]">
                 <SamvadImage
                   assetId={leader.imageAsset}
                   aspectRatio="4:5"
                   zoomOnHover
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute top-3 left-3">
+
+                <div className="absolute left-3 top-3">
                   <Badge
                     variant="outline"
-                    className="border-obsidian-750 bg-obsidian-950/90 font-mono text-[9px] uppercase tracking-wider text-gold-300 backdrop-blur-md"
+                    className="border-[#c9c2b6] bg-[#f3f0e8]/90 font-mono text-[9px] uppercase tracking-wider text-[#8d683d] backdrop-blur-md"
                   >
                     {leader.statusBadge}
                   </Badge>
@@ -118,32 +147,36 @@ export function AboutLeadership() {
               </div>
 
               {/* Leader Content */}
-              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div className="flex flex-1 flex-col justify-between space-y-4 p-6">
                 <div className="space-y-2">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-gold-400">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-[#a67c45]">
                     {leader.practice}
                   </div>
-                  <h3 className="font-serif text-lg font-normal text-sand-100 group-hover:text-gold-200 transition-colors">
+
+                  <h3 className="font-serif text-lg font-normal text-[#1d2529] transition-colors group-hover:text-[#8d683d]">
                     {leader.namePlaceholder}
                   </h3>
-                  <div className="font-mono text-[11px] text-obsidian-400">
+
+                  <div className="font-mono text-[11px] text-[#777970]">
                     {leader.role}
                   </div>
-                  <p className="text-xs text-sand-400 font-light leading-relaxed pt-2">
+
+                  <p className="pt-2 text-xs font-light leading-relaxed text-[#626760]">
                     {leader.bio}
                   </p>
                 </div>
 
                 {/* Focus Areas */}
-                <div className="pt-4 border-t border-obsidian-850 space-y-1.5">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-obsidian-400">
+                <div className="space-y-1.5 border-t border-[#d8d1c5] pt-4">
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-[#777970]">
                     Core Specializations
                   </div>
+
                   <div className="flex flex-wrap gap-1.5">
                     {leader.focusAreas.map((area, aIdx) => (
                       <span
                         key={aIdx}
-                        className="rounded-xs border border-obsidian-800 bg-obsidian-950 px-2 py-0.5 font-mono text-[9px] text-sand-300"
+                        className="rounded-xs border border-[#c9c2b6] bg-[#f3f0e8] px-2 py-0.5 font-mono text-[9px] text-[#626760]"
                       >
                         {area}
                       </span>
@@ -156,15 +189,17 @@ export function AboutLeadership() {
         </div>
 
         {/* Bottom CTA to Full Leadership Directory */}
-        <div className="pt-8 border-t border-obsidian-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="font-mono text-xs text-obsidian-400">
-            Full governance charter and detailed partner dossiers are cataloged in our leadership directory.
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-[#d8d1c5] pt-8 sm:flex-row">
+          <div className="font-mono text-xs text-[#777970]">
+            Full governance charter and partner dossiers are cataloged in the
+            leadership directory.
           </div>
+
           <Link
             href="/leadership"
-            className="rounded-xs border border-gold-500/40 bg-gold-500/10 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-gold-300 hover:bg-gold-500/20 hover:border-gold-500 transition-all flex items-center gap-2"
+            className="flex items-center gap-2 rounded-xs border border-[#a67c45]/50 bg-[#a67c45]/10 px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-[#8d683d] transition-all hover:border-[#a67c45] hover:bg-[#a67c45]/15"
           >
-            <span>Examine Advisory Bench</span>
+            <span>View Advisory Bench</span>
             <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </div>

@@ -1,9 +1,15 @@
 import * as React from "react";
+
 import type { Metadata } from "next";
+
 import Link from "next/link";
+
 import { Container, Button, MagneticButton } from "@samvad/ui";
+
 import { ServiceExplorer } from "@/components/services/service-explorer";
+
 import { PRIMARY_SERVICES } from "@/lib/services-data";
+
 import { ArrowRight, ShieldCheck, Lock, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -14,30 +20,32 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="flex w-full flex-col overflow-hidden bg-obsidian-950 text-sand-100">
+    <div className="flex w-full flex-col overflow-hidden bg-[#f3f0e8] text-[#1d2529]">
       {/* 1. Hero Section */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-20">
+      <section className="relative flex min-h-[60vh] flex-col justify-center overflow-hidden border-b border-[#d8d1c5] pb-16 pt-32 lg:pb-20 lg:pt-40">
         {/* Background ambient lighting */}
-        <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-gold-500/5 blur-[140px]" />
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#a67c45]/5 blur-[140px]" />
 
         <Container size="xl" className="relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1.5 backdrop-blur-md">
-            <Layers className="h-3.5 w-3.5 text-gold-400" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold-300 font-semibold">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#a67c45]/30 bg-[#ebe7de] px-3.5 py-1.5">
+            <Layers className="h-3.5 w-3.5 text-[#a67c45]" />
+
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#a67c45]">
               Practice Architecture
             </span>
           </div>
 
-          <div className="space-y-3 max-w-3xl">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-sand-100 leading-[1.08]">
+          <div className="max-w-3xl space-y-3">
+            <h1 className="font-serif text-4xl font-light leading-[1.08] tracking-tight text-[#1d2529] sm:text-5xl lg:text-6xl">
               Primary Advisory <br />
-              <span className="font-normal italic text-gold-300">
+              <span className="font-normal italic text-[#a67c45]">
                 Disciplines &amp; Capabilities
               </span>
             </h1>
-            <p className="font-serif text-lg sm:text-xl text-sand-300 font-light leading-relaxed">
-              We operate where narrative directly impacts balance-sheet valuation, regulatory liberty,
-              and sovereign mandate. Explore our six integrated practices below.
+
+            <p className="font-serif text-lg font-light leading-relaxed text-[#626760] sm:text-xl">
+              Six integrated practices for situations where narrative,
+              reputation, regulation, and institutional value intersect.
             </p>
           </div>
 
@@ -46,7 +54,7 @@ export default function ServicesPage() {
               <MagneticButton
                 variant="gold"
                 size="md"
-                className="font-mono text-xs uppercase tracking-wider px-6 py-3"
+                className="px-6 py-3 font-mono text-xs uppercase tracking-wider"
               >
                 <span>Engage Practice Partners</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -54,14 +62,16 @@ export default function ServicesPage() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-mono text-obsidian-400 pt-4 border-t border-obsidian-850">
+          <div className="flex items-center gap-4 border-t border-[#d8d1c5] pt-4 font-mono text-xs text-[#777970]">
             <div className="flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5 text-gold-400" />
+              <Lock className="h-3.5 w-3.5 text-[#a67c45]" />
               <span>Direct Partner Stewardship</span>
             </div>
-            <span className="text-obsidian-700">·</span>
+
+            <span className="text-[#c5beb2]">·</span>
+
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <ShieldCheck className="h-3.5 w-3.5 text-[#66816d]" />
               <span>Confidentiality Guaranteed</span>
             </div>
           </div>
@@ -72,39 +82,46 @@ export default function ServicesPage() {
       <ServiceExplorer />
 
       {/* 3. Fast Index Grid */}
-      <section className="border-t border-obsidian-800 bg-obsidian-900/40 py-20">
+      <section className="border-t border-[#d8d1c5] bg-[#ebe7de] py-20">
         <Container size="xl" className="space-y-12">
           <div className="space-y-3">
-            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
+            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
               Practice Index
             </div>
-            <h2 className="font-serif text-3xl font-light text-sand-100">
+
+            <h2 className="font-serif text-3xl font-light text-[#1d2529]">
               Complete Practice Catalog
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {PRIMARY_SERVICES.map((service, idx) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group rounded-xs border border-obsidian-800 bg-obsidian-950 p-6 transition-all duration-300 hover:border-gold-500/40 hover:bg-obsidian-900 flex flex-col justify-between"
+                className="group flex flex-col justify-between rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-6 transition-all duration-300 hover:border-[#a67c45]/40 hover:bg-[#eee9df]"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between font-mono text-[10px] text-obsidian-400">
+                  <div className="flex items-center justify-between font-mono text-[10px] text-[#777970]">
                     <span>0{idx + 1}</span>
-                    <span className="text-gold-400">{service.eyebrow}</span>
+
+                    <span className="text-[#a67c45]">
+                      {service.eyebrow}
+                    </span>
                   </div>
-                  <h3 className="font-serif text-xl font-normal text-sand-100 group-hover:text-gold-200 transition-colors">
+
+                  <h3 className="font-serif text-xl font-normal text-[#1d2529] transition-colors group-hover:text-[#8d683d]">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-sand-400 font-light leading-relaxed">
+
+                  <p className="font-light leading-relaxed text-[#626760] text-xs">
                     {service.shortDescription}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-obsidian-850 mt-4 flex items-center justify-between text-xs font-mono text-gold-400">
+                <div className="mt-4 flex items-center justify-between border-t border-[#d8d1c5] pt-4 font-mono text-xs text-[#a67c45]">
                   <span>View Dossier</span>
+
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
@@ -114,18 +131,25 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. Advisory CTA */}
-      <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-950 py-20 text-center">
-        <Container size="xl" className="space-y-6 max-w-2xl mx-auto">
-          <h2 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
+      <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-20 text-center">
+        <Container size="xl" className="mx-auto max-w-2xl space-y-6">
+          <h2 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
             Require Multi-Disciplinary Counsel?
           </h2>
-          <p className="text-xs sm:text-sm text-sand-400 font-light leading-relaxed">
-            Most institutional mandates require the synchronized execution of multiple practices—such
-            as combining Crisis Communications with Digital Sovereignty and Public Affairs.
+
+          <p className="font-light leading-relaxed text-[#626760] text-xs sm:text-sm">
+            Complex mandates often require synchronized execution across
+            crisis communications, digital sovereignty, public affairs, and
+            strategic advisory.
           </p>
+
           <div className="pt-2">
             <Link href="/#contact">
-              <Button variant="gold" size="lg" className="font-mono text-xs uppercase tracking-wider">
+              <Button
+                variant="gold"
+                size="lg"
+                className="font-mono text-xs uppercase tracking-wider"
+              >
                 <span>Request Cross-Practice Assessment</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

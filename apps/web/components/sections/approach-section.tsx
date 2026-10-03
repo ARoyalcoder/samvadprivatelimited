@@ -25,12 +25,12 @@ export function ApproachSection() {
       icon: Compass,
       tag: "Intelligence Gathering",
       summary:
-        "Comprehensive mapping of adversarial sentiment vectors, regulatory signals, and latent perception vulnerabilities.",
+        "Mapping adversarial sentiment, regulatory signals, and latent perception vulnerabilities.",
       tactics: [
-        "Algorithmic media graph & sentiment topology analysis",
-        "Discreet intelligence gathering across regulatory and institutional corridors",
-        "Key Opinion Leader (KOL) vulnerability mapping",
-        "Baseline discourse risk audit and attribution analysis",
+        "Media graph & sentiment topology analysis",
+        "Intelligence gathering across regulatory corridors",
+        "Key Opinion Leader vulnerability mapping",
+        "Baseline discourse risk and attribution audit",
       ],
       output: "Confidential Threat Horizon Assessment & Action Matrix",
     },
@@ -42,12 +42,12 @@ export function ApproachSection() {
       icon: FileCheck,
       tag: "Doctrinal Formulation",
       summary:
-        "Synthesizing an unassailable institutional thesis and preparing rapid evidentiary counter-briefing playbooks.",
+        "Building the institutional thesis and preparing evidentiary counter-briefing playbooks.",
       tactics: [
-        "Core narrative doctrine formulation and sovereign positioning",
-        "Adversarial counter-briefing preparation and forensic fact sheets",
-        "Ministerial and regulatory briefing packet drafting",
-        "Simulated executive stress-testing and hostile scenario rehearsal",
+        "Core narrative doctrine and sovereign positioning",
+        "Adversarial counter-briefing and fact sheets",
+        "Ministerial and regulatory briefing packets",
+        "Executive stress-testing and hostile scenarios",
       ],
       output: "Institutional Narrative Playbook & Evidentiary Dossiers",
     },
@@ -59,12 +59,12 @@ export function ApproachSection() {
       icon: Radio,
       tag: "Tactical Execution",
       summary:
-        "Synchronized release across confidential diplomatic, regulatory, financial, and tier-1 media channels.",
+        "Coordinated deployment across diplomatic, regulatory, financial, and media channels.",
       tactics: [
-        "Bilateral stakeholder briefings with key decision-makers",
-        "Tier-1 financial and editorial press background briefings",
-        "Real-time social and algorithmic search containment deployment",
-        "Parliamentary and legislative committee engagement",
+        "Stakeholder briefings with key decision-makers",
+        "Financial and editorial press briefings",
+        "Real-time social and search containment",
+        "Parliamentary and legislative engagement",
       ],
       output: "Coordinated Multi-Channel Narrative Deployment",
     },
@@ -76,12 +76,12 @@ export function ApproachSection() {
       icon: Anchor,
       tag: "Enduring Moat",
       summary:
-        "Permanent institutional defense, search knowledge-graph stabilization, and sustained reputational moats.",
+        "Sustained perception defense, search stabilization, and long-term reputation protection.",
       tactics: [
-        "Continuous perception telemetry and sentiment delta reporting",
-        "Algorithmic search reputation and LLM knowledge-graph maintenance",
+        "Continuous perception telemetry and sentiment reporting",
+        "Search reputation and knowledge-graph maintenance",
         "Institutional stakeholder feedback reconciliation",
-        "Long-term legacy and valuation protection protocols",
+        "Long-term legacy and valuation protection",
       ],
       output: "Permanent Sovereign Narrative Moat & Continuous Telemetry",
     },
@@ -92,83 +92,88 @@ export function ApproachSection() {
   return (
     <section
       id="approach"
-      className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/40 py-24 lg:py-32"
+      className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#f3f0e8] py-24 lg:py-32"
     >
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute right-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-gold-500/5 blur-[140px]" />
+      {/* Background ambient tone */}
+      <div className="pointer-events-none absolute right-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-[#a67c45]/5 blur-[140px]" />
 
       <Container size="xl" className="relative z-10 space-y-16">
         {/* Header Block */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#a67c45]" />
               Operational Protocol
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-sand-100 leading-tight">
+
+            <h2 className="font-serif text-3xl font-light leading-tight text-[#1d2529] sm:text-4xl lg:text-5xl">
               Our Approach: <br />
-              <span className="font-normal italic text-gold-300">
+              <span className="font-normal italic text-[#a67c45]">
                 A Four-Phase Operational Discipline
               </span>
             </h2>
-            <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed">
-              We replace instinct with a battle-tested protocol engineered to systematically eliminate
-              narrative friction and anchor enduring institutional authority.
+
+            <p className="text-sm font-light leading-relaxed text-[#727a7d] sm:text-base">
+              A structured protocol designed to reduce narrative friction and
+              build durable institutional authority.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-xs text-obsidian-400">
-            <Clock className="h-4 w-4 text-gold-400" />
+          <div className="flex items-center gap-2 font-mono text-xs text-[#8a918f]">
+            <Clock className="h-4 w-4 text-[#a67c45]" />
             <span>Standard Protocol: Hour 0 to Day 90</span>
           </div>
         </div>
 
         {/* Phase Navigation Stepper */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {phases.map((phase, idx) => {
             const isCurrent = selectedPhase === idx;
             const Icon = phase.icon;
+
             return (
               <button
                 key={phase.num}
                 type="button"
                 onClick={() => setSelectedPhase(idx)}
-                className={`text-left p-6 rounded-xs border transition-all relative ${
+                className={`relative rounded-xs border p-6 text-left transition-all ${
                   isCurrent
-                    ? "border-gold-500/60 bg-obsidian-950 shadow-elevation-2"
-                    : "border-obsidian-800 bg-obsidian-950/60 hover:border-obsidian-700 hover:bg-obsidian-900/60"
+                    ? "border-[#a67c45]/60 bg-[#ebe7de] shadow-elevation-2"
+                    : "border-[#d0c9bd] bg-[#ebe7de]/55 hover:border-[#b7afa2] hover:bg-[#e7e2d8]"
                 }`}
               >
                 {/* Active Top Bar Indicator */}
                 {isCurrent && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 rounded-t-xs" />
+                  <div className="absolute left-0 right-0 top-0 h-1 rounded-t-xs bg-[#a67c45]" />
                 )}
 
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs text-gold-400 font-semibold">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="font-mono text-xs font-semibold text-[#a67c45]">
                     {phase.phase}
                   </span>
-                  <span className="font-mono text-[10px] text-obsidian-400">
+
+                  <span className="font-mono text-[10px] text-[#8a918f]">
                     {phase.timeframe}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3 mb-2">
+                <div className="mb-2 flex items-center gap-3">
                   <div
-                    className={`h-7 w-7 rounded-xs border flex items-center justify-center ${
+                    className={`flex h-7 w-7 items-center justify-center rounded-xs border ${
                       isCurrent
-                        ? "border-gold-500/40 bg-gold-500/10 text-gold-400"
-                        : "border-obsidian-750 bg-obsidian-900 text-obsidian-400"
+                        ? "border-[#a67c45]/40 bg-[#a67c45]/10 text-[#a67c45]"
+                        : "border-[#c9c2b7] bg-[#f3f0e8] text-[#8a918f]"
                     }`}
                   >
                     <Icon className="h-3.5 w-3.5" />
                   </div>
-                  <div className="font-serif text-sm font-medium text-sand-100">
+
+                  <div className="font-serif text-sm font-medium text-[#1d2529]">
                     {phase.name}
                   </div>
                 </div>
 
-                <div className="font-mono text-[9px] uppercase tracking-wider text-obsidian-400 pl-10">
+                <div className="pl-10 font-mono text-[9px] uppercase tracking-wider text-[#8a918f]">
                   {phase.tag}
                 </div>
               </button>
@@ -177,37 +182,45 @@ export function ApproachSection() {
         </div>
 
         {/* Detailed Phase Inspection Panel */}
-        <div className="rounded-xs border border-obsidian-750 bg-obsidian-950 p-8 sm:p-12 shadow-elevation-2">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-8 shadow-elevation-2 sm:p-12">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             {/* Left Narrative Block */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-6 lg:col-span-7">
               <div className="flex items-center gap-3">
-                <Badge variant="outline" className="border-gold-500/30 bg-gold-500/10 text-gold-300 font-mono text-[10px] uppercase tracking-widest">
+                <Badge
+                  variant="outline"
+                  className="border-[#a67c45]/30 bg-[#a67c45]/10 font-mono text-[10px] uppercase tracking-widest text-[#8d6737]"
+                >
                   {current.phase} · {current.timeframe}
                 </Badge>
-                <span className="font-mono text-xs text-obsidian-400">/</span>
-                <span className="font-mono text-xs text-gold-400">{current.tag}</span>
+
+                <span className="font-mono text-xs text-[#9a9388]">/</span>
+
+                <span className="font-mono text-xs text-[#a67c45]">
+                  {current.tag}
+                </span>
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl font-normal text-sand-100 leading-snug">
+              <h3 className="font-serif text-2xl font-normal leading-snug text-[#1d2529] sm:text-3xl">
                 {current.name}
               </h3>
 
-              <p className="text-sand-300 text-sm sm:text-base font-light leading-relaxed">
+              <p className="text-sm font-light leading-relaxed text-[#566066] sm:text-base">
                 {current.summary}
               </p>
 
               <div className="space-y-3 pt-2">
-                <div className="font-mono text-[10px] uppercase tracking-wider text-obsidian-400">
-                  Tactical Operational Milestones
+                <div className="font-mono text-[10px] uppercase tracking-wider text-[#8a918f]">
+                  Tactical Milestones
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {current.tactics.map((tactic, i) => (
                     <div
                       key={i}
-                      className="p-3 rounded-xs border border-obsidian-800 bg-obsidian-900/60 text-xs text-sand-300 font-light flex items-start gap-2.5"
+                      className="flex items-start gap-2.5 rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-3 text-xs font-light text-[#566066]"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-gold-400 shrink-0 mt-1.5" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#a67c45]" />
                       <span>{tactic}</span>
                     </div>
                   ))}
@@ -216,28 +229,31 @@ export function ApproachSection() {
             </div>
 
             {/* Right Deliverable Output Box */}
-            <div className="lg:col-span-5 p-8 rounded-xs border border-obsidian-800 bg-obsidian-900/90 space-y-6">
+            <div className="space-y-6 rounded-xs border border-[#d0c9bd] bg-[#e5e0d6] p-8 lg:col-span-5">
               <div className="space-y-2">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-gold-400">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
                   Verified Phase Deliverable
                 </div>
-                <h4 className="font-serif text-xl font-normal text-sand-100">
+
+                <h4 className="font-serif text-xl font-normal text-[#1d2529]">
                   {current.output}
                 </h4>
-                <p className="text-xs text-sand-400 font-light leading-relaxed">
-                  Every deliverable is verified by senior partners and encrypted under our sovereign
-                  confidentiality infrastructure.
+
+                <p className="text-xs font-light leading-relaxed text-[#727a7d]">
+                  Every deliverable is reviewed by senior partners and handled
+                  under strict confidentiality protocols.
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-obsidian-800 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 font-mono text-[10px] text-obsidian-400">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="flex items-center justify-between border-t border-[#d0c9bd] pt-4">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#8a918f]">
+                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-700" />
                   <span>Audit Trail Logged</span>
                 </div>
+
                 <Link
                   href="#contact"
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-gold-400 hover:text-gold-300"
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-[#a67c45] hover:text-[#805d32]"
                 >
                   <span>Initiate Protocol</span>
                   <ArrowRight className="h-3 w-3" />

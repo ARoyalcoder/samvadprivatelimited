@@ -1,10 +1,9 @@
 "use client";
 
 import * as React from "react";
+
 import {
-  // Tokens
   colors,
-  // Typography
   Display,
   Heading,
   Eyebrow,
@@ -16,17 +15,14 @@ import {
   AnimatedText,
   RevealText,
   AnimatedCounter,
-  // Layout
   Container,
   Grid,
   GridCol,
   Section,
   SectionHeader,
   SectionDivider,
-  // Buttons
   Button,
   MagneticButton,
-  // Cards
   Card,
   CardHeader,
   CardTitle,
@@ -36,13 +32,11 @@ import {
   GlassCard,
   DossierCard,
   MetricCard,
-  // Inputs
   Input,
   Textarea,
   Field,
   FieldLabel,
   FieldDescription,
-  // Navigation
   Navbar,
   NavItem,
   Breadcrumbs,
@@ -51,7 +45,6 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
   ScrollProgress,
-  // Overlays
   Modal,
   ModalTrigger,
   ModalContent,
@@ -72,7 +65,6 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  // Data Display
   Badge,
   Tabs,
   TabsList,
@@ -83,10 +75,8 @@ import {
   AccordionTrigger,
   AccordionContent,
   Marquee,
-  // Media
   ImageReveal,
   HoverImage,
-  // Feedback
   Spinner,
   ShimmerBar,
   OrbitLoader,
@@ -97,10 +87,15 @@ import {
   EmptyState,
   ErrorState,
   ErrorCard,
-  // Motion
   CustomCursor,
 } from "@samvad/ui";
-import { Mail, ArrowRight, ShieldCheck, SlidersHorizontal } from "lucide-react";
+
+import {
+  Mail,
+  ArrowRight,
+  ShieldCheck,
+  SlidersHorizontal,
+} from "lucide-react";
 
 export default function DesignSystemPage() {
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -108,7 +103,7 @@ export default function DesignSystemPage() {
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-obsidian-950 text-paper-100 selection:bg-gold-500/30 selection:text-gold-200">
+      <div className="min-h-screen bg-[#f3f0e8] text-[#1d2529] selection:bg-[#a67c45]/20 selection:text-[#8d683d]">
         <ScrollProgress />
         <CustomCursor />
 
@@ -116,18 +111,19 @@ export default function DesignSystemPage() {
         <Navbar
           brand={
             <div className="flex items-center gap-3">
-              <span className="font-serif text-lg font-light tracking-wider text-paper-100">
+              <span className="font-serif text-lg font-light tracking-wider text-[#1d2529]">
                 SAMVAD
               </span>
-              <span className="rounded-xs border border-gold-500/30 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-gold-400">
-                Design System v1.0
+
+              <span className="rounded-xs border border-[#a67c45]/30 bg-[#ebe7de] px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
+                Design System
               </span>
             </div>
           }
           actions={
             <div className="flex items-center gap-3">
               <Button variant="outline" size="sm" asChild>
-                <a href="/">← Return to Portal</a>
+                <a href="/">← Portal</a>
               </Button>
             </div>
           }
@@ -145,43 +141,54 @@ export default function DesignSystemPage() {
         <Section padding="hero" tone="obsidian">
           <Container size="xl">
             <div className="max-w-4xl space-y-6">
-              <Eyebrow index={1}>Brand Foundation & Visual Language</Eyebrow>
+              <Eyebrow index={1}>Brand Foundation</Eyebrow>
+
               <RevealText>
                 <Display size="display-2xl">
-                  Strategic Perception <br />
-                  <span className="font-light italic text-gold-400">Design System</span>
+                  Strategic Perception
+                  <br />
+                  <span className="font-light italic text-[#a67c45]">
+                    Design System
+                  </span>
                 </Display>
               </RevealText>
-              <Lead className="max-w-2xl text-paper-300">
-                A restrained, high-authority digital language engineered for sovereign
-                communications, geopolitical risk intelligence, and executive reputation management.
+
+              <Lead className="max-w-2xl text-[#626760]">
+                A restrained visual language for institutional communications
+                and advisory work.
               </Lead>
+
               <div className="flex flex-wrap items-center gap-4 pt-4">
                 <MagneticButton strength={0.4} variant="gold" size="lg">
                   Explore Components
                 </MagneticButton>
+
                 <Button variant="luxury" size="lg">
-                  Read Design Spec
+                  Design Spec
                 </Button>
               </div>
             </div>
           </Container>
         </Section>
 
-        {/* Breadcrumbs Component Demo */}
-        <div className="border-y border-obsidian-700/60 bg-obsidian-900/60 py-3">
+        {/* Breadcrumbs */}
+        <div className="border-y border-[#d8d1c5] bg-[#ebe7de] py-3">
           <Container size="xl">
             <Breadcrumbs>
               <BreadcrumbItem>
                 <BreadcrumbLink href="/">Home</BreadcrumbLink>
               </BreadcrumbItem>
+
               <BreadcrumbSeparator />
+
               <BreadcrumbItem>
                 <BreadcrumbLink href="#">Architecture</BreadcrumbLink>
               </BreadcrumbItem>
+
               <BreadcrumbSeparator />
+
               <BreadcrumbItem>
-                <BreadcrumbPage>Design System Specification</BreadcrumbPage>
+                <BreadcrumbPage>Design System</BreadcrumbPage>
               </BreadcrumbItem>
             </Breadcrumbs>
           </Container>
@@ -191,81 +198,127 @@ export default function DesignSystemPage() {
         <Section id="tokens" padding="normal" tone="obsidian">
           <SectionHeader
             index="01"
-            eyebrow="Visual Architecture"
-            title="Color Token Matrix"
-            lead="Obsidian depth, warm aged parchment, and strategic burnished gold accents designed to avoid generic SaaS blues."
+            eyebrow="Visual System"
+            title="Color Tokens"
+            lead="Warm paper, structural tones, and restrained bronze accents."
           />
 
           <div className="space-y-12">
-            {/* Obsidian Void */}
+            {/* Structural Colors */}
             <div>
-              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-paper-400">
-                Obsidian Noir & Structural Elevation
+              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-[#777970]">
+                Structural Tones
               </h3>
+
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-7">
                 {Object.entries(colors.obsidian).map(([key, val]) => (
                   <div
                     key={key}
-                    className="flex h-24 flex-col justify-between rounded-xs border border-obsidian-700/80 p-3"
+                    className="flex h-24 flex-col justify-between rounded-xs border border-[#d0c9bd] p-3"
                     style={{ backgroundColor: val }}
                   >
-                    <span className="font-mono text-[10px] text-paper-400">obsidian-{key}</span>
-                    <span className="font-mono text-xs font-bold text-paper-200">{val}</span>
+                    <span className="font-mono text-[10px] text-[#777970]">
+                      obsidian-{key}
+                    </span>
+
+                    <span className="font-mono text-xs font-bold text-[#3f4847]">
+                      {val}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Paper & Alabaster */}
+            {/* Paper */}
             <div>
-              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-paper-400">
-                Warm Paper & Typography High-Contrast
+              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-[#777970]">
+                Paper & Typography
               </h3>
+
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                 {Object.entries(colors.paper).map(([key, val]) => (
                   <div
                     key={key}
-                    className="flex h-24 flex-col justify-between rounded-xs border border-obsidian-700/80 p-3"
+                    className="flex h-24 flex-col justify-between rounded-xs border border-[#d0c9bd] p-3"
                     style={{ backgroundColor: val }}
                   >
-                    <span className="font-mono text-[10px] font-semibold text-obsidian-950">
+                    <span className="font-mono text-[10px] font-semibold text-[#1d2529]">
                       paper-{key}
                     </span>
-                    <span className="font-mono text-xs font-bold text-obsidian-900">{val}</span>
+
+                    <span className="font-mono text-xs font-bold text-[#3f4847]">
+                      {val}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Strategic Gold & Champagne */}
+            {/* Strategic Accents */}
             <div>
-              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-paper-400">
-                Burnished Strategic Gold & Champagne Accents
+              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-[#777970]">
+                Strategic Accents
               </h3>
+
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6">
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-gold-500/40 bg-gold-500 p-3 text-obsidian-950">
-                  <span className="font-mono text-[10px] font-bold">gold-500 (Primary)</span>
-                  <span className="font-mono text-xs font-bold">#C39651</span>
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#a67c45]/40 bg-[#a67c45] p-3 text-[#f3f0e8]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Bronze
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #A67C45
+                  </span>
                 </div>
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-gold-400/40 bg-gold-400 p-3 text-obsidian-950">
-                  <span className="font-mono text-[10px] font-bold">gold-400</span>
-                  <span className="font-mono text-xs font-bold">#D1AE74</span>
+
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#c9b995]/40 bg-[#c9b995] p-3 text-[#1d2529]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Champagne
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #C9B995
+                  </span>
                 </div>
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-champagne-500/40 bg-champagne-500 p-3 text-obsidian-950">
-                  <span className="font-mono text-[10px] font-bold">champagne-500</span>
-                  <span className="font-mono text-xs font-bold">#C5B38C</span>
+
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#66816d]/30 bg-[#66816d]/10 p-3 text-[#66816d]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Positive
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #66816D
+                  </span>
                 </div>
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-perception-positive/40 bg-perception-positive/20 p-3 text-perception-positive">
-                  <span className="font-mono text-[10px] font-bold">Positive</span>
-                  <span className="font-mono text-xs font-bold">#10B981</span>
+
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#a67c45]/30 bg-[#a67c45]/10 p-3 text-[#a67c45]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Alert
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #A67C45
+                  </span>
                 </div>
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-perception-alert/40 bg-perception-alert/20 p-3 text-perception-alert">
-                  <span className="font-mono text-[10px] font-bold">Alert</span>
-                  <span className="font-mono text-xs font-bold">#F59E0B</span>
+
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#9b5b52]/30 bg-[#9b5b52]/10 p-3 text-[#9b5b52]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Crisis
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #9B5B52
+                  </span>
                 </div>
-                <div className="flex h-24 flex-col justify-between rounded-xs border border-perception-crisis/40 bg-perception-crisis/20 p-3 text-perception-crisis">
-                  <span className="font-mono text-[10px] font-bold">Crisis</span>
-                  <span className="font-mono text-xs font-bold">#EF4444</span>
+
+                <div className="flex h-24 flex-col justify-between rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-3 text-[#626760]">
+                  <span className="font-mono text-[10px] font-bold">
+                    Neutral
+                  </span>
+
+                  <span className="font-mono text-xs font-bold">
+                    #626760
+                  </span>
                 </div>
               </div>
             </div>
@@ -278,75 +331,84 @@ export default function DesignSystemPage() {
         <Section id="typography" padding="normal" tone="carbon">
           <SectionHeader
             index="02"
-            eyebrow="Editorial Typography"
-            title="Typographic Hierarchy & Motion"
-            lead="Serif display paired with disciplined sans body typography, monospaced metadata, and kinematic text reveals."
+            eyebrow="Typography"
+            title="Type & Motion"
+            lead="Serif display, sans body, mono metadata, and restrained motion."
           />
 
           <Grid cols={1} gap="lg" className="space-y-8">
-            <div className="space-y-6 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
+            <div className="space-y-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-paper-500">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#777970]">
                   Display Serif
                 </span>
-                <Heading size="display-lg">Perception is the decisive currency of power.</Heading>
+
+                <Heading size="display-lg">
+                  Perception shapes outcomes.
+                </Heading>
               </div>
 
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-paper-500">
-                  Section Heading & Eyebrow
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                  Section Heading
                 </span>
+
                 <SectionHeading
                   index="08"
-                  eyebrow="Reputational Defense"
-                  title="Cross-Jurisdictional Crisis Intervention"
-                  description="When asymmetrical narratives threaten corporate autonomy, SAMVAD executes decisive perceptual containment."
+                  eyebrow="Reputation Defense"
+                  title="Crisis Intervention"
+                  description="Containment strategy for asymmetric narrative risk."
                 />
               </div>
 
-              <div className="grid grid-cols-1 gap-6 border-t border-obsidian-700/40 pt-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 border-t border-[#d8d1c5] pt-4 md:grid-cols-2">
                 <div>
-                  <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-500">
-                    Kinematic Text Split
+                  <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                    Text Split
                   </span>
+
                   <AnimatedText
-                    text="Defending enterprise reputation across turbulent capital markets and adversarial media cycles."
-                    className="font-serif text-lg text-paper-200"
+                    text="Protecting reputation across volatile markets."
+                    className="font-serif text-lg text-[#3f4847]"
                     splitBy="words"
                   />
                 </div>
+
                 <div>
-                  <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-500">
-                    Spring Numeric Counter
+                  <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                    Numeric Counter
                   </span>
+
                   <div className="flex items-baseline gap-2">
                     <AnimatedCounter
                       value={99.4}
                       decimals={1}
                       suffix="%"
-                      className="font-serif text-4xl font-light text-gold-300"
+                      className="font-serif text-4xl font-light text-[#a67c45]"
                     />
-                    <span className="font-mono text-xs uppercase tracking-widest text-paper-400">
-                      Crisis Containment Index
+
+                    <span className="font-mono text-xs uppercase tracking-widest text-[#777970]">
+                      Containment Index
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="border-t border-obsidian-700/40 pt-4">
+              <div className="border-t border-[#d8d1c5] pt-4">
                 <Grid cols={12} gap="sm">
                   <GridCol span={6}>
                     <MetricNumber
                       value="94.8"
-                      label="Narrative Resonance Score"
+                      label="Narrative Resonance"
                       change="+3.4%"
                       changeType="positive"
                     />
                   </GridCol>
+
                   <GridCol span={6}>
                     <MetricNumber
                       value="0.12"
-                      label="Adverse Sentiment Index"
+                      label="Adverse Sentiment"
                       change="-18.2%"
                       changeType="positive"
                     />
@@ -354,10 +416,13 @@ export default function DesignSystemPage() {
                 </Grid>
               </div>
 
-              <div className="border-t border-obsidian-700/40 pt-4">
-                <Quote author="Advisory Director" role="Strategic Communications Division">
-                  In high-stakes corporate warfare, the narrative is not merely observed—it is
-                  shaped before the first public headline is set to print.
+              <div className="border-t border-[#d8d1c5] pt-4">
+                <Quote
+                  author="Advisory Director"
+                  role="Strategic Communications"
+                >
+                  In high-stakes environments, narrative is shaped before
+                  headlines set.
                 </Quote>
               </div>
             </div>
@@ -366,45 +431,50 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 3. BUTTONS & TRIGGERS */}
+        {/* 3. BUTTONS */}
         <Section id="buttons" padding="normal" tone="obsidian">
           <SectionHeader
             index="03"
-            eyebrow="Interactive Elements"
-            title="Buttons & Magnetic Physics"
-            lead="Multi-tier executive buttons with loading states, subtle gold metallic glows, and magnetic cursor attraction."
+            eyebrow="Interaction"
+            title="Buttons & Magnetic Motion"
+            lead="Action variants, loading states, and magnetic interaction."
           />
 
           <div className="space-y-8">
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Standard Button Variants
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Button Variants
               </span>
+
               <div className="flex flex-wrap items-center gap-4">
-                <Button variant="primary">Primary Action</Button>
-                <Button variant="secondary">Secondary Action</Button>
-                <Button variant="outline">Outline Hairline</Button>
-                <Button variant="gold">Strategic Gold</Button>
-                <Button variant="luxury">Luxury Executive</Button>
-                <Button variant="ghost">Ghost Trigger</Button>
-                <Button variant="destructive">Crisis Abort</Button>
+                <Button variant="primary">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="gold">Strategic</Button>
+                <Button variant="luxury">Executive</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="destructive">Abort</Button>
+
                 <Button variant="gold" isLoading>
                   Submitting
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Magnetic Buttons (Move Cursor Nearby)
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Magnetic Buttons
               </span>
+
               <div className="flex flex-wrap items-center gap-6">
                 <MagneticButton strength={0.4} variant="gold">
-                  Magnetic Gold Action
+                  Magnetic Strategic
                 </MagneticButton>
+
                 <MagneticButton strength={0.3} variant="luxury">
-                  Magnetic Luxury CTA
+                  Magnetic Executive
                 </MagneticButton>
+
                 <MagneticButton strength={0.25} variant="outline">
                   Magnetic Outline
                 </MagneticButton>
@@ -415,97 +485,103 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 4. CARDS & DOSSIERS */}
+        {/* 4. CARDS */}
         <Section id="cards" padding="normal" tone="carbon">
           <SectionHeader
             index="04"
-            eyebrow="Spatial Surfaces"
-            title="Cards, Dossiers & Glass Surfaces"
-            lead="Optical glass blur, cursor-tracking radial highlights, and classified advisory dossier layouts."
+            eyebrow="Surfaces"
+            title="Cards & Dossiers"
+            lead="Cards, glass surfaces, and dossier layouts."
           />
 
           <Grid cols={3} gap="md">
-            {/* Standard Card */}
             <Card variant="default">
               <CardHeader>
-                <div className="font-mono text-[10px] uppercase tracking-widest text-gold-400">
-                  Standard Surface
+                <div className="font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
+                  Standard
                 </div>
+
                 <CardTitle>Perception Intelligence</CardTitle>
+
                 <CardDescription>
-                  Continuous diagnostic monitoring of executive reputation vectors.
+                  Continuous reputation monitoring.
                 </CardDescription>
               </CardHeader>
+
               <CardContent>
                 <Text variant="small">
-                  Identifies narrative shifts across 10,000+ global financial and regulatory feeds.
+                  Tracks narrative shifts across financial and regulatory
+                  feeds.
                 </Text>
               </CardContent>
-              <CardFooter className="justify-between font-mono text-xs text-paper-400">
-                <span>Updated Daily</span>
-                <span className="text-gold-400">Active Monitor →</span>
+
+              <CardFooter className="justify-between font-mono text-xs text-[#777970]">
+                <span>Daily</span>
+                <span className="text-[#a67c45]">Active →</span>
               </CardFooter>
             </Card>
 
-            {/* GlassCard with interactive cursor illumination */}
             <GlassCard interactive glow>
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-gold-400">
-                Optical Glass Card
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
+                Glass Surface
               </div>
-              <h3 className="mb-2 font-serif text-2xl font-normal text-paper-100">
-                Interactive Specular Rim
+
+              <h3 className="mb-2 font-serif text-2xl font-normal text-[#1d2529]">
+                Interactive Surface
               </h3>
-              <p className="mb-6 font-sans text-sm font-light leading-relaxed text-paper-300">
-                Hover over this surface. A subtle radial light source tracks your cursor across the
-                glass plane.
+
+              <p className="mb-6 font-sans text-sm font-light leading-relaxed text-[#626760]">
+                Cursor-reactive surface with subtle light response.
               </p>
-              <div className="flex items-center gap-2 font-mono text-xs text-gold-300">
+
+              <div className="flex items-center gap-2 font-mono text-xs text-[#a67c45]">
                 <ShieldCheck className="h-4 w-4" />
-                <span>Protected Encryption</span>
+                <span>Protected</span>
               </div>
             </GlassCard>
 
-            {/* DossierCard */}
             <DossierCard
               index="04"
               classification="STRICTLY CONFIDENTIAL"
               category="Cross-Border M&A"
-              title="Sovereign Fund Hostile Takeover Defense"
-              excerpt="Strategic containment of public sentiment during an unsolicited $12B cross-border acquisition."
+              title="Hostile Takeover Defense"
+              excerpt="Strategic containment during a cross-border acquisition."
               date="SEPTEMBER 2026"
             />
           </Grid>
 
-          {/* Metric Cards Row */}
           <div className="mt-8">
             <Grid cols={4} gap="md">
               <MetricCard
-                label="Global Footprint"
+                label="Global Reach"
                 value="28+"
                 change="+4"
                 trend="up"
-                description="Jurisdictions with active advisory presence"
+                description="Active jurisdictions"
               />
+
               <MetricCard
                 label="Crisis Containment"
                 value="99.2%"
                 change="+0.8%"
                 trend="up"
-                description="Favorable outcome across 150+ major incidents"
+                description="Favorable outcomes"
               />
+
               <MetricCard
                 label="Advisory Retainers"
                 value="$4.8B"
                 change="Sustained"
                 trend="neutral"
-                description="Client asset volume safeguarded"
+                description="Assets safeguarded"
               />
+
               <MetricCard
-                label="Hostile Narrative Mitigation"
+                label="Narrative Mitigation"
                 value="-84%"
                 change="-84%"
                 trend="down"
-                description="Reduction in adverse press velocity"
+                description="Lower adverse velocity"
               />
             </Grid>
           </div>
@@ -513,24 +589,29 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 5. FORM INPUTS & DATA CAPTURE */}
+        {/* 5. INPUTS */}
         <Section id="inputs" padding="normal" tone="obsidian">
           <SectionHeader
             index="05"
             eyebrow="Data Capture"
-            title="Inputs, Fields & Editorial Forms"
-            lead="Accessible inputs with high-contrast obsidian backgrounds, micro-borders, and gold focus states."
+            title="Inputs & Forms"
+            lead="Accessible fields with restrained borders and clear focus states."
           />
 
-          <div className="mx-auto max-w-2xl space-y-6 rounded-xs border border-obsidian-700/80 bg-obsidian-900 p-8">
+          <div className="mx-auto max-w-2xl space-y-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-8">
             <Field>
-              <FieldLabel required>Executive Contact Name</FieldLabel>
-              <Input placeholder="Lord / Ambassador / Dr. / Ms." />
-              <FieldDescription>Full formal address for confidential engagement.</FieldDescription>
+              <FieldLabel required>Contact Name</FieldLabel>
+
+              <Input placeholder="Name" />
+
+              <FieldDescription>
+                Name for confidential engagement.
+              </FieldDescription>
             </Field>
 
             <Field>
-              <FieldLabel required>Institutional Email Address</FieldLabel>
+              <FieldLabel required>Institutional Email</FieldLabel>
+
               <Input
                 type="email"
                 placeholder="c-suite@organization.com"
@@ -538,14 +619,15 @@ export default function DesignSystemPage() {
               />
             </Field>
 
-            <Field error="Please enter at least 20 characters detailing the strategic mandate.">
-              <FieldLabel required>Advisory Mandate Brief</FieldLabel>
-              <Textarea placeholder="Outline the crisis, transaction, or reputation challenge requiring counsel..." />
+            <Field error="Please provide at least 20 characters.">
+              <FieldLabel required>Mandate Brief</FieldLabel>
+
+              <Textarea placeholder="Outline the mandate requiring counsel..." />
             </Field>
 
             <div className="pt-2">
               <Button variant="gold" size="lg" className="w-full">
-                Transmit Confidential Briefing
+                Submit Briefing
               </Button>
             </div>
           </div>
@@ -553,223 +635,274 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 6. OVERLAYS & DIALOGS */}
+        {/* 6. OVERLAYS */}
         <Section id="overlays" padding="normal" tone="carbon">
           <SectionHeader
             index="06"
-            eyebrow="Layering & Overlays"
+            eyebrow="Overlays"
             title="Modals, Drawers & Tooltips"
-            lead="Fully accessible dialogs and slide-over sheets styled in deep obsidian with backdrop blur."
+            lead="Accessible dialogs, drawers, and tooltips."
           />
 
-          <div className="flex flex-wrap items-center justify-center gap-6 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-12">
-            {/* Modal Demo */}
+          <div className="flex flex-wrap items-center justify-center gap-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-12">
             <Modal open={modalOpen} onOpenChange={setModalOpen}>
               <ModalTrigger asChild>
-                <Button variant="luxury">Trigger Advisory Modal</Button>
+                <Button variant="luxury">Open Modal</Button>
               </ModalTrigger>
+
               <ModalContent size="md">
                 <ModalHeader>
-                  <ModalTitle>Confidential Advisory Engagement</ModalTitle>
-                  <ModalDescription>PROTOCOL ID: 0x992B // JURISDICTION: GLOBAL</ModalDescription>
+                  <ModalTitle>Confidential Engagement</ModalTitle>
+
+                  <ModalDescription>
+                    PROTOCOL // GLOBAL
+                  </ModalDescription>
                 </ModalHeader>
-                <div className="space-y-4 py-4 text-sm font-light text-paper-300">
+
+                <div className="space-y-4 py-4 text-sm font-light text-[#626760]">
                   <p>
-                    All transmissions through the SAMVAD intelligence layer are encrypted using
-                    end-to-end cryptographic keys and logged in the immutable audit registry.
+                    Transmissions are encrypted and logged in the audit
+                    registry.
                   </p>
+
                   <Field>
-                    <FieldLabel>Security Clearance Code</FieldLabel>
-                    <Input placeholder="Enter 6-digit cryptographic PIN" />
+                    <FieldLabel>Clearance Code</FieldLabel>
+
+                    <Input placeholder="Enter 6-digit PIN" />
                   </Field>
                 </div>
+
                 <ModalFooter>
                   <ModalClose asChild>
                     <Button variant="ghost">Abort</Button>
                   </ModalClose>
-                  <Button variant="gold" onClick={() => setModalOpen(false)}>
-                    Confirm Protocol
+
+                  <Button
+                    variant="gold"
+                    onClick={() => setModalOpen(false)}
+                  >
+                    Confirm
                   </Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>
 
-            {/* Drawer Demo */}
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
-                <Button variant="outline">Trigger Slide-In Drawer</Button>
+                <Button variant="outline">Open Drawer</Button>
               </DrawerTrigger>
+
               <DrawerContent side="right" size="md">
                 <DrawerHeader>
-                  <DrawerTitle>Perception Intelligence Filters</DrawerTitle>
-                  <DrawerDescription>FILTER MATRIX // REALTIME FEED</DrawerDescription>
+                  <DrawerTitle>Intelligence Filters</DrawerTitle>
+
+                  <DrawerDescription>
+                    FILTER MATRIX
+                  </DrawerDescription>
                 </DrawerHeader>
-                <div className="space-y-6 text-sm text-paper-300">
-                  <p>
-                    Select geographic regions and sentiment thresholds to focus live intelligence
-                    streams.
-                  </p>
+
+                <div className="space-y-6 text-sm text-[#626760]">
+                  <p>Select regions and sentiment thresholds.</p>
+
                   <div className="space-y-3">
-                    <Badge variant="gold">Asia-Pacific (APAC)</Badge>
-                    <Badge variant="outline">North America (NA)</Badge>
-                    <Badge variant="outline">European Union (EU)</Badge>
+                    <Badge variant="gold">Asia-Pacific</Badge>
+                    <Badge variant="outline">North America</Badge>
+                    <Badge variant="outline">European Union</Badge>
                   </div>
                 </div>
+
                 <DrawerFooter>
                   <DrawerClose asChild>
-                    <Button variant="outline">Close Drawer</Button>
+                    <Button variant="outline">Close</Button>
                   </DrawerClose>
-                  <Button variant="gold">Apply Parameters</Button>
+
+                  <Button variant="gold">Apply</Button>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
 
-            {/* Tooltip Demo */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="secondary" size="icon">
-                  <SlidersHorizontal className="h-4 w-4 text-gold-400" />
+                  <SlidersHorizontal className="h-4 w-4 text-[#a67c45]" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="top">Configure Diagnostic Telemetry</TooltipContent>
+
+              <TooltipContent side="top">
+                Configure Telemetry
+              </TooltipContent>
             </Tooltip>
           </div>
         </Section>
 
         <SectionDivider />
 
-        {/* 7. DATA DISPLAY & DISCLOSURES */}
+        {/* 7. DATA DISPLAY */}
         <Section padding="normal" tone="obsidian">
           <SectionHeader
             index="07"
             eyebrow="Data Display"
-            title="Badges, Tabs, Accordions & Marquee"
-            lead="Multi-tier status indicators, smooth disclosures, and continuous marquee tickers."
+            title="Badges, Tabs & Disclosures"
+            lead="Status indicators, disclosures, and editorial tickers."
           />
 
           <div className="space-y-12">
             {/* Badges */}
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Severity & Strategic Status Badges
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Status Badges
               </span>
+
               <div className="flex flex-wrap items-center gap-3">
-                <Badge variant="default">Default Tag</Badge>
-                <Badge variant="secondary">Secondary Tag</Badge>
+                <Badge variant="default">Default</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+
                 <Badge variant="gold" dot>
-                  Gold Strategic
+                  Strategic
                 </Badge>
+
                 <Badge variant="positive" dot>
-                  Favorable Coverage
+                  Favorable
                 </Badge>
+
                 <Badge variant="neutral" dot>
-                  Equilibrium
+                  Neutral
                 </Badge>
+
                 <Badge variant="alert" dot>
-                  Emerging Divergence
+                  Divergence
                 </Badge>
+
                 <Badge variant="crisis" dot>
-                  Hostile Narrative
+                  Hostile
                 </Badge>
               </div>
             </div>
 
             {/* Tabs */}
-            <div className="space-y-6 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Underline & Segmented Tabs
+            <div className="space-y-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Tabs
               </span>
 
               <Tabs defaultValue="overview">
                 <TabsList variant="underline">
-                  <TabsTrigger value="overview">Executive Overview</TabsTrigger>
-                  <TabsTrigger value="intelligence">Perception Feed</TabsTrigger>
-                  <TabsTrigger value="audit">Immutable Audit</TabsTrigger>
+                  <TabsTrigger value="overview">
+                    Overview
+                  </TabsTrigger>
+
+                  <TabsTrigger value="intelligence">
+                    Perception Feed
+                  </TabsTrigger>
+
+                  <TabsTrigger value="audit">
+                    Audit
+                  </TabsTrigger>
                 </TabsList>
+
                 <TabsContent value="overview">
-                  <p className="max-w-2xl font-sans leading-relaxed text-paper-300">
-                    Executive overview synthesizes macro-reputational indices across corporate
-                    boards, analyst sentiment, and institutional shareholder commentary.
+                  <p className="max-w-2xl font-sans leading-relaxed text-[#626760]">
+                    Overview of reputation, analyst sentiment, and shareholder
+                    signals.
                   </p>
                 </TabsContent>
+
                 <TabsContent value="intelligence">
-                  <p className="max-w-2xl font-sans leading-relaxed text-paper-300">
-                    Perception Feed scans 250,000+ digital publications per hour, calculating
-                    narrative velocity and sentiment shift probabilities in real time.
+                  <p className="max-w-2xl font-sans leading-relaxed text-[#626760]">
+                    Real-time narrative velocity and sentiment signals.
                   </p>
                 </TabsContent>
+
                 <TabsContent value="audit">
-                  <p className="max-w-2xl font-sans leading-relaxed text-paper-300">
-                    Cryptographically sealed audit logs recording every advisory consultation, press
-                    briefing, and client mandate adjustment.
+                  <p className="max-w-2xl font-sans leading-relaxed text-[#626760]">
+                    Sealed logs of consultations, briefings, and mandate
+                    changes.
                   </p>
                 </TabsContent>
               </Tabs>
             </div>
 
             {/* Accordion */}
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Editorial Accordion Disclosures
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                FAQ Disclosures
               </span>
+
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger index={1}>
-                    How does SAMVAD manage hostile narrative escalation?
+                    How does SAMVAD manage narrative escalation?
                   </AccordionTrigger>
+
                   <AccordionContent>
-                    We deploy immediate multi-channel containment: counter-briefings to primary
-                    financial journalists, stakeholder reassurance protocols, and search-engine
-                    equilibrium balancing to ensure corporate facts preempt speculative narratives.
+                    We use coordinated briefings, stakeholder reassurance,
+                    and search visibility controls.
                   </AccordionContent>
                 </AccordionItem>
+
                 <AccordionItem value="item-2">
                   <AccordionTrigger index={2}>
-                    What distinguishes SAMVAD from conventional PR agencies?
+                    What distinguishes SAMVAD from conventional PR?
                   </AccordionTrigger>
+
                   <AccordionContent>
-                    Conventional PR issues reactive press statements. SAMVAD operates as an
-                    intelligence-first strategic advisory firm—using predictive sentiment
-                    algorithms, sovereign diplomacy methodology, and discreet back-channel advisory
-                    to neutralize risks before they surface.
+                    SAMVAD combines intelligence, strategic communications,
+                    and discreet senior advisory.
                   </AccordionContent>
                 </AccordionItem>
+
                 <AccordionItem value="item-3">
                   <AccordionTrigger index={3}>
-                    How are client engagements kept strictly confidential?
+                    How are engagements kept confidential?
                   </AccordionTrigger>
+
                   <AccordionContent>
-                    All advisory data is isolated within cryptographically fortified enclaves with
-                    strict role-based access control, zero third-party telemetry, and contractual
-                    confidentiality covenants governed by Swiss and Delaware jurisdictions.
+                    Access is restricted through role-based controls,
+                    isolated data, and confidentiality covenants.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
 
-            {/* Marquee Ticker */}
+            {/* Marquee */}
             <div className="space-y-4">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Infinite Editorial Marquee Ticker
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Editorial Marquee
               </span>
-              <div className="border-y border-obsidian-700/80 bg-obsidian-900/60 py-4">
+
+              <div className="border-y border-[#d0c9bd] bg-[#ebe7de] py-4">
                 <Marquee speed="normal">
-                  <span className="mx-6 font-serif text-lg text-paper-300">
-                    M&A Communications Advisory
+                  <span className="mx-6 font-serif text-lg text-[#626760]">
+                    M&A Communications
                   </span>
-                  <span className="font-mono text-xs text-gold-500">◆</span>
-                  <span className="mx-6 font-serif text-lg text-paper-300">
-                    Crisis & Litigation Containment
+
+                  <span className="font-mono text-xs text-[#a67c45]">
+                    ◆
                   </span>
-                  <span className="font-mono text-xs text-gold-500">◆</span>
-                  <span className="mx-6 font-serif text-lg text-paper-300">
-                    Sovereign & Geopolitical Intelligence
+
+                  <span className="mx-6 font-serif text-lg text-[#626760]">
+                    Crisis & Litigation
                   </span>
-                  <span className="font-mono text-xs text-gold-500">◆</span>
-                  <span className="mx-6 font-serif text-lg text-paper-300">
-                    Executive Reputation Architecture
+
+                  <span className="font-mono text-xs text-[#a67c45]">
+                    ◆
                   </span>
-                  <span className="font-mono text-xs text-gold-500">◆</span>
+
+                  <span className="mx-6 font-serif text-lg text-[#626760]">
+                    Geopolitical Intelligence
+                  </span>
+
+                  <span className="font-mono text-xs text-[#a67c45]">
+                    ◆
+                  </span>
+
+                  <span className="mx-6 font-serif text-lg text-[#626760]">
+                    Executive Reputation
+                  </span>
+
+                  <span className="font-mono text-xs text-[#a67c45]">
+                    ◆
+                  </span>
                 </Marquee>
               </div>
             </div>
@@ -778,20 +911,21 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 8. MEDIA & REVEAL */}
+        {/* 8. MEDIA */}
         <Section padding="normal" tone="carbon">
           <SectionHeader
             index="08"
-            eyebrow="Media Choreography"
-            title="Image Reveals & Interactive Hover Preview"
-            lead="Curtain clip-path image unveils and cursor-following interactive media previews."
+            eyebrow="Media"
+            title="Image Reveals & Hover Preview"
+            lead="Image reveals and cursor-reactive previews."
           />
 
           <Grid cols={2} gap="lg">
             <div>
-              <span className="mb-3 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Curtain Image Reveal on Viewport
+              <span className="mb-3 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Image Reveal
               </span>
+
               <ImageReveal
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
                 alt="Architectural monolithic headquarters"
@@ -801,16 +935,17 @@ export default function DesignSystemPage() {
             </div>
 
             <div className="flex flex-col justify-center space-y-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Hover Image Preview (Hover Over Links)
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Hover Preview
               </span>
+
               <div className="space-y-4">
                 <HoverImage
                   imageSrc="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80"
                   imageAlt="Boardroom Advisory"
                 >
-                  <div className="flex items-center justify-between border-b border-obsidian-700/60 pb-3 font-serif text-xl text-paper-100 transition-colors hover:text-gold-300 sm:text-2xl">
-                    <span>01 / Executive Counsel & Board Strategy</span>
+                  <div className="flex items-center justify-between border-b border-[#d8d1c5] pb-3 font-serif text-xl text-[#1d2529] transition-colors hover:text-[#8d683d] sm:text-2xl">
+                    <span>01 / Executive Counsel</span>
                     <ArrowRight className="h-4 w-4" />
                   </div>
                 </HoverImage>
@@ -819,8 +954,8 @@ export default function DesignSystemPage() {
                   imageSrc="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80"
                   imageAlt="Global Geopolitical Data"
                 >
-                  <div className="flex items-center justify-between border-b border-obsidian-700/60 pb-3 font-serif text-xl text-paper-100 transition-colors hover:text-gold-300 sm:text-2xl">
-                    <span>02 / Geopolitical Intelligence Operations</span>
+                  <div className="flex items-center justify-between border-b border-[#d8d1c5] pb-3 font-serif text-xl text-[#1d2529] transition-colors hover:text-[#8d683d] sm:text-2xl">
+                    <span>02 / Geopolitical Intelligence</span>
                     <ArrowRight className="h-4 w-4" />
                   </div>
                 </HoverImage>
@@ -829,8 +964,8 @@ export default function DesignSystemPage() {
                   imageSrc="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
                   imageAlt="Crisis Communications War Room"
                 >
-                  <div className="flex items-center justify-between border-b border-obsidian-700/60 pb-3 font-serif text-xl text-paper-100 transition-colors hover:text-gold-300 sm:text-2xl">
-                    <span>03 / Rapid Litigation Response Enclave</span>
+                  <div className="flex items-center justify-between border-b border-[#d8d1c5] pb-3 font-serif text-xl text-[#1d2529] transition-colors hover:text-[#8d683d] sm:text-2xl">
+                    <span>03 / Crisis Response</span>
                     <ArrowRight className="h-4 w-4" />
                   </div>
                 </HoverImage>
@@ -841,61 +976,70 @@ export default function DesignSystemPage() {
 
         <SectionDivider />
 
-        {/* 9. FEEDBACK & DIAGNOSTICS */}
+        {/* 9. FEEDBACK */}
         <Section id="feedback" padding="normal" tone="obsidian">
           <SectionHeader
             index="09"
-            eyebrow="Feedback States"
-            title="Loading, Skeletons, Empty & Error States"
-            lead="Diagnostic precision when operations are pending, unpopulated, or encounter exceptions."
+            eyebrow="Feedback"
+            title="Loading, Empty & Error States"
+            lead="Clear states for loading, empty, and error conditions."
           />
 
           <Grid cols={3} gap="lg">
             {/* Loaders */}
-            <div className="space-y-6 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Active Loaders & Shimmer
+            <div className="space-y-6 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Loaders
               </span>
+
               <div className="flex items-center justify-center gap-6 py-4">
                 <Spinner size="sm" />
                 <Spinner size="md" />
                 <Spinner size="lg" />
               </div>
+
               <ShimmerBar />
-              <OrbitLoader label="Synthesizing Perception Stream..." />
+
+              <OrbitLoader label="Synthesizing..." />
             </div>
 
             {/* Skeletons */}
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Card, Text & Metric Skeletons
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Skeletons
               </span>
+
               <CardSkeleton />
+
               <div className="pt-2">
                 <TextSkeleton lines={2} />
               </div>
+
               <div className="pt-2">
                 <MetricSkeleton />
               </div>
+
               <Skeleton className="h-8 w-full" />
             </div>
 
             {/* Empty & Error */}
-            <div className="space-y-4 rounded-xs border border-obsidian-700/60 bg-obsidian-900 p-6">
-              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-paper-400">
-                Error & Empty Diagnostic
+            <div className="space-y-4 rounded-xs border border-[#d0c9bd] bg-[#ebe7de] p-6">
+              <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-[#777970]">
+                Error & Empty
               </span>
+
               <ErrorCard
-                title="Telemetry Link Timeout"
-                message="WebSocket connection to Asia-Pacific perception gateway failed to respond within 3000ms."
+                title="Telemetry Timeout"
+                message="Perception gateway did not respond within 3000ms."
               />
+
               <EmptyState
                 code="NO_DOSSIERS_FOUND"
-                title="No Dossiers Found"
-                description="Adjust classification filters to locate relevant records."
+                title="No Dossiers"
+                description="Adjust filters to find records."
                 action={
                   <Button variant="outline" size="sm">
-                    Reset Filter Parameters
+                    Reset Filters
                   </Button>
                 }
               />
@@ -905,20 +1049,21 @@ export default function DesignSystemPage() {
           <div className="mt-8">
             <ErrorState
               code="ERR_CIRCUIT_BREAKER_TRIGGERED"
-              title="Crisis Enclave Automated Isolation"
-              message="The perception advisory gateway detected an anomalous surge in adversarial automated queries. Tactical rate-limiting engaged."
+              title="Automated Isolation"
+              message="Anomalous query activity detected. Rate limiting engaged."
               onRetry={() => alert("Diagnostic retry initiated")}
-              retryText="Re-authenticate Session"
+              retryText="Retry Session"
             />
           </div>
         </Section>
 
         {/* Footer */}
-        <footer className="border-t border-obsidian-700/60 bg-obsidian-950 py-12 text-center font-mono text-xs text-paper-500">
+        <footer className="border-t border-[#d8d1c5] bg-[#ebe7de] py-12 text-center font-mono text-xs text-[#aaa398]">
           <Container size="xl">
-            <p>SAMVAD PERCEPTION ADVISORY PRIVATE LIMITED — DESIGN SYSTEM v1.0</p>
-            <p className="mt-1 text-paper-400">
-              STRICTLY PROPRIETARY & CONFIDENTIAL // ALL RIGHTS RESERVED
+            <p>SAMVAD PERCEPTION ADVISORY — DESIGN SYSTEM</p>
+
+            <p className="mt-1 text-[#777970]">
+              PROPRIETARY &amp; CONFIDENTIAL
             </p>
           </Container>
         </footer>

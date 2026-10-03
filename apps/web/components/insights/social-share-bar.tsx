@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+
 import { Link2, Check, Share2, Mail } from "lucide-react";
 
 interface SocialShareBarProps {
@@ -9,7 +10,11 @@ interface SocialShareBarProps {
   className?: string;
 }
 
-export function SocialShareBar({ title, url, className = "" }: SocialShareBarProps) {
+export function SocialShareBar({
+  title,
+  url,
+  className = "",
+}: SocialShareBarProps) {
   const [copied, setCopied] = React.useState(false);
   const [currentUrl, setCurrentUrl] = React.useState(url || "");
 
@@ -36,20 +41,37 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
     const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
       currentUrl
     )}`;
-    window.open(shareUrl, "_blank", "noopener,noreferrer,width=600,height=600");
+
+    window.open(
+      shareUrl,
+      "_blank",
+      "noopener,noreferrer,width=600,height=600"
+    );
   };
 
   const shareTwitter = () => {
     const text = `Read "${title}" by @SAMVAD_Advisory:`;
+
     const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       text
     )}&url=${encodeURIComponent(currentUrl)}`;
-    window.open(shareUrl, "_blank", "noopener,noreferrer,width=600,height=450");
+
+    window.open(
+      shareUrl,
+      "_blank",
+      "noopener,noreferrer,width=600,height=450"
+    );
   };
 
   const shareEmail = () => {
     const subject = `Executive Intelligence: ${title}`;
-    const body = `I recommend reviewing this strategic insight published by SAMVAD Perception Advisory:\n\n${title}\n\nRead here: ${currentUrl}`;
+
+    const body = `I recommend reviewing this strategic insight published by SAMVAD Perception Advisory:
+
+${title}
+
+Read here: ${currentUrl}`;
+
     window.location.href = `mailto:?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -57,12 +79,12 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
 
   return (
     <div
-      className={`flex items-center gap-2 border-y border-obsidian-800 py-3 font-mono text-xs text-obsidian-400 ${className}`}
+      className={`flex items-center gap-2 border-y border-[#d8d1c5] py-3 font-mono text-xs text-[#626760] ${className}`}
       aria-label="Share article"
     >
-      <span className="flex items-center gap-1.5 uppercase tracking-widest text-[10px] text-sand-400 mr-2">
-        <Share2 className="h-3 w-3 text-gold-400" />
-        <span>Share Analysis</span>
+      <span className="mr-2 flex items-center gap-1.5 uppercase tracking-widest text-[10px] text-[#626760]">
+        <Share2 className="h-3 w-3 text-[#a67c45]" />
+        <span>Share</span>
       </span>
 
       {/* Copy Link Button */}
@@ -70,20 +92,20 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
         type="button"
         onClick={handleCopyLink}
         title="Copy article link"
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xs border transition-all ${
+        className={`flex items-center gap-1.5 rounded-xs border px-3 py-1.5 transition-all ${
           copied
-            ? "border-gold-500 bg-gold-500/10 text-gold-300"
-            : "border-obsidian-750 bg-obsidian-900/60 hover:border-gold-500/40 hover:text-sand-200"
+            ? "border-[#a67c45] bg-[#a67c45]/10 text-[#8d683d]"
+            : "border-[#c9c2b6] bg-[#ebe7de] hover:border-[#a67c45]/50 hover:text-[#1d2529]"
         }`}
       >
         {copied ? (
           <>
-            <Check className="h-3 w-3 text-gold-400" />
+            <Check className="h-3 w-3 text-[#a67c45]" />
             <span className="text-[10px]">Copied</span>
           </>
         ) : (
           <>
-            <Link2 className="h-3 w-3 text-gold-400" />
+            <Link2 className="h-3 w-3 text-[#a67c45]" />
             <span className="text-[10px]">Copy Link</span>
           </>
         )}
@@ -94,7 +116,7 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
         type="button"
         onClick={shareLinkedIn}
         title="Share to LinkedIn"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xs border border-obsidian-750 bg-obsidian-900/60 hover:border-gold-500/40 hover:text-sand-200 transition-all text-[10px]"
+        className="flex items-center gap-1.5 rounded-xs border border-[#c9c2b6] bg-[#ebe7de] px-3 py-1.5 text-[10px] transition-all hover:border-[#a67c45]/50 hover:text-[#1d2529]"
       >
         <span>LinkedIn</span>
       </button>
@@ -104,7 +126,7 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
         type="button"
         onClick={shareTwitter}
         title="Share to X"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xs border border-obsidian-750 bg-obsidian-900/60 hover:border-gold-500/40 hover:text-sand-200 transition-all text-[10px]"
+        className="flex items-center gap-1.5 rounded-xs border border-[#c9c2b6] bg-[#ebe7de] px-3 py-1.5 text-[10px] transition-all hover:border-[#a67c45]/50 hover:text-[#1d2529]"
       >
         <span>X / Twitter</span>
       </button>
@@ -114,10 +136,10 @@ export function SocialShareBar({ title, url, className = "" }: SocialShareBarPro
         type="button"
         onClick={shareEmail}
         title="Share via confidential email"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xs border border-obsidian-750 bg-obsidian-900/60 hover:border-gold-500/40 hover:text-sand-200 transition-all text-[10px]"
+        className="flex items-center gap-1.5 rounded-xs border border-[#c9c2b6] bg-[#ebe7de] px-3 py-1.5 text-[10px] transition-all hover:border-[#a67c45]/50 hover:text-[#1d2529]"
       >
-        <Mail className="h-3 w-3 text-gold-400" />
-        <span>Email Dispatch</span>
+        <Mail className="h-3 w-3 text-[#a67c45]" />
+        <span>Email</span>
       </button>
     </div>
   );

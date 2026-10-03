@@ -1,18 +1,24 @@
 import * as React from "react";
+
 import type { Metadata } from "next";
+
 import Link from "next/link";
+
 import { Container, Badge } from "@samvad/ui";
+
 import { ObjectStorageService } from "@/lib/media/storage-service";
+
 import { MediaGalleryView } from "@/components/media/media-gallery-view";
+
 import {
   ChevronRight,
   Terminal,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Media Asset Management CMS | SAMVAD Admin",
+  title: "Media CMS | SAMVAD Admin",
   description:
-    "Administrative media asset management, object-storage ingestion, and CDN distribution control.",
+    "Administrative media asset and storage management.",
   robots: {
     index: false,
     follow: false,
@@ -21,57 +27,73 @@ export const metadata: Metadata = {
 
 export default function AdminMediaCMSPage() {
   const assets = ObjectStorageService.listAssets();
+
   const telemetry = ObjectStorageService.getStorageTelemetry();
 
   return (
-    <div className="flex w-full flex-col overflow-hidden bg-obsidian-950 text-sand-100 min-h-screen">
+    <div className="flex min-h-screen w-full flex-col overflow-hidden bg-[#f3f0e8] text-[#1d2529]">
       {/* 1. ADMIN HEADER */}
-      <section className="relative overflow-hidden pt-28 pb-12 lg:pt-32 lg:pb-16 border-b border-obsidian-800 bg-obsidian-900/60">
-        <Container size="xl" className="space-y-6">
+      <section className="relative overflow-hidden border-b border-[#d8d1c5] bg-[#ebe7de] pb-12 pt-28 lg:pb-16 lg:pt-32">
+        <div className="pointer-events-none absolute -top-32 right-1/4 h-[400px] w-[600px] rounded-full bg-[#a67c45]/5 blur-[140px]" />
+
+        <Container size="xl" className="relative z-10 space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <nav
               aria-label="Breadcrumb"
-              className="flex items-center gap-2 font-mono text-[11px] text-obsidian-400"
+              className="flex items-center gap-2 font-mono text-[11px] text-[#777970]"
             >
-              <Link href="/" className="hover:text-sand-300">
+              <Link
+                href="/"
+                className="transition-colors hover:text-[#3f4847]"
+              >
                 Home
               </Link>
+
               <ChevronRight className="h-3 w-3" />
-              <span className="text-sand-400">Admin</span>
+
+              <span>Admin</span>
+
               <ChevronRight className="h-3 w-3" />
-              <span className="text-gold-400">Media Management CMS</span>
+
+              <span className="text-[#a67c45]">
+                Media CMS
+              </span>
             </nav>
 
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="border-gold-500/40 bg-gold-500/10 font-mono text-[9px] uppercase tracking-wider text-gold-300"
+                className="border-[#a67c45]/40 bg-[#a67c45]/10 font-mono text-[9px] uppercase tracking-wider text-[#8d683d]"
               >
-                RBAC Level: Communications Directorate
+                Communications Directorate
               </Badge>
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div className="space-y-2 max-w-3xl">
-              <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-gold-400">
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+            <div className="max-w-3xl space-y-2">
+              <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#a67c45]">
                 <Terminal className="h-3.5 w-3.5" />
-                <span>Object Storage Admin Node</span>
+                <span>Storage Admin</span>
               </div>
-              <h1 className="font-serif text-3xl sm:text-4xl font-light text-sand-100">
-                Media Asset Management CMS
+
+              <h1 className="font-serif text-3xl font-light text-[#1d2529] sm:text-4xl">
+                Media Asset Management
               </h1>
-              <p className="text-xs sm:text-sm text-sand-400 font-light leading-relaxed">
-                Ingest high-resolution imagery, broadcast footage, and accredited research dossiers. Manage CDN delivery URLs, accessibility alt text, and enforce strict file size limits.
+
+              <p className="text-xs font-light leading-relaxed text-[#626760] sm:text-sm">
+                Manage imagery, research assets, CDN delivery, metadata,
+                and file controls.
               </p>
             </div>
 
             <div className="flex items-center gap-3">
               <Link
                 href="/media"
-                className="font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-xs border border-obsidian-750 bg-obsidian-950 text-sand-300 hover:text-gold-300 hover:border-gold-500/40 transition-all flex items-center gap-1.5"
+                className="flex items-center gap-1.5 rounded-xs border border-[#c9c2b6] bg-[#f3f0e8] px-4 py-2 font-mono text-xs uppercase tracking-wider text-[#626760] transition-all hover:border-[#a67c45]/40 hover:text-[#8d683d]"
               >
-                <span>View Public Gallery</span>
+                <span>Public Gallery</span>
+
                 <ChevronRight className="h-3 w-3" />
               </Link>
             </div>
@@ -79,8 +101,8 @@ export default function AdminMediaCMSPage() {
         </Container>
       </section>
 
-      {/* 2. MEDIA MANAGEMENT & GALLERY COMPONENT */}
-      <section className="py-12 lg:py-16 flex-1">
+      {/* 2. MEDIA MANAGEMENT & GALLERY */}
+      <section className="flex-1 py-12 lg:py-16">
         <Container size="xl">
           <MediaGalleryView
             initialAssets={assets}

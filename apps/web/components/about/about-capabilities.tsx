@@ -1,8 +1,11 @@
 "use client";
 
 import * as React from "react";
+
 import Link from "next/link";
+
 import { Container, Button } from "@samvad/ui";
+
 import {
   Layers,
   ArrowRight,
@@ -20,69 +23,89 @@ export function AboutCapabilities() {
     {
       icon: Cpu,
       title: "Perception Intelligence & Sentiment Topology",
-      challenge: "Adversarial disinformation emerging unseen in opaque digital corridors.",
-      intervention: "Continuous algorithmic graph listening, early signal detection, and threat topology mapping 60–90 days ahead.",
-      outcome: "Hazards neutralized before public escalation or regulatory trigger.",
+      challenge: "Adversarial narratives emerging across opaque digital corridors.",
+      intervention:
+        "Continuous graph listening, early-signal detection, and perception risk mapping.",
+      outcome:
+        "Emerging hazards identified before public escalation.",
     },
     {
       icon: ShieldAlert,
       title: "Crisis Architecture & Litigation Defense",
-      challenge: "Active regulatory investigation, sudden media assault, or activist short raid.",
-      intervention: "Emergency war room deployment within 15 minutes, counter-briefing packages, and judicial narrative shielding.",
-      outcome: "Valuation defended, narrative anchored, zero information leakage.",
+      challenge:
+        "Regulatory investigations, media attacks, or activist pressure.",
+      intervention:
+        "Rapid war-room deployment, counter-briefing packages, and litigation communications.",
+      outcome:
+        "Valuation protected, narrative anchored, information controlled.",
     },
     {
       icon: Compass,
       title: "Strategic Communications & Capital Markets",
-      challenge: "Multi-billion dollar transaction, IPO roadshow, or cross-border merger scrutiny.",
-      intervention: "Institutional valuation framing, shareholder sentiment insulation, and multilateral regulatory narrative accord.",
-      outcome: "Deal premium defended and regulatory clearance accelerated.",
+      challenge:
+        "Major transactions, IPOs, or cross-border merger scrutiny.",
+      intervention:
+        "Institutional valuation framing, shareholder communications, and regulatory narrative strategy.",
+      outcome:
+        "Transaction narrative strengthened and regulatory engagement supported.",
     },
     {
       icon: Landmark,
       title: "Public Affairs & Sovereign Statecraft",
-      challenge: "Policy impasse, hostile parliamentary committee, or national security scrutiny.",
-      intervention: "Direct bilateral ministerial briefing dossiers, bipartisan alignment, and national interest capability frameworks.",
-      outcome: "Regulatory green-light and enduring sovereign credibility.",
+      challenge:
+        "Policy impasse, parliamentary scrutiny, or national-interest concerns.",
+      intervention:
+        "Ministerial briefing dossiers, stakeholder alignment, and capability frameworks.",
+      outcome:
+        "Regulatory engagement strengthened and institutional credibility protected.",
     },
     {
       icon: Shield,
       title: "Executive Positioning & Legacy Stewardship",
-      challenge: "High-exposure leadership transition or targeted activist executive attack.",
-      intervention: "Executive doctrine formulation, peer-level editorial alignment, and confidential reputational moats.",
-      outcome: "Leadership mandate preserved with permanent institutional stature.",
+      challenge:
+        "Leadership transitions or targeted executive reputation attacks.",
+      intervention:
+        "Executive doctrine, editorial alignment, and confidential reputation strategy.",
+      outcome:
+        "Leadership mandate protected with durable institutional stature.",
     },
     {
       icon: Sparkles,
       title: "Digital Sovereignty & Algorithm Defense",
-      challenge: "Weaponized LLM summaries, algorithmic search distortion, or botnet smear campaigns.",
-      intervention: "Knowledge graph remediation, high-authority evidentiary indexing, and automated misinformation suppression.",
-      outcome: "Digital corpus sanitized and permanent information integrity restored.",
+      challenge:
+        "LLM distortions, search volatility, or coordinated digital attacks.",
+      intervention:
+        "Knowledge-graph remediation, evidentiary indexing, and misinformation response.",
+      outcome:
+        "Digital information integrity strengthened.",
     },
   ];
 
   return (
-    <section className="relative overflow-hidden border-t border-obsidian-800 bg-obsidian-900/40 py-24 lg:py-32">
+    <section className="relative overflow-hidden border-t border-[#d8d1c5] bg-[#ebe7de] py-24 lg:py-32">
       {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute right-1/4 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-gold-500/5 blur-[150px]" />
+      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#a67c45]/5 blur-[150px]" />
 
       <Container size="xl" className="relative z-10 space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-gold-400">
-              <Layers className="h-3 w-3 text-gold-400" />
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#a67c45]">
+              <Layers className="h-3 w-3 text-[#a67c45]" />
               Practice Capabilities
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-sand-100 leading-tight">
+
+            <h2 className="font-serif text-3xl font-light leading-tight text-[#1d2529] sm:text-4xl lg:text-5xl">
               Operational Depth: <br />
-              <span className="font-normal italic text-gold-300">
-                Solving Existential Institutional Challenges
+              <span className="font-normal italic text-[#a67c45]">
+                Solving Institutional Challenges
               </span>
             </h2>
-            <p className="text-sand-400 text-sm sm:text-base font-light leading-relaxed">
-              Our multidisciplinary practices merge quantitative analytics with senior diplomatic
-              statecraft to resolve high-friction conflicts.
+
+            <p className="text-sm font-light leading-relaxed text-[#626760] sm:text-base">
+              Our multidisciplinary practices combine intelligence, strategic
+              communications, and senior advisory counsel for high-friction
+              environments.
             </p>
           </div>
 
@@ -90,52 +113,62 @@ export function AboutCapabilities() {
             <Button
               variant="outline"
               size="sm"
-              className="font-mono text-xs uppercase tracking-wider border-obsidian-750 text-sand-300 hover:border-gold-500/50 hover:bg-obsidian-850"
+              className="border-[#c9c2b6] bg-[#f3f0e8] font-mono text-xs uppercase tracking-wider text-[#3f4847] hover:border-[#a67c45]/50 hover:bg-[#e5dfd4]"
             >
-              <span>Explore Homepage Practices</span>
+              <span>Explore Practices</span>
               <ArrowRight className="ml-2 h-3.5 w-3.5" />
             </Button>
           </Link>
         </div>
 
         {/* 6 Capabilities Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((cap, idx) => {
             const Icon = cap.icon;
+
             return (
               <div
                 key={idx}
-                className="group relative flex flex-col justify-between rounded-xs border border-obsidian-800 bg-obsidian-950 p-8 transition-all duration-300 hover:border-gold-500/40 hover:bg-obsidian-900/90 shadow-elevation-1"
+                className="group relative flex flex-col justify-between rounded-xs border border-[#d0c9bd] bg-[#f3f0e8] p-8 shadow-sm transition-all duration-300 hover:border-[#a67c45]/50 hover:bg-[#eee9df]"
               >
                 <div className="space-y-4">
-                  <div className="h-10 w-10 rounded-xs border border-obsidian-750 bg-obsidian-900 flex items-center justify-center text-gold-400 group-hover:border-gold-500/30 group-hover:bg-gold-500/10 transition-colors">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xs border border-[#c9c2b6] bg-[#ebe7de] text-[#a67c45] transition-colors group-hover:border-[#a67c45]/40 group-hover:bg-[#a67c45]/10">
                     <Icon className="h-5 w-5" />
                   </div>
 
-                  <h3 className="font-serif text-xl font-normal text-sand-100 group-hover:text-gold-200 transition-colors">
+                  <h3 className="font-serif text-xl font-normal text-[#1d2529] transition-colors group-hover:text-[#8d683d]">
                     {cap.title}
                   </h3>
 
                   <div className="space-y-3 pt-2 text-xs font-light">
                     <div>
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-obsidian-400 block mb-1">
+                      <span className="mb-1 block font-mono text-[9px] uppercase tracking-wider text-[#777970]">
                         The Friction
                       </span>
-                      <p className="text-sand-400">{cap.challenge}</p>
+
+                      <p className="text-[#626760]">
+                        {cap.challenge}
+                      </p>
                     </div>
 
                     <div>
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-gold-400 block mb-1">
+                      <span className="mb-1 block font-mono text-[9px] uppercase tracking-wider text-[#a67c45]">
                         SAMVAD Intervention
                       </span>
-                      <p className="text-sand-300">{cap.intervention}</p>
+
+                      <p className="text-[#3f4847]">
+                        {cap.intervention}
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-obsidian-850 flex items-center gap-2 text-xs text-sand-300">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                  <span className="font-mono text-[11px] text-emerald-400">{cap.outcome}</span>
+                <div className="mt-6 flex items-center gap-2 border-t border-[#d8d1c5] pt-4 text-xs text-[#3f4847]">
+                  <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#66816d]" />
+
+                  <span className="font-mono text-[11px] text-[#66816d]">
+                    {cap.outcome}
+                  </span>
                 </div>
               </div>
             );

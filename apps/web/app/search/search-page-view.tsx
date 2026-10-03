@@ -35,23 +35,23 @@ const DOMAIN_COLOR_CONFIG: Record<
   { badgeClass: string; icon: React.ComponentType<{ className?: string }> }
 > = {
   SERVICES: {
-    badgeClass: "bg-gold-500/10 text-gold-300 border-gold-500/30",
+    badgeClass: "bg-[#a67c45]/10 text-[#a67c45] border-[#a67c45]/25",
     icon: Compass,
   },
   INDUSTRIES: {
-    badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+    badgeClass: "bg-[#536b7b]/10 text-[#536b7b] border-[#536b7b]/25",
     icon: Building2,
   },
   CASE_STUDIES: {
-    badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+    badgeClass: "bg-[#66745f]/10 text-[#66745f] border-[#66745f]/25",
     icon: Briefcase,
   },
   INSIGHTS: {
-    badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
+    badgeClass: "bg-[#655d75]/10 text-[#655d75] border-[#655d75]/25",
     icon: FileText,
   },
   NEWSROOM: {
-    badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
+    badgeClass: "bg-[#815b52]/10 text-[#815b52] border-[#815b52]/25",
     icon: Newspaper,
   },
 };
@@ -92,6 +92,7 @@ export function SearchPageView() {
   const performSearch = React.useCallback(
     async (q: string, tab: SearchCategory, p: number) => {
       setIsLoading(true);
+
       try {
         const params = new URLSearchParams({
           q: q.trim(),
@@ -101,7 +102,9 @@ export function SearchPageView() {
         });
 
         const res = await fetch(`/api/search?${params.toString()}`);
+
         if (!res.ok) throw new Error("Search request failed");
+
         const data: SearchResultPayload = await res.json();
         setPayload(data);
       } catch (err) {
@@ -121,9 +124,11 @@ export function SearchPageView() {
   // Update URL parameters
   const updateUrl = (q: string, tab: SearchCategory, p: number) => {
     const params = new URLSearchParams();
+
     if (q.trim()) params.set("q", q.trim());
     if (tab !== "ALL") params.set("type", tab);
     if (p > 1) params.set("page", String(p));
+
     router.replace(`/search?${params.toString()}`);
   };
 
@@ -149,42 +154,64 @@ export function SearchPageView() {
   };
 
   return (
-    <div className="min-h-screen bg-obsidian-950 text-sand-100 pb-24 pt-28">
-      {/* Top Ambient Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-radial from-gold-500/10 via-transparent to-transparent pointer-events-none blur-3xl" />
+    <div className="min-h-screen bg-[#f3f0e8] text-[#1d2529] pb-24 pt-28">
+      {/* Editorial background */}
+      <div className="pointer-events-none absolute left-0 right-0 top-0 h-64 overflow-hidden">
+        <div className="absolute right-[8%] top-0 h-64 w-64 rounded-full bg-[#a67c45]/[0.035] blur-3xl" />
+      </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         {/* Editorial Header */}
-        <div className="mb-10 text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold-400 animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-gold-400">
-              Intelligence Search Index
+        <div className="mb-12 border-b border-[#1d2529]/15 pb-10">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-8 bg-[#a67c45]" />
+
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#8b6a43]">
+              Intelligence Index
             </span>
           </div>
-          <h1 className="font-serif text-3xl sm:text-5xl font-light text-sand-100 tracking-tight">
-            Search Across <span className="italic font-normal text-gold-300">SAMVAD</span>
-          </h1>
-          <p className="mt-3 text-sm sm:text-base text-obsidian-300 max-w-2xl">
-            Query our integrated archive of strategic communications practices, industry arenas, verified case studies, advisory insights, and institutional dispatches.
-          </p>
+
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <div>
+              <h1 className="font-serif text-4xl font-normal tracking-[-0.03em] text-[#1d2529] sm:text-6xl">
+                Search{" "}
+                <span className="italic text-[#a67c45]">SAMVAD</span>
+              </h1>
+
+              <p className="mt-4 max-w-xl text-sm leading-6 text-[#697174]">
+                Search services, industries, case studies, insights and news.
+              </p>
+            </div>
+
+            <div className="hidden border-l border-[#1d2529]/15 pl-5 sm:block">
+              <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#969995]">
+                Archive
+              </div>
+              <div className="mt-1 font-serif text-lg text-[#394348]">
+                Strategic Intelligence
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Search Input Form */}
         <form onSubmit={handleSearchSubmit} className="relative mb-8">
-          <div className="relative flex items-center rounded-xl border border-obsidian-700 bg-obsidian-900/90 shadow-2xl backdrop-blur-md px-4 py-3.5 focus-within:border-gold-500/50 focus-within:ring-2 focus-within:ring-gold-500/20 transition-all">
-            <Search className="h-5 w-5 text-obsidian-400 shrink-0 mr-3" />
+          <div className="relative flex items-center border-b-2 border-[#1d2529]/30 bg-[#ebe7de] px-4 transition-colors focus-within:border-[#a67c45]">
+            <Search className="mr-3 h-5 w-5 shrink-0 text-[#737a7d]" />
+
             <input
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
-              placeholder="Search by topic, capability, sector, keyword, or dispatch..."
-              className="flex-1 bg-transparent text-base sm:text-lg text-sand-100 placeholder:text-obsidian-500 focus:outline-none"
+              placeholder="Search topics, capabilities, sectors..."
+              className="flex-1 bg-transparent py-4 text-base text-[#1d2529] placeholder:text-[#9a9b97] focus:outline-none sm:text-lg"
             />
+
             <div className="flex items-center gap-2">
               {isLoading && (
-                <Loader2 className="h-5 w-5 animate-spin text-gold-400" />
+                <Loader2 className="h-4 w-4 animate-spin text-[#a67c45]" />
               )}
+
               {inputVal && (
                 <button
                   type="button"
@@ -192,50 +219,57 @@ export function SearchPageView() {
                     setInputVal("");
                     updateUrl("", activeTab, 1);
                   }}
-                  className="p-1.5 rounded-full text-obsidian-400 hover:text-sand-100 hover:bg-obsidian-800 transition-colors"
+                  className="p-1.5 text-[#7d8384] transition-colors hover:text-[#1d2529]"
                   aria-label="Clear input"
                 >
                   <X className="h-4 w-4" />
                 </button>
               )}
+
               <button
                 type="submit"
-                className="bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/40 text-xs font-mono uppercase tracking-wider px-4 py-2 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1d2529] px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-[#f3f0e8] transition-colors hover:bg-[#a67c45]"
               >
                 Search
+                <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
         </form>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 border-b border-obsidian-800 no-scrollbar">
-          <SlidersHorizontal className="h-4 w-4 text-obsidian-400 shrink-0 mr-1" />
-          {DOMAIN_TABS.map((tab) => {
+        <div className="mb-7 flex items-center gap-0 overflow-x-auto border-y border-[#1d2529]/15 no-scrollbar">
+          <SlidersHorizontal className="mr-3 h-3.5 w-3.5 shrink-0 text-[#8a8e8b]" />
+
+          {DOMAIN_TABS.map((tab, index) => {
             const count =
               payload?.countsByDomain?.[
                 tab.id as keyof typeof payload.countsByDomain
               ] ?? 0;
+
             const isSelected = activeTab === tab.id;
 
             return (
               <button
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all whitespace-nowrap ${
+                className={`relative flex shrink-0 items-center gap-2 px-3.5 py-3 font-mono text-[9px] uppercase tracking-[0.12em] transition-all ${
                   isSelected
-                    ? "bg-gold-500/20 text-gold-300 border border-gold-500/40 font-semibold shadow-sm"
-                    : "text-obsidian-400 hover:text-sand-200 hover:bg-obsidian-900 border border-obsidian-800"
+                    ? "bg-[#1d2529] text-[#f3f0e8]"
+                    : "text-[#737a7d] hover:bg-[#ebe7de] hover:text-[#1d2529]"
                 }`}
               >
+                <span className="hidden text-[8px] text-[#a67c45] sm:inline">
+                  0{index + 1}
+                </span>
+
                 <span>{tab.label}</span>
+
                 {payload && (
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isSelected
-                        ? "bg-gold-500/30 text-gold-200"
-                        : "bg-obsidian-800 text-obsidian-400"
-                    }`}
+                    className={
+                      isSelected ? "text-[#c5a477]" : "text-[#9b9e9a]"
+                    }
                   >
                     {count}
                   </span>
@@ -245,16 +279,18 @@ export function SearchPageView() {
           })}
         </div>
 
-        {/* Suggestions & Recommended Inquiries */}
+        {/* Suggestions */}
         {(!urlQuery || (payload && payload.suggestions.length > 0)) && (
-          <div className="mb-8 p-4 rounded-xl border border-obsidian-800 bg-obsidian-900/40">
-            <div className="flex items-center gap-2 mb-2.5">
-              <Sparkles className="h-4 w-4 text-gold-400" />
-              <span className="text-xs font-mono uppercase tracking-widest text-obsidian-400">
-                {urlQuery ? "Related Advisory Suggestions" : "Recommended Search Inquiries"}
+          <div className="mb-8 border-b border-[#1d2529]/15 pb-6">
+            <div className="mb-3 flex items-center gap-2">
+              <Sparkles className="h-3.5 w-3.5 text-[#a67c45]" />
+
+              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#8b908d]">
+                {urlQuery ? "Related Searches" : "Explore"}
               </span>
             </div>
-            <div className="flex flex-wrap gap-2">
+
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
               {(payload && payload.suggestions.length > 0
                 ? payload.suggestions
                 : POPULAR_RECOMMENDATIONS
@@ -262,7 +298,7 @@ export function SearchPageView() {
                 <button
                   key={sug}
                   onClick={() => handleRecommendationClick(sug)}
-                  className="text-xs text-sand-300 hover:text-gold-300 bg-obsidian-800/60 hover:bg-obsidian-800 px-3 py-1.5 rounded-lg border border-obsidian-700/60 transition-colors"
+                  className="border-b border-[#1d2529]/20 pb-1 text-xs text-[#596165] transition-colors hover:border-[#a67c45] hover:text-[#a67c45]"
                 >
                   {sug}
                 </button>
@@ -273,80 +309,102 @@ export function SearchPageView() {
 
         {/* Status Bar */}
         {payload && (
-          <div className="flex items-center justify-between text-xs font-mono text-obsidian-400 mb-6">
+          <div className="mb-5 flex flex-col justify-between gap-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#929693] sm:flex-row">
             <div>
-              Found <span className="text-sand-200 font-semibold">{payload.totalResults}</span>{" "}
-              records across {activeTab === "ALL" ? "all domains" : activeTab.toLowerCase()}
+              <span className="text-[#1d2529]">
+                {payload.totalResults}
+              </span>{" "}
+              records
+              <span className="mx-2 text-[#c1c0bb]">/</span>
+              {activeTab === "ALL"
+                ? "All domains"
+                : activeTab.toLowerCase()}
               {urlQuery && (
-                <span> for &ldquo;<span className="text-gold-300">{urlQuery}</span>&rdquo;</span>
+                <>
+                  <span className="mx-2 text-[#c1c0bb]">/</span>
+                  <span className="text-[#a67c45]">{urlQuery}</span>
+                </>
               )}
             </div>
-            <div>Query executed in {payload.executionTimeMs}ms</div>
+
+            <div>{payload.executionTimeMs}ms</div>
           </div>
         )}
 
         {/* Results List */}
-        <div className="space-y-4">
+        <div className="border-t border-[#1d2529]/15">
           {payload && payload.results.length > 0 ? (
-            payload.results.map((item) => {
+            payload.results.map((item, index) => {
               const domainMeta = DOMAIN_COLOR_CONFIG[item.domain] || {
-                badgeClass: "bg-obsidian-800 text-obsidian-300 border-obsidian-700",
+                badgeClass:
+                  "bg-[#1d2529]/5 text-[#596165] border-[#1d2529]/15",
                 icon: Compass,
               };
+
               const DomainIcon = domainMeta.icon;
 
               return (
                 <article
                   key={item.id}
-                  className="group relative p-5 sm:p-6 rounded-xl border border-obsidian-800 bg-obsidian-900/50 hover:bg-obsidian-900/90 hover:border-gold-500/40 transition-all shadow-md"
+                  className="group border-b border-[#1d2529]/12 py-7 transition-colors hover:bg-[#ebe7de] sm:py-8"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    {/* Result Number */}
+                    <div className="w-8 shrink-0 pt-1 font-serif text-xl text-[#c0b8aa] sm:w-10 sm:text-2xl">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+
+                    <div className="min-w-0 flex-1">
                       {/* Meta badges */}
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <div className="mb-3 flex items-center gap-2 flex-wrap">
                         <span
-                          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-mono tracking-wider uppercase border ${domainMeta.badgeClass}`}
+                          className={`inline-flex items-center gap-1.5 border px-2 py-1 font-mono text-[9px] uppercase tracking-[0.12em] ${domainMeta.badgeClass}`}
                         >
-                          <DomainIcon className="h-3.5 w-3.5" />
+                          <DomainIcon className="h-3 w-3" />
                           <span>{item.domainLabel}</span>
                         </span>
+
                         {item.badge && (
-                          <span className="text-xs font-mono text-obsidian-400">
+                          <span className="text-[10px] text-[#8c918e]">
                             {item.badge}
                           </span>
                         )}
+
                         {item.publishedAt && (
-                          <span className="text-xs font-mono text-obsidian-500">
+                          <span className="font-mono text-[9px] text-[#9b9e9a]">
                             {item.publishedAt}
                           </span>
                         )}
                       </div>
 
                       {/* Title */}
-                      <h3 className="font-serif text-lg sm:text-xl font-medium text-sand-100 group-hover:text-gold-300 transition-colors">
+                      <h3 className="max-w-3xl font-serif text-xl font-medium leading-tight tracking-[-0.015em] text-[#1d2529] sm:text-2xl">
                         <Link
                           href={item.url}
+                          className="transition-colors hover:text-[#a67c45]"
                           dangerouslySetInnerHTML={{
                             __html: item.highlightedTitle || item.title,
                           }}
                         />
                       </h3>
 
-                      {/* Highlighted contextual description */}
+                      {/* Description */}
                       <p
-                        className="mt-2 text-sm text-sand-300/80 leading-relaxed"
+                        className="mt-2 max-w-2xl text-sm leading-6 text-[#697174]"
                         dangerouslySetInnerHTML={{
-                          __html: item.highlightedDescription || item.description,
+                          __html:
+                            item.highlightedDescription ||
+                            item.description,
                         }}
                       />
 
                       {/* Tags */}
                       {item.tags && item.tags.length > 0 && (
-                        <div className="flex items-center gap-2 mt-3 flex-wrap">
+                        <div className="mt-3 flex items-center gap-3 flex-wrap">
                           {item.tags.map((tag, tIdx) => (
                             <span
                               key={tIdx}
-                              className="text-[11px] font-mono text-obsidian-400 bg-obsidian-800/60 px-2 py-0.5 rounded"
+                              className="font-mono text-[9px] uppercase tracking-[0.08em] text-[#969a97]"
                             >
                               #{tag}
                             </span>
@@ -358,32 +416,39 @@ export function SearchPageView() {
                     {/* View Arrow */}
                     <Link
                       href={item.url}
-                      className="shrink-0 p-2.5 rounded-lg border border-obsidian-800 bg-obsidian-950 text-obsidian-400 group-hover:text-gold-300 group-hover:border-gold-500/40 transition-all self-center"
+                      className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center border border-[#1d2529]/15 text-[#777e80] transition-all group-hover:border-[#a67c45] group-hover:bg-[#a67c45] group-hover:text-white"
                       aria-label={`View ${item.title}`}
                     >
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </Link>
                   </div>
                 </article>
               );
             })
           ) : !isLoading && payload ? (
-            <div className="py-16 text-center rounded-xl border border-obsidian-800/60 bg-obsidian-900/20">
-              <Search className="h-10 w-10 text-obsidian-500 mx-auto mb-3 stroke-[1.5]" />
-              <div className="font-serif text-xl text-sand-100">
-                No matching records located
+            <div className="border-b border-[#1d2529]/15 py-16 text-center">
+              <Search className="mx-auto mb-4 h-8 w-8 stroke-[1.25] text-[#9a9d99]" />
+
+              <div className="font-serif text-2xl text-[#1d2529]">
+                No matching records
               </div>
-              <p className="mt-2 text-sm text-obsidian-400 max-w-md mx-auto">
-                No indexed items matched &ldquo;{urlQuery}&rdquo; within the{" "}
-                {activeTab === "ALL" ? "advisory corpus" : `${activeTab.toLowerCase()} category`}.
+
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#747b7d]">
+                Nothing matched &ldquo;{urlQuery}&rdquo; in the{" "}
+                {activeTab === "ALL"
+                  ? "advisory index"
+                  : `${activeTab.toLowerCase()} category`}
+                .
               </p>
+
               {activeTab !== "ALL" && (
                 <button
                   type="button"
                   onClick={() => handleTabChange("ALL")}
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-gold-400 hover:text-gold-300 bg-obsidian-900 border border-gold-500/30 px-4 py-2 rounded-lg"
+                  className="mt-5 inline-flex items-center gap-2 bg-[#1d2529] px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#f3f0e8] transition-colors hover:bg-[#a67c45]"
                 >
-                  Expand search to All Records
+                  Expand search
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               )}
             </div>
@@ -392,27 +457,35 @@ export function SearchPageView() {
 
         {/* Pagination Controls */}
         {payload && payload.totalPages > 1 && (
-          <div className="mt-10 flex items-center justify-between border-t border-obsidian-800 pt-6">
+          <div className="mt-7 flex items-center justify-between border-t border-[#1d2529]/15 pt-5">
             <button
               type="button"
               disabled={currentPage <= 1 || isLoading}
               onClick={() => handlePageChange(currentPage - 1)}
-              className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-sand-300 hover:text-gold-300 disabled:opacity-40 disabled:hover:text-sand-300 px-3 py-1.5 rounded border border-obsidian-800"
+              className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#697174] transition-colors hover:text-[#a67c45] disabled:opacity-30"
             >
               <ChevronLeft className="h-4 w-4" />
               <span>Previous</span>
             </button>
 
-            <div className="flex items-center gap-1.5 text-xs font-mono text-obsidian-400">
-              Page <span className="text-sand-100 font-semibold">{payload.page}</span> of{" "}
-              <span className="text-sand-100 font-semibold">{payload.totalPages}</span>
+            <div className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#949793]">
+              Page{" "}
+              <span className="text-[#1d2529]">
+                {payload.page}
+              </span>{" "}
+              of{" "}
+              <span className="text-[#1d2529]">
+                {payload.totalPages}
+              </span>
             </div>
 
             <button
               type="button"
-              disabled={currentPage >= payload.totalPages || isLoading}
+              disabled={
+                currentPage >= payload.totalPages || isLoading
+              }
               onClick={() => handlePageChange(currentPage + 1)}
-              className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-sand-300 hover:text-gold-300 disabled:opacity-40 disabled:hover:text-sand-300 px-3 py-1.5 rounded border border-obsidian-800"
+              className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[#697174] transition-colors hover:text-[#a67c45] disabled:opacity-30"
             >
               <span>Next</span>
               <ChevronRight className="h-4 w-4" />

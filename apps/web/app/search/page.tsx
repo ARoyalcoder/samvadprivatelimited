@@ -1,7 +1,11 @@
 import * as React from "react";
+
 import { Suspense } from "react";
+
 import { Metadata } from "next";
+
 import { SearchPageView } from "./search-page-view";
+
 import { Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,9 +16,10 @@ export const metadata: Metadata = {
 
 function SearchPageSkeleton() {
   return (
-    <div className="min-h-screen bg-obsidian-950 text-sand-100 flex items-center justify-center pt-24 pb-24">
-      <div className="flex flex-col items-center gap-3 text-obsidian-400">
-        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
+    <div className="flex min-h-screen items-center justify-center bg-[#f3f0e8] px-4 pb-24 pt-24 text-[#1d2529]">
+      <div className="flex flex-col items-center gap-3 text-[#777970]">
+        <Loader2 className="h-8 w-8 animate-spin text-[#a67c45]" />
+
         <span className="font-mono text-xs uppercase tracking-widest">
           Loading Search Intelligence Index...
         </span>

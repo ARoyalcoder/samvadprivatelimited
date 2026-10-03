@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+
 import { Canvas, useFrame } from "@react-three/fiber";
+
 import * as THREE from "three";
 
 function PerceptionCore() {
@@ -13,31 +15,38 @@ function PerceptionCore() {
   const [particlePositions] = React.useState(() => {
     const count = 120;
     const positions = new Float32Array(count * 3);
+
     for (let i = 0; i < count; i++) {
       const u = Math.random();
       const v = Math.random();
       const theta = u * 2.0 * Math.PI;
       const phi = Math.acos(2.0 * v - 1.0);
       const r = 2.2 + Math.random() * 0.4;
+
       const sinPhi = Math.sin(phi);
+
       positions[i * 3] = r * sinPhi * Math.cos(theta);
       positions[i * 3 + 1] = r * sinPhi * Math.sin(theta);
       positions[i * 3 + 2] = r * Math.cos(phi);
     }
+
     return positions;
   });
 
   useFrame((_, delta) => {
     // Clamp delta to prevent huge jumps on tab switch / lag spike
     const clampedDelta = Math.min(delta, 0.1);
+
     if (meshRef.current) {
       meshRef.current.rotation.y += clampedDelta * 0.12;
       meshRef.current.rotation.x += clampedDelta * 0.04;
     }
+
     if (wireframeRef.current) {
       wireframeRef.current.rotation.y -= clampedDelta * 0.08;
       wireframeRef.current.rotation.z += clampedDelta * 0.02;
     }
+
     if (particlesRef.current) {
       particlesRef.current.rotation.y += clampedDelta * 0.05;
     }
@@ -45,31 +54,49 @@ function PerceptionCore() {
 
   return (
     <group>
-      {/* Internal ambient glowing perception core */}
+      {/* Internal ambient perception core */}
       <mesh ref={meshRef}>
         <sphereGeometry args={[1.6, 24, 24]} />
+
         <meshStandardMaterial
-          color="#161a22"
-          emissive="#c39651"
-          emissiveIntensity={0.15}
-          roughness={0.4}
-          metalness={0.8}
+          color="#1d2529"
+          emissive="#a67c45"
+          emissiveIntensity={0.12}
+          roughness={0.45}
+          metalness={0.75}
           wireframe={false}
         />
       </mesh>
 
       {/* Outer geodesic wireframe grid */}
       <lineSegments ref={wireframeRef}>
-        <edgesGeometry args={[new THREE.IcosahedronGeometry(2.0, 2)]} />
-        <lineBasicMaterial color="#c39651" transparent opacity={0.35} />
+        <edgesGeometry
+          args={[new THREE.IcosahedronGeometry(2.0, 2)]}
+        />
+
+        <lineBasicMaterial
+          color="#a67c45"
+          transparent
+          opacity={0.32}
+        />
       </lineSegments>
 
       {/* Narrative node particles */}
       <points ref={particlesRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[particlePositions, 3]} />
+          <bufferAttribute
+            attach="attributes-position"
+            args={[particlePositions, 3]}
+          />
         </bufferGeometry>
-        <pointsMaterial size={0.06} color="#f5e0b7" transparent opacity={0.85} sizeAttenuation />
+
+        <pointsMaterial
+          size={0.06}
+          color="#d4b98d"
+          transparent
+          opacity={0.7}
+          sizeAttenuation
+        />
       </points>
     </group>
   );
@@ -85,7 +112,11 @@ export function PerceptionGlobe() {
 
     // Viewport Intersection Observer: Pause WebGL canvas rendering when out of viewport
     let observer: IntersectionObserver | null = null;
-    if (typeof IntersectionObserver !== "undefined" && containerRef.current) {
+
+    if (
+      typeof IntersectionObserver !== "undefined" &&
+      containerRef.current
+    ) {
       observer = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
@@ -93,6 +124,7 @@ export function PerceptionGlobe() {
         },
         { threshold: 0.05 }
       );
+
       observer.observe(containerRef.current);
     }
 
@@ -103,32 +135,46 @@ export function PerceptionGlobe() {
       } else if (containerRef.current) {
         // Re-check bounding client rect
         const rect = containerRef.current.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+        const inView =
+          rect.top < window.innerHeight && rect.bottom > 0;
+
         setIsVisible(inView);
       }
     };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
 
     return () => {
       observer?.disconnect();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
     };
   }, []);
 
   if (!mounted) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <div className="h-48 w-48 animate-pulse-subtle rounded-full border border-gold-500/20" />
+        <div className="h-48 w-48 animate-pulse-subtle rounded-full border border-[#a67c45]/20" />
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="relative h-[420px] w-full lg:h-[540px]">
+    <div
+      ref={containerRef}
+      className="relative h-[420px] w-full lg:h-[540px]"
+    >
       <Canvas
         camera={{ position: [0, 0, 4.8], fov: 45 }}
-        dpr={[1, 1.5]} // Cap DPR to 1.5x max to prevent 3x retina overdraw
+        dpr={[1, 1.5]}
+        // Cap DPR to 1.5x max to prevent 3x retina overdraw
         frameloop={isVisible ? "always" : "never"}
         gl={{
           antialias: true,
@@ -137,8 +183,19 @@ export function PerceptionGlobe() {
         }}
       >
         <ambientLight intensity={0.6} />
-        <directionalLight position={[5, 6, 5]} intensity={1.4} color="#fdfbf7" />
-        <pointLight position={[-4, -3, -4]} intensity={0.5} color="#c39651" />
+
+        <directionalLight
+          position={[5, 6, 5]}
+          intensity={1.4}
+          color="#f3f0e8"
+        />
+
+        <pointLight
+          position={[-4, -3, -4]}
+          intensity={0.45}
+          color="#a67c45"
+        />
+
         <PerceptionCore />
       </Canvas>
     </div>
